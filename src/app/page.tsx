@@ -19,7 +19,7 @@ const HomePage = () => {
   if (loading) {
     // Show a loading spinner while Firebase is determining if the user is signed in
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-900">
+      <div className="flex justify-center items-center h-screen">
         <div className="border-4 border-t-4 border-gray-500 border-t-transparent rounded-full w-16 h-16 animate-spin"></div>
       </div>
     );
@@ -27,7 +27,7 @@ const HomePage = () => {
 
   if (user) {
     return (
-      <div className=" mx-auto mt-5 p-4">
+      <div className=" mx-auto mt-5 p-4 mt-16">
         <h2 className="text-2xl text-shadow-lg font-bold text-7xl text-center">
           C-companion
         </h2>
@@ -66,7 +66,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="w-[305px] mx-auto mt-10 p-4 rounded shadow-lg bg-[rgba(86,118,145,0.85)]">
+    <div className="w-[305px] mx-auto mt-10 p-4 mt-26 rounded shadow-lg bg-[rgba(86,118,145,0.85)]">
       <h1 className="text-4xl text-shadow-lg font-bold mb-6 text-center text-white">C-companion</h1>
         <div className="flex flex-col gap-4">
           {/* Row for Sign Up and Log In buttons */}

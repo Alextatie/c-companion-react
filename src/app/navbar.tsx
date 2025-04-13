@@ -16,16 +16,19 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="">
-      <div className="flex justify-between items-center max-w-7xl mx-auto m-2">
-        <div className="flex items-center gap-6">
-          {/* Home Button */}
-          <Link href="/" className="text-white flex items-center gap-2 hover:text-gray-400">
-            <FaHome /> Home
-          </Link>
-        </div>
-      </div>
-    </nav>
+    <nav className="fixed top-0 left-0 w-full bg-transparent px-5 py-5 drop-shadow-lg z-50">
+  <div className="flex justify-start items-center">
+    <Link
+      href="/"
+      className="text-[rgb(86,116,145,0.85)] hover:text-[rgb(68,96,123,0.85)] transition"
+    >
+      <FaHome size={34} />
+    </Link>
+  </div>
+</nav>
+
+  
+
   );
 };
 

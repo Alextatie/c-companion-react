@@ -80,7 +80,7 @@ const SignUp = () => {
   }
 
   return (
-    <div className="w-[305px] mx-auto mt-10 p-4 rounded text-center shadow-lg bg-[rgba(86,118,145,0.85)]">
+    <div className="w-[305px] mx-auto mt-10 p-4 mt-26 rounded text-center shadow-lg bg-[rgba(86,118,145,0.85)]">
       <h2 className="text-4xl text-shadow-lg font-bold mb-4">Sign Up</h2>
 
       {/* Email and Password Sign-Up Form */}
