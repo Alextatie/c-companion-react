@@ -49,9 +49,11 @@ const HomePage = () => {
           <button className="bg-[rgb(86,116,145,0.85)] text-shadow-lg shadow-lg  w-full text-white text-2xl py-2 rounded hover:bg-[rgb(68,96,123,0.85)] transition">
               Options
             </button>
-            <button className="bg-[rgb(86,116,145,0.85)] text-shadow-lg shadow-lg  w-full text-white text-2xl py-2 rounded hover:bg-[rgb(68,96,123,0.85)] transition">
-              About
-            </button>
+              <button className="bg-[rgb(86,116,145,0.85)] text-shadow-lg shadow-lg  w-full text-white text-2xl py-2 rounded hover:bg-[rgb(68,96,123,0.85)] transition">
+              <Link href="/about">
+                About
+                </Link>
+             </button>
           </div>
 
           <button onClick={handleLogout} className="bg-[rgb(205,70,70,0.85)] shadow-lg text-shadow-lg  text-white text-4xl py-2 rounded hover:bg-[rgb(179,56,56,0.85)] transition">
