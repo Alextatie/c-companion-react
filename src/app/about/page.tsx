@@ -32,11 +32,10 @@ function AboutPage() {
 
   {/* Back button container */}
   <div className="mt-12">
-  <button className="bg-[rgb(255,255,255,0.65)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145,0.85)] text-lg px-3 py-2 rounded hover:bg-[rgb(255,255,255)] transition flex items-center">
-  <Link href="/" className="flex items-center gap-3"> {/* Added flex and gap-2 */}
+    <Link href="/" className="bg-[rgb(255,255,255,0.65)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145,0.85)]
+  text-lg px-3 py-2 rounded hover:bg-[rgb(255,255,255)] transition flex items-center">
     <span>←</span> <span>Back</span>
   </Link>
-</button>
   </div>
 </div>
   );
