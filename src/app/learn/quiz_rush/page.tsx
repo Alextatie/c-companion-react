@@ -1,23 +1,17 @@
 import Link from 'next/link';
 
-function AboutPage() {
+function QuizRushPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen -mt-50 text-white text-center px-4 pt-30">
-    <div>
-    [TBD]
-    </div>
-    <div>
-    Volume     [-------]
-    </div>
-    <div>
-    Background [-------]
+    <div className='text-2xl'>
+    Quiz Rush
     </div>
 
   {/* Back button container */}
   <div className="mt-12">
   
   
-  <Link href="/" className="bg-[rgb(255,255,255,0.65)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145,0.85)]
+  <Link href="./" className="bg-[rgb(255,255,255,0.65)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145,0.85)]
   text-lg px-3 py-2 rounded hover:bg-[rgb(255,255,255)] transition flex items-center">
     <span>←</span> <span>Back</span>
   </Link>
@@ -27,4 +21,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default QuizRushPage;

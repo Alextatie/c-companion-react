@@ -1,16 +1,21 @@
-import Link from 'next/link';
+'use client';
 
-function AboutPage() {
+import Link from 'next/link';
+import { auth } from '../firebase/config';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+function ProfilePage() {
+  const [user, loading] = useAuthState(auth);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen -mt-50 text-white text-center px-4 pt-30">
     <div>
     [TBD]
     </div>
     <div>
-    Volume     [-------]
+    Name:     [{user?.email?.split('@')[0] || 'Guest'}]
     </div>
     <div>
-    Background [-------]
+    Progress: [---/18]
     </div>
 
   {/* Back button container */}
@@ -27,4 +32,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default ProfilePage;
