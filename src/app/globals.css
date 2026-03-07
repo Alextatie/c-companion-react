@@ -3,13 +3,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bg-gradient: linear-gradient(
+    to bottom right,
+    #acf59a 0%,
+    #8ad192 25%,
+    #69ac8a 50%,
+    #478881 75%,
+    #256379 100%
+  );
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jetbrains-mono);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,7 +30,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 * {
@@ -34,6 +42,10 @@ body {
 
 input, textarea {
   user-select: text;
+}
+
+button {
+  cursor: pointer;
 }
 
 @keyframes animate {
@@ -58,8 +70,26 @@ input, textarea {
   left: 0;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom right,#acf59a, #256379);
+  background: var(--bg-gradient);
   overflow: hidden;
+  pointer-events: none;
+}
+
+html[data-dark-mode='on'] {
+  --bg-gradient: linear-gradient(
+    to bottom right,
+    #363636 0%,
+    #313131 25%,
+    #2c2c2c 50%,
+    #272727 75%,
+    #222222 100%
+  );
+}
+
+html[data-bg-anim='off'] .background li,
+body[data-bg-anim='off'] .background li {
+  display: none;
+  animation: none;
 }
 .background li {
   position: absolute;
@@ -72,56 +102,56 @@ input, textarea {
 }
 
 
-.background li:nth-child(0) {
+.background li:nth-child(1) {
   left: 9%;
   width: 111px;
   height: 111px;
   bottom: -111px;
-  animation-delay: 1s;
+  animation-delay: 0s;
 }
-.background li:nth-child(1) {
+.background li:nth-child(2) {
   left: 44%;
   width: 176px;
   height: 176px;
   bottom: -176px;
   animation-delay: 20s;
 }
-.background li:nth-child(2) {
+.background li:nth-child(3) {
   left: 15%;
   width: 192px;
   height: 192px;
   bottom: -192px;
   animation-delay: 40s;
 }
-.background li:nth-child(3) {
+.background li:nth-child(4) {
   left: 61%;
   width: 112px;
   height: 112px;
   bottom: -112px;
   animation-delay: 60s;
 }
-.background li:nth-child(4) {
+.background li:nth-child(5) {
   left: 40%;
   width: 147px;
   height: 147px;
   bottom: -147px;
   animation-delay: 80s;
 }
-.background li:nth-child(5) {
+.background li:nth-child(6) {
   left: 86%;
   width: 190px;
   height: 190px;
   bottom: -190px;
   animation-delay: 100s;
 }
-.background li:nth-child(6) {
+.background li:nth-child(7) {
   left: 21%;
   width: 163px;
   height: 163px;
   bottom: -163px;
   animation-delay: 120s;
 }
-.background li:nth-child(7) {
+.background li:nth-child(8) {
   left: 72%;
   width: 165px;
   height: 165px;

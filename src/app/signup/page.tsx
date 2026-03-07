@@ -5,29 +5,25 @@ import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } f
 import { auth } from "../firebase/config"; // Adjust the path as needed
 import { useRouter } from 'next/navigation';
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useGlobalLoading } from "../providers/loading-provider";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(true); // Added a loading state for waiting for auth state
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [user, loadingUser] = useAuthState(auth); // Firebase hook to check the user state
+  const { setLoading: setGlobalLoading, withLoading } = useGlobalLoading();
 
   useEffect(() => {
-    // Wait until the authentication state has been determined
-    if (loadingUser) {
-      return; // Don't render anything until loading is complete
-    }
-    
-    // If a user is already logged in, redirect them to the homepage
-    if (user) {
+    setGlobalLoading('signup-auth-state', loadingUser);
+    if (!loadingUser && user) {
       router.push('/');
-    } else {
-      setLoading(false); // Set loading to false once user state is resolved
     }
-  }, [user, loadingUser, router]);
+    return () => setGlobalLoading('signup-auth-state', false);
+  }, [user, loadingUser, router, setGlobalLoading]);
 
   // Function to handle email and password sign-up
   const handleSignUp = async (e: React.FormEvent) => {
@@ -37,7 +33,9 @@ const SignUp = () => {
     setSuccess(false);
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await withLoading('signup-email', async () =>
+        createUserWithEmailAndPassword(auth, email, password)
+      );
       setSuccess(true);
       router.push('/');  // Redirect to homepage after successful sign-up
     } catch (err: any) {
@@ -54,9 +52,14 @@ const SignUp = () => {
     setSuccess(false);
 
     try {
-      const result = await signInWithPopup(auth, new GoogleAuthProvider().setCustomParameters({
-        prompt: "select_account", // This forces account selection
-      }));
+      const result = await withLoading('signup-google', async () =>
+        signInWithPopup(
+          auth,
+          new GoogleAuthProvider().setCustomParameters({
+            prompt: "select_account", // This forces account selection
+          })
+        )
+      );
       const user = result.user; // user info returned after successful login
 
       // You can handle the user info here if needed
@@ -70,17 +73,10 @@ const SignUp = () => {
     }
   };
 
-  // If the user is still loading, show a loading spinner
-  if (loadingUser || loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="border-4 border-t-4 border-gray-500 border-t-transparent rounded-full w-16 h-16 animate-spin"></div>
-      </div>
-    );
-  }
+  if (loadingUser || user) return null;
 
   return (
-    <div className="w-[305px] mx-auto mt-10 p-4 mt-26 rounded text-center shadow-lg bg-[rgba(86,118,145,0.85)]">
+    <div className="w-[305px] mx-auto mt-10 p-4 mt-26 rounded text-center shadow-lg bg-[rgb(86,118,145)]">
       <h2 className="text-4xl text-shadow-lg font-bold mb-4">Sign Up</h2>
 
       {/* Email and Password Sign-Up Form */}
@@ -103,7 +99,7 @@ const SignUp = () => {
         />
         <button
           type="submit"
-          className={`bg-[rgb(107,195,95,0.85)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(129,218,133,0.85)] transition ${
+          className={`bg-[rgb(107,195,95)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(129,218,133)] transition ${
             loading ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={loading} // Disable button while loading
@@ -116,7 +112,7 @@ const SignUp = () => {
       <div className="flex gap-4 mt-4">
         <button
           onClick={handleGoogleSignUp}
-          className={`bg-[rgb(95,165,195,0.85)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(116,181,209,0.85)] w-full ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+          className={`bg-[rgb(95,165,195)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(116,181,209)] w-full ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
           disabled={loading} // Disable button while loading
         >
           Sign Up with Google
@@ -130,3 +126,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+

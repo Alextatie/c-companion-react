@@ -5,29 +5,24 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 
 import { auth } from '../firebase/config'; // Adjust the path as needed
 import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useGlobalLoading } from '../providers/loading-provider';
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(true); // Added a loading state for waiting for auth state
   const router = useRouter();
   const [user, loadingUser] = useAuthState(auth); // Firebase hook to check the user state
+  const { setLoading, withLoading } = useGlobalLoading();
 
   useEffect(() => {
-    // Wait until the authentication state has been determined
-    if (loadingUser) {
-      return; // Don't render anything until loading is complete
-    }
-    
-    // If a user is already logged in, redirect them to the homepage
-    if (user) {
+    setLoading('login-auth-state', loadingUser);
+    if (!loadingUser && user) {
       router.push('/');
-    } else {
-      setLoading(false); // Set loading to false once user state is resolved
     }
-  }, [user, loadingUser, router]);
+    return () => setLoading('login-auth-state', false);
+  }, [user, loadingUser, router, setLoading]);
 
   // Function to handle email/password login
   const handleEmailLogin = async (e: React.FormEvent) => {
@@ -36,7 +31,9 @@ const LoginPage = () => {
     setSuccess(false);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await withLoading('login-email', async () =>
+        signInWithEmailAndPassword(auth, email, password)
+      );
       setSuccess(true);
       router.push('/');
     } catch (err: any) {
@@ -50,9 +47,14 @@ const LoginPage = () => {
     setSuccess(false);
 
     try {
-      await signInWithPopup(auth, new GoogleAuthProvider().setCustomParameters({
-        prompt: 'select_account', // This forces account selection
-      }));
+      await withLoading('login-google', async () =>
+        signInWithPopup(
+          auth,
+          new GoogleAuthProvider().setCustomParameters({
+            prompt: 'select_account', // This forces account selection
+          })
+        )
+      );
       setSuccess(true);
       router.push('/');
     } catch (err: any) {
@@ -60,18 +62,11 @@ const LoginPage = () => {
     }
   };
 
-  // Check if we're in loading state (waiting for Firebase to determine user)
-  if (loadingUser || loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="border-4 border-t-4 border-gray-500 border-t-transparent rounded-full w-16 h-16 animate-spin"></div>
-      </div>
-    );
-  }
+  if (loadingUser || user) return null;
 
 
   return (
-    <div className="w-[305px] shadow-lg mx-auto mt-10 p-4 mt-26 rounded text-center shadow bg-[rgba(86,118,145,0.85)]">
+    <div className="w-[305px] shadow-lg mx-auto mt-10 p-4 mt-26 rounded text-center shadow bg-[rgb(86,118,145)]">
       <h2 className="text-4xl text-shadow-lg font-bold mb-4">Log In</h2>
       <form onSubmit={handleEmailLogin} className="flex flex-col gap-4">
         <input
@@ -92,7 +87,7 @@ const LoginPage = () => {
         />
         <button
           type="submit"
-          className="bg-[rgb(107,195,95,0.85)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(129,218,133,0.85)] transition"
+          className="bg-[rgb(107,195,95)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(129,218,133)] transition"
         >
           Log In with Email
         </button>
@@ -101,7 +96,7 @@ const LoginPage = () => {
       <div className="flex gap-4 mt-4">
         <button
           onClick={handleGoogleLogin}
-          className="bg-[rgb(95,165,195,0.85)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(116,181,209,0.85)] w-full"
+          className="bg-[rgb(95,165,195)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(116,181,209)] w-full"
         >
           Log In with Google
         </button>
@@ -114,3 +109,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+

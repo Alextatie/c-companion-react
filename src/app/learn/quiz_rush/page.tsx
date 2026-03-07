@@ -11,7 +11,7 @@ function QuizRushPage() {
   <div className="mt-12">
   
   
-  <Link href="./" className="bg-[rgb(255,255,255,0.65)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145,0.85)]
+  <Link href="./" className="bg-[rgb(255,255,255)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145)]
   text-lg px-3 py-2 rounded hover:bg-[rgb(255,255,255)] transition flex items-center">
     <span>←</span> <span>Back</span>
   </Link>
@@ -22,3 +22,5 @@ function QuizRushPage() {
 }
 
 export default QuizRushPage;
+
+

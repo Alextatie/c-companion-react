@@ -20,7 +20,7 @@ const Navbar = () => {
   <div className="flex justify-start items-center">
     <Link
       href="/"
-      className="text-[rgb(86,116,145,0.85)] hover:text-[rgb(68,96,123,0.85)] transition"
+      className="text-[rgb(86,116,145)] hover:text-[rgb(68,96,123)] transition"
     >
       <FaHome size={34} />
     </Link>
@@ -33,3 +33,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
