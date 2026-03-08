@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { auth } from '../firebase/config';
@@ -9,7 +9,7 @@ function ProfilePage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="border-4 border-t-4 border-gray-500 border-t-transparent rounded-full w-16 h-16 animate-spin"></div>
+        <div className="border-4 border-t-4 border-white border-t-transparent rounded-full w-16 h-16 animate-spin"></div>
       </div>
     );
   }
@@ -30,9 +30,8 @@ function ProfilePage() {
     <div className="mt-12">
     
     
-    <Link href="/" className="bg-[rgb(255,255,255)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145)]
-    text-lg px-3 py-2 rounded hover:bg-[rgb(255,255,255)] transition flex items-center">
-      <span>←</span> <span>Back</span>
+    <Link href="/" className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer">
+      <span>{'<-'}</span> <span className="ml-1">Back</span>
     </Link>
 
     </div>
@@ -53,9 +52,8 @@ function ProfilePage() {
     <div className="mt-12">
     
     
-    <Link href="/" className="bg-[rgb(255,255,255)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145)]
-    text-lg px-3 py-2 rounded hover:bg-[rgb(255,255,255)] transition flex items-center">
-      <span>←</span> <span>Back</span>
+    <Link href="/" className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer">
+      <span>{'<-'}</span> <span className="ml-1">Back</span>
     </Link>
 
     </div>
@@ -65,4 +63,6 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
+
+
 

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 
 function LeaderboardsPage() {
   return (
@@ -11,9 +11,8 @@ function LeaderboardsPage() {
   <div className="mt-12">
   
   
-  <Link href="./" className="bg-[rgb(255,255,255)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145)]
-  text-lg px-3 py-2 rounded hover:bg-[rgb(255,255,255)] transition flex items-center">
-    <span>←</span> <span>Back</span>
+  <Link href="./" className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer">
+    <span>{'<-'}</span> <span className="ml-1">Back</span>
   </Link>
 
   </div>
@@ -22,5 +21,7 @@ function LeaderboardsPage() {
 }
 
 export default LeaderboardsPage;
+
+
 
 

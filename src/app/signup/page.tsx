@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -126,4 +126,5 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
 

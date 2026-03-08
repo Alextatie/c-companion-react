@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --bg-gradient: linear-gradient(
+  --bg-gradient-light: linear-gradient(
     to bottom right,
     #acf59a 0%,
     #8ad192 25%,
@@ -11,6 +11,7 @@
     #478881 75%,
     #256379 100%
   );
+  --bg-gradient: var(--bg-gradient-light);
 }
 
 @theme inline {
@@ -33,6 +34,14 @@ body {
   font-family: var(--font-jetbrains-mono), monospace;
 }
 
+::selection {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+::-moz-selection {
+  background: rgba(0, 0, 0, 0.25);
+}
+
 * {
   user-select: none;
   -webkit-user-select: none;
@@ -40,12 +49,42 @@ body {
   -ms-user-select: none;
 }
 
-input, textarea {
+.lesson-selectable,
+.lesson-selectable * {
   user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+.lesson-selectable button,
+.lesson-selectable button *,
+.lesson-selectable .no-select,
+.lesson-selectable .no-select *,
+.lesson-selectable .select-none,
+.lesson-selectable .select-none * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.lesson-selectable .output-select::selection,
+.lesson-selectable .output-select *::selection {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lesson-selectable .output-select::-moz-selection,
+.lesson-selectable .output-select *::-moz-selection {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 button {
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 @keyframes animate {
@@ -80,10 +119,14 @@ html[data-dark-mode='on'] {
     to bottom right,
     #363636 0%,
     #313131 25%,
-    #2c2c2c 50%,
-    #272727 75%,
-    #222222 100%
+    #272727 50%,
+    #202020 75%,
+    #181818 100%
   );
+}
+
+html[data-dark-mode='off'] {
+  --bg-gradient: var(--bg-gradient-light);
 }
 
 html[data-bg-anim='off'] .background li,

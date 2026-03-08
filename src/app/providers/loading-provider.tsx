@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import {
   createContext,
@@ -76,3 +76,4 @@ export function useGlobalLoading() {
   }
   return context;
 }
+

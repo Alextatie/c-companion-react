@@ -1,4 +1,4 @@
-// components/Navbar.tsx
+﻿// components/Navbar.tsx
 
 'use client'; // Ensure this is a client-side component
 
@@ -12,7 +12,11 @@ const Navbar = () => {
   const [user, loading] = useAuthState(auth); // Firebase hook to track user state
 
   if (loading) {
-    return <div>Loading...</div>; // Optional loading state
+    return (
+      <div className="fixed inset-0 z-[999] flex items-center justify-center">
+        <div className="border-4 border-t-4 border-white border-t-transparent rounded-full w-16 h-16 animate-spin"></div>
+      </div>
+    );
   }
 
   return (
@@ -33,4 +37,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 

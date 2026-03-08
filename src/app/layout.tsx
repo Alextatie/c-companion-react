@@ -1,4 +1,4 @@
-// app/layout.tsx
+﻿// app/layout.tsx
 
 import Navbar from './navbar'; // Import the Navbar component
 import type { Metadata } from 'next';
@@ -21,15 +21,15 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const cookieStore = await cookies();
-  const darkMode = cookieStore.get('dark-mode')?.value === 'on';
+  const darkModeCookie = cookieStore.get('dark-mode')?.value;
   const bgAnim = cookieStore.get('bg-anim')?.value;
   const htmlAnim = bgAnim === 'off' ? 'off' : undefined;
-  const htmlDarkMode = darkMode ? 'on' : undefined;
+  const htmlDarkMode = darkModeCookie === 'on' ? 'on' : darkModeCookie === 'off' ? 'off' : undefined;
 
   return (
     <html lang="en" data-bg-anim={htmlAnim} data-dark-mode={htmlDarkMode}>
       <body
-        className={`${jetBrainsMono.variable} antialiased`}
+        className={`${jetBrainsMono.variable} ${jetBrainsMono.className} antialiased`}
         data-dark-mode={htmlDarkMode}
         data-bg-anim={htmlAnim}
         suppressHydrationWarning
@@ -49,4 +49,5 @@ export default async function RootLayout({
     </html>
   );
 }
+
 

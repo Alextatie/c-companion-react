@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -15,8 +15,8 @@ const applyDarkMode = (enabled: boolean) => {
     body.setAttribute('data-bg-anim', 'off');
     document.cookie = 'bg-anim=off; path=/; max-age=31536000; samesite=lax';
   } else {
-    html.removeAttribute('data-dark-mode');
-    body.removeAttribute('data-dark-mode');
+    html.setAttribute('data-dark-mode', 'off');
+    body.setAttribute('data-dark-mode', 'off');
     document.cookie = 'dark-mode=off; path=/; max-age=31536000; samesite=lax';
   }
 };
@@ -106,14 +106,24 @@ function OptionsPage() {
           <span className="text-2xl text-shadow-lg">Change Username:</span>
           <span className="text-xl text-shadow-lg">[WIP]</span>
         </div>
+
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-2xl text-shadow-lg">Disable Hints:</span>
+          <span className="text-xl text-shadow-lg">[WIP]</span>
+        </div>
+
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-2xl text-shadow-lg">Disable Sound:</span>
+          <span className="text-xl text-shadow-lg">[WIP]</span>
+        </div>
       </div>
 
       <div className="mt-12">
         <Link
           href="/"
-          className="bg-white text-shadow-lg shadow-lg w-full text-[rgb(86,116,145)] text-lg px-3 py-2 rounded hover:bg-[rgb(230,230,230)] transition flex items-center cursor-pointer"
+          className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer"
         >
-          <span>{'<-'}</span> <span>Back</span>
+          <span>{'<-'}</span> <span className="ml-1">Back</span>
         </Link>
       </div>
     </div>
@@ -121,3 +131,5 @@ function OptionsPage() {
 }
 
 export default OptionsPage;
+
+

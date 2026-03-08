@@ -1,0 +1,1665 @@
+[
+  {
+    "lessonNumber": 1,
+    "steps": [
+      {
+        "id": "Q1_00",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Hello World!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q1_01",
+        "args": "",
+        "outputTexts": [
+          "<color=red>Error!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q1_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Hello World!",
+          "<color=red>Error!",
+          "<color=red>Error!"
+        ],
+        "answerTexts": [
+          "<color=green>Correct!",
+          "<color=red>Wrong! try lowercase",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "output",
+            "index": 1
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q1_2",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Hello World!",
+          "<color=red>Error!"
+        ],
+        "answerTexts": [
+          "<color=green>Correct!",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "output",
+            "index": 0
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 2,
+    "steps": [
+      {
+        "id": "Q2_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Hello World!\\nI learned how to write comments!",
+          "<color=white>Hello World!\\nI learned how to write comments!",
+          "<color=white>Hello World!\\nI learned how to write comments!",
+          "<color=white>Hello World!\\nI learned how to write comments!",
+          "<color=red>Error!"
+        ],
+        "answerTexts": [
+          "<color=red>Wrong! You didn't write any comment.",
+          "<color=green>Correct!",
+          "<color=green>Correct!",
+          "<color=green>Correct!",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "comments",
+            "index": 0
+          },
+          {
+            "lessonKey": "comments",
+            "index": 0
+          },
+          {
+            "lessonKey": "comments",
+            "index": 0
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 3,
+    "steps": [
+      {
+        "id": "Q3_0",
+        "args": "",
+        "outputTexts": [
+          "<color=white>15"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_01",
+        "args": "",
+        "outputTexts": [
+          "<color=white>15\\n189.13\\nz"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_02",
+        "args": "",
+        "outputTexts": [
+          "<color=white>15189.13z"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_03",
+        "args": "",
+        "outputTexts": [
+          "<color=white>My name starts with A and I'm 30 years old"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_04",
+        "args": "",
+        "outputTexts": [
+          "<color=white>My favorite number is: 27\\nMy favorite letter is: K"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_05",
+        "args": "",
+        "outputTexts": [
+          "<color=white>My brother Bob is 14 years old.\\nHe got A on his math test, and C on his last geography test.\\n",
+          "<color=white>My brother Bob is 14 years old.\\nHe got C on his math test, and A on his last geography test.\\n"
+        ],
+        "answerTexts": [
+          "<color=green>Correct!",
+          "<color=red>Wrong!\\nThe code is functionally correct\\nbut you swapped the scores.\\n",
+          "<color=green>1) Correct\\n",
+          "<color=red>1) Wrong\\n"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "variables",
+            "index": 1
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q3_9",
+        "args": "",
+        "outputTexts": [
+          "<color=red>Error!"
+        ],
+        "answerTexts": [
+          "<color=white>You cannot change a const"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_61",
+        "args": "",
+        "outputTexts": [
+          "<color=white>55"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_62",
+        "args": "",
+        "outputTexts": [
+          "<color=white>15"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_71",
+        "args": "",
+        "outputTexts": [
+          "<color=white>32096"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_72",
+        "args": "",
+        "outputTexts": [
+          "<color=white>33"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_81",
+        "args": "",
+        "outputTexts": [
+          "<color=white>12, 6, 35"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_82",
+        "args": "",
+        "outputTexts": [
+          "<color=white>71, 71, 71"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_101",
+        "args": "",
+        "outputTexts": [
+          "<color=white>A, B, C"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_102",
+        "args": "",
+        "outputTexts": [
+          "<color=white>3.500000\\n3.5\\n3.500"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q3_103",
+        "args": "",
+        "outputTexts": [
+          "<color=white>2.000000\\n2.500000"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 4,
+    "steps": [
+      {
+        "id": "Q4_1",
+        "args": "int option",
+        "outputTexts": [],
+        "answerTexts": [
+          "<color=red>Wrong!",
+          "<color=red>Wrong!",
+          "<color=green>Correct! 5 * 3 = 15",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "operators",
+            "buttonIndex": 0,
+            "gateIndex": 0
+          }
+        ],
+        "interactionType": "choice"
+      },
+      {
+        "id": "Q4_2",
+        "args": "int option",
+        "outputTexts": [],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "operators",
+            "buttonIndex": 0,
+            "gateIndex": 1
+          }
+        ],
+        "interactionType": "choice"
+      },
+      {
+        "id": "Q4_3",
+        "args": "int option",
+        "outputTexts": [],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "operators",
+            "buttonIndex": 0,
+            "gateIndex": 2
+          }
+        ],
+        "interactionType": "choice"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 5,
+    "steps": [
+      {
+        "id": "Q5",
+        "args": "",
+        "outputTexts": [
+          "<color=white>1\\n0"
+        ],
+        "answerTexts": [
+          "Notice that we use <color=red>%d<color=white> for the data type <color=red>bool<color=white> since it's value is returned as an integer,\\r\\n<color=red>1<color=white> for True, and <color=red>0<color=white> for False.\\nIn <color=red>C<color=white>, any <color=red>nonzero<color=white> value, whether it's a number, character, or string, evaluates to <color=red>true<color=white> when assigned to a bool."
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 6,
+    "steps": [
+      {
+        "id": "Q6_0",
+        "args": "",
+        "outputTexts": [
+          "<color=white>I'm inside a function!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white>The result is: 6\\nThis was printed in the main\\nThe result is: 6"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_2",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Hello Alex\\nHello Bob\\nHello Moshe"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_3",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Hello Jenny, you are 52 years old.\\nHello Bill, you are 24 years old.\\nHello Biden, you are 37 years old."
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_4",
+        "args": "",
+        "outputTexts": [
+          "<color=white>8\\n13\\n0\\n33\\n7"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_5",
+        "args": "",
+        "outputTexts": [
+          "<color=white>The result is: 8"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_6",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Result 1 is: 8\\nResult 2 is: 30"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_7",
+        "args": "",
+        "outputTexts": [
+          "<color=white>5"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_8",
+        "args": "",
+        "outputTexts": [
+          "<color=red>Error!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_9",
+        "args": "",
+        "outputTexts": [
+          "<color=white>5\\n5"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_10",
+        "args": "",
+        "outputTexts": [
+          "<color=white>9\\n5"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_11",
+        "args": "",
+        "outputTexts": [
+          "<color=white>I'm a function!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_12",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Result: 9"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_13",
+        "args": "",
+        "outputTexts": [
+          "<color=white>First function!\\nSecond function!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_14",
+        "args": "",
+        "outputTexts": [
+          "<color=white>4.000000\\n5.000000"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_15",
+        "args": "",
+        "outputTexts": [
+          "<color=white>4.000000\\n3.000000"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_16",
+        "args": "",
+        "outputTexts": [
+          "<color=white>125.000000\\n256.000000"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q6_17",
+        "args": "",
+        "outputTexts": [],
+        "answerTexts": [
+          "<color=green><size=32>Correct!",
+          "<color=red><size=32>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "functions",
+            "index": 0
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 7,
+    "steps": [
+      {
+        "id": "Q7_0",
+        "args": "",
+        "outputTexts": [
+          "<color=white>55"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q7_1",
+        "args": "",
+        "outputTexts": [],
+        "answerTexts": [
+          "<color=green><size=32>Correct!",
+          "<color=red><size=32>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "recursion",
+            "index": 0
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 8,
+    "steps": [
+      {
+        "id": "Q8_0",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>My number: 5\\nMy letter: a"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q8_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>My string: Cool Text"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q8_2",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>5\\na\\nCool Text"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 9,
+    "steps": [
+      {
+        "id": "Q9_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>1"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 11,
+    "steps": [
+      {
+        "id": "Q11_00",
+        "args": "",
+        "outputTexts": [
+          "<color=white>10 is greater than 5"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q11_01",
+        "args": "",
+        "outputTexts": [
+          "<color=white>x is greater than y"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q11_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white>y is greater than x"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q11_2",
+        "args": "",
+        "outputTexts": [
+          "<color=white>You are old"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q11_3",
+        "args": "",
+        "outputTexts": [
+          "<color=white>x and y are equal"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q11_21",
+        "args": "",
+        "outputTexts": [
+          "<color=white>x",
+          "<color=white>y",
+          "<color=white>z",
+          "<color=red>Error"
+        ],
+        "answerTexts": [
+          "<color=green>Correct!",
+          "<color=red>Wrong!",
+          "<color=red>Wrong!",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "ifelse",
+            "buttonIndex": 0,
+            "gateIndex": 0
+          }
+        ],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q11_22",
+        "args": "",
+        "outputTexts": [
+          "<color=white>x",
+          "<color=white>y",
+          "<color=white>z",
+          "<color=red>Error"
+        ],
+        "answerTexts": [
+          "<color=red>Wrong!",
+          "<color=green>Correct!",
+          "<color=red>Wrong!",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "ifelse",
+            "buttonIndex": 0,
+            "gateIndex": 1
+          }
+        ],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q11_23",
+        "args": "",
+        "outputTexts": [
+          "<color=white>x",
+          "<color=white>y",
+          "<color=white>z",
+          "<color=red>Error"
+        ],
+        "answerTexts": [
+          "<color=red>Wrong!",
+          "<color=red>Wrong!",
+          "<color=green>Correct!",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "ifelse",
+            "buttonIndex": 0,
+            "gateIndex": 2
+          }
+        ],
+        "interactionType": "input"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 12,
+    "steps": [
+      {
+        "id": "Q12",
+        "args": "",
+        "outputTexts": [
+          "<color=white>March"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q12_01",
+        "args": "",
+        "outputTexts": [],
+        "answerTexts": [
+          "<color=green>Correct!",
+          "<color=red>Wrong!",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "switch",
+            "index": 0
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 13,
+    "steps": [
+      {
+        "id": "Q13_0",
+        "args": "",
+        "outputTexts": [
+          "<color=white>0\\n1\\n2\\n3\\n4\\n"
+        ],
+        "answerTexts": [
+          "<color=white>The code in the <color=red>loop<color=white> will run, again and again, as long as the variable <color=red>i<color=white> is less than <color=red>5<color=white>. The moment the condition stops being true (when <color=red>i<color=white> = <color=red>5<color=white>), we will exit the loop."
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q13_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white>0\\n1\\n2\\n3\\n4\\n"
+        ],
+        "answerTexts": [
+          "<color=white>Remember to increment your condition variable or else the loop will run forever (and could possibly crush your application)"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q13_2",
+        "args": "",
+        "outputTexts": [],
+        "answerTexts": [
+          "<color=green>Correct!",
+          "<color=red>Wrong!",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "loops",
+            "index": 1
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q13_3",
+        "args": "",
+        "outputTexts": [
+          "<color=white>0\\n1\\n2\\n3\\n4\\n"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q13_4",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Outer: 1\\n Inner: 1\\n Inner: 2\\n Inner: 3\\nOuter: 2\\n Inner: 1\\n Inner: 2\\n Inner: 3\\nOuter: 3\\n Inner: 1\\n Inner: 2\\n Inner: 3\\n"
+        ],
+        "answerTexts": [
+          "<color=white>Notice that the <color=red>inner loop<color=white> completed all of it's iterations per every single iteration of the <color=red>outer loop<color=white>"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q13_50",
+        "args": "",
+        "outputTexts": [
+          "<color=white>0\\n1\\n2\\n3\\n4\\n"
+        ],
+        "answerTexts": [
+          "<color=white>Exits the entire loop at 5"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q13_51",
+        "args": "",
+        "outputTexts": [
+          "<color=white>0\\n1\\n2\\n3\\n4\\n6\\n7\\n8"
+        ],
+        "answerTexts": [
+          "<color=white>Skips the iteration at 5, and continues to the next one iteration"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 14,
+    "steps": [
+      {
+        "id": "Q14",
+        "args": "",
+        "outputTexts": [
+          "<color=white>",
+          "<color=white>-"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_0",
+        "args": "",
+        "outputTexts": [
+          "<color=white>8"
+        ],
+        "answerTexts": [
+          "<color=white>Index <color=red>2<color=white> is the 3rd number in our array."
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white>77"
+        ],
+        "answerTexts": [
+          "<color=white>Index <color=red>2<color=white> changed from 8 to 77."
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_3",
+        "args": "",
+        "outputTexts": [
+          "<color=white>13 52 8 1011"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_4",
+        "args": "",
+        "outputTexts": [
+          "<color=white>16"
+        ],
+        "answerTexts": [
+          "<color=white>Why is the number <color=red>16<color=white> and not <color=red>4<color=white>?\\nThe <color=red>sizeof()<color=white> operator returns the size of a type in <color=red>bytes<color=white>."
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_5",
+        "args": "",
+        "outputTexts": [
+          "<color=white>4"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_6",
+        "args": "",
+        "outputTexts": [
+          "<color=white>",
+          "<color=white>300",
+          "<color=white>"
+        ],
+        "answerTexts": [
+          "<color=red>Wrong!",
+          "<color=green>Correct!\\n75<color=white>(the third element)<color=green> * 4<color=white>(size of int)<color=green> = 300",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "arrays",
+            "index": 1
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q14_9",
+        "args": "",
+        "outputTexts": [
+          "<color=white>1 3 7\\n4 0 5"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_12",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=28><color=white>He said \\"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_80",
+        "args": "",
+        "outputTexts": [
+          "<color=white>7"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_81",
+        "args": "",
+        "outputTexts": [
+          "<color=white>9"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_100",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Hello World!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_101",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Helxo World!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_110",
+        "args": "",
+        "outputTexts": [
+          "<color=white>H e l l o !"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_131",
+        "args": "",
+        "outputTexts": [
+          "<color=white>8"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_132",
+        "args": "",
+        "outputTexts": [
+          "<color=white>ABCDEFGHHello!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_133",
+        "args": "",
+        "outputTexts": [
+          "<color=white>ABCDEFGH"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_134",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=28><color=white>-7"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q14_141",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>The sum is: 0",
+          "<color=white><size=32>The sum is: 1",
+          "<color=white><size=32>The sum is: 3",
+          "<color=white><size=32>The sum is: 6",
+          "<color=white><size=32>The sum is: 10",
+          "<color=white><size=32>The sum is: 15",
+          "<color=red><size=32>Error!",
+          "<color=white><size=32>The sum is: ",
+          "<color=red><size=32>Error!",
+          "<color=red><size=32>Error!",
+          "<color=white><size=32>The sum is: 0",
+          "<color=red><size=32>Error!",
+          "<color=red><size=32>Error!",
+          "<color=white><size=32>The sum is: ",
+          "<color=red><size=32>Error!",
+          "<color=red><size=32>Error!",
+          "<color=red><size=32>Error!"
+        ],
+        "answerTexts": [
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=green><size=32>Correct!\\nWe will add the current element to the sum in every stage until we summed them all.",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "arrays",
+            "buttonIndex": 0,
+            "gateIndex": 0
+          }
+        ],
+        "interactionType": "choice"
+      },
+      {
+        "id": "Q14_142",
+        "args": "int ans",
+        "outputTexts": [
+          "<color=white><size=32>Odd elements:\\n2\\n4",
+          "<color=white><size=32>Odd elements:\\n3\\n4\\n5",
+          "<color=white><size=32>Odd elements:\\n1\\n3\\n5",
+          "<color=white><size=32>Odd elements:\\n1\\n2"
+        ],
+        "answerTexts": [
+          "<color=red><size=32>Wrong!",
+          "<color=red><size=32>Wrong!",
+          "<color=green><size=32>Correct!\\n<color=white>The <color=red>i<color=white>'s that divide by 2 without a reminder are <color=red>0<color=white>,<color=red>2<color=white>, and <color=red>4<color=white>, which are the indexes for the elements <color=red>1<color=white>,<color=red>3<color=white>, and <color=red>5<color=white>.",
+          "<color=red><size=32>Wrong!"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "arrays",
+            "buttonIndex": 0,
+            "gateIndex": 1
+          }
+        ],
+        "interactionType": "choice"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 15,
+    "steps": [
+      {
+        "id": "Q15_0",
+        "args": "",
+        "outputTexts": [
+          "<color=white><color=white>Enter a number:"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white><color=white>Enter a number:\\nYour number is: ",
+          "<color=white><color=white>Enter a number:\\n<color=red>Error!",
+          "<color=white><color=white>Enter a number:\\n<color=red>Error!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_2",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Enter a number and a character, then press enter:\\n"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_3",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Enter a number and a character, then press enter:\\nYour number is: ",
+          "<color=white>Enter a number and a character, then press enter:\\nYour number is: ",
+          "<color=white>Enter a number and a character, then press enter:\\nYour number is: ",
+          "<color=white>Enter a number and a character, then press enter:\\nYour number is: ",
+          "<color=white>Enter a number and a character, then press enter:\\nYour number is: "
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_4",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Enter your name:"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_5",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Enter your name:"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_6",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Enter your name:\\n"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_7",
+        "args": "",
+        "outputTexts": [
+          "<color=white>Enter your name:\\n"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_8",
+        "args": "",
+        "outputTexts": [
+          "<color=white><color=white>Enter a number:",
+          "<color=red><size=32>"
+        ],
+        "answerTexts": [
+          "<color=green><size=32>Correct!",
+          "<color=red><size=32>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "userinput",
+            "index": 1
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      },
+      {
+        "id": "Q15_81",
+        "args": "",
+        "outputTexts": [
+          "<color=white><color=white>Enter a number:\\nYour number is: ",
+          "<color=white><color=white>Enter a number:\\n<color=red>Error!",
+          "<color=white><color=white>Enter a number:\\n<color=red>Error!"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 16,
+    "steps": [
+      {
+        "id": "Q16_0",
+        "args": "",
+        "outputTexts": [
+          "<color=white>My age is: 30\\nMemory Address: "
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white>30\\n"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_2",
+        "args": "",
+        "outputTexts": [
+          "<color=white>"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_3",
+        "args": "",
+        "outputTexts": [
+          "<color=white>"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_4",
+        "args": "",
+        "outputTexts": [
+          "<color=white>25"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_5",
+        "args": "",
+        "outputTexts": [
+          "<color=white>50\\n75"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_6",
+        "args": "",
+        "outputTexts": [
+          "<color=white>"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_7",
+        "args": "",
+        "outputTexts": [
+          "<color=white>25\\n50\\n75\\n100"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_8",
+        "args": "",
+        "outputTexts": [
+          "<color=white>500\\n333"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q16_9",
+        "args": "",
+        "outputTexts": [],
+        "answerTexts": [
+          "<color=green><size=32>Correct!",
+          "<color=red><size=32>Wrong!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "memorya",
+            "index": 1
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "input"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 17,
+    "steps": [
+      {
+        "id": "Q17_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>Hello diary..."
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q17_2",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>Hello diary...\\nToday was sunny."
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q17_3",
+        "args": "int ans",
+        "outputTexts": [],
+        "answerTexts": [
+          "<color=red>Wrong!",
+          "<color=red>Wrong!",
+          "<color=green>Correct!",
+          "<color=red>Wrong!"
+        ],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "files",
+            "buttonIndex": 0,
+            "gateIndex": 0
+          }
+        ],
+        "interactionType": "choice"
+      },
+      {
+        "id": "Q17_4",
+        "args": "int ans",
+        "outputTexts": [],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [
+          {
+            "lessonKey": "files",
+            "buttonIndex": 0,
+            "gateIndex": 1
+          }
+        ],
+        "interactionType": "choice"
+      }
+    ]
+  },
+  {
+    "lessonNumber": 18,
+    "steps": [
+      {
+        "id": "Q18_1",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>4\\n4\\n8\\n1"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q18_2",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>200"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q18_3",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>140"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q18_4",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>2 4 0"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q18_5",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>6 8 0"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q18_6",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>1684234849 = (a, b, c, d)"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q18_7",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>16 bytes allocated at address 0x"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q18_8",
+        "args": "",
+        "outputTexts": [
+          "<color=white><size=32>8 bytes allocated at address 0x"
+        ],
+        "answerTexts": [],
+        "unlockButtons": [],
+        "unlockMultiples": [],
+        "interactionType": "display"
+      },
+      {
+        "id": "Q18_9",
+        "args": "int option",
+        "outputTexts": [],
+        "answerTexts": [
+          "<color=red>Wrong!",
+          "<color=red>Wrong!",
+          "<color=red>Wrong!",
+          "<color=green>Correct!"
+        ],
+        "unlockButtons": [
+          {
+            "lessonKey": "memorym",
+            "index": 0
+          }
+        ],
+        "unlockMultiples": [],
+        "interactionType": "choice"
+      }
+    ]
+  }
+]

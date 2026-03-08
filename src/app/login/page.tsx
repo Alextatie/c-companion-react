@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
@@ -109,4 +109,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
 

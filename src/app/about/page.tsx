@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 function AboutPage() {
@@ -32,9 +32,8 @@ function AboutPage() {
 
   {/* Back button container */}
   <div className="mt-12">
-    <Link href="/" className="bg-[rgb(255,255,255)] text-shadow-lg shadow-lg w-full text-[rgb(86,116,145)]
-  text-lg px-3 py-2 rounded hover:bg-[rgb(255,255,255)] transition flex items-center">
-    <span>←</span> <span>Back</span>
+    <Link href="/" className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(208,233,216)] transition flex items-center cursor-pointer">
+    <span>{'<-'}</span> <span className="ml-1">Back</span>
   </Link>
   </div>
 </div>
@@ -42,4 +41,6 @@ function AboutPage() {
 }
 
 export default AboutPage;
+
+
 

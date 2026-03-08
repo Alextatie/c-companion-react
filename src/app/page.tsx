@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -139,4 +139,5 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
 
