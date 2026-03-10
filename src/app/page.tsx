@@ -29,7 +29,7 @@ const HomePage = () => {
   if (user) {
     return (
       <div className="mx-auto mt-16 p-4">
-        <h2 className="text-7xl text-shadow-lg font-bold text-center">
+        <h2 className="whitespace-nowrap text-7xl text-shadow-lg font-bold text-center">
           C-companion
         </h2>
         <h2 className="text-2xl text-shadow-lg font-bold mt-2 text-center">
@@ -96,7 +96,7 @@ const HomePage = () => {
 
   return (
     <div className="w-[305px] mx-auto mt-26 p-4 rounded shadow-lg bg-[rgb(86,118,145)]">
-      <h1 className="text-4xl text-shadow-lg font-bold mb-6 text-center text-white">
+      <h1 className="whitespace-nowrap text-4xl text-shadow-lg font-bold mb-6 text-center text-white">
         C-companion
       </h1>
 

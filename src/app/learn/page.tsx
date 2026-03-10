@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 function LearnPage() {
   const [difficulty, setDifficulty] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
+  const difficultyOrder = ['beginner', 'intermediate', 'advanced'] as const;
 
   const lessons = {
     beginner: [
@@ -29,8 +30,31 @@ function LearnPage() {
       { title: 'Structs', slug: 'structs' },
       { title: 'Enums', slug: 'enums' },
       { title: 'Files', slug: 'files' },
-      { title: 'Memory Management', slug: 'memory-management' },
+      { title: 'Memory', slug: 'memory-management' },
     ]
+  };
+
+  const difficultyPanelClass =
+    difficulty === 'beginner'
+      ? 'bg-[#8fd949]'
+      : difficulty === 'intermediate'
+        ? 'bg-[#d3b93a]'
+        : 'bg-[#d85b5b]';
+
+  const difficultyIndex = difficultyOrder.indexOf(difficulty);
+
+  const showPreviousDifficulty = () => {
+    if (difficultyIndex === 0) {
+      return;
+    }
+    setDifficulty(difficultyOrder[difficultyIndex - 1]);
+  };
+
+  const showNextDifficulty = () => {
+    if (difficultyIndex === difficultyOrder.length - 1) {
+      return;
+    }
+    setDifficulty(difficultyOrder[difficultyIndex + 1]);
   };
 
   return (
@@ -42,22 +66,35 @@ function LearnPage() {
       </div>
 
       <div className="inline-flex flex-col items-stretch">
-        {/* Difficulty Buttons */}
-        <div className="flex gap-2 mb-0">
-          {(['beginner', 'intermediate', 'advanced'] as const).map((level) => (
-            <button
-              key={level}
-              onClick={() => setDifficulty(level)}
-              className={`px-4 py-2 text-2xl rounded shadow-lg transition
-                ${
-                  difficulty === level
-                    ? 'bg-white text-[rgb(86,116,145)]'
-                    : 'bg-[rgb(86,116,145)] hover:bg-[rgb(68,96,123)]'
-                }`}
-            >
-              {level.charAt(0).toUpperCase() + level.slice(1)}
-            </button>
-          ))}
+        {/* Difficulty Selector */}
+        <div className="mb-0 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={showPreviousDifficulty}
+            disabled={difficultyIndex === 0}
+            className={`flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[rgb(86,116,145)] text-white shadow-lg transition ${
+              difficultyIndex === 0 ? 'pointer-events-none cursor-default opacity-50' : 'hover:bg-[rgb(68,96,123)]'
+            }`}
+          >
+            <span className="text-3xl leading-none">{'<'}</span>
+          </button>
+
+          <div className={`flex h-[52px] w-[184px] items-center justify-center rounded px-4 text-2xl text-white shadow-lg ${difficultyPanelClass}`}>
+            {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+          </div>
+
+          <button
+            type="button"
+            onClick={showNextDifficulty}
+            disabled={difficultyIndex === difficultyOrder.length - 1}
+            className={`flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[rgb(86,116,145)] text-white shadow-lg transition ${
+              difficultyIndex === difficultyOrder.length - 1
+                ? 'pointer-events-none cursor-default opacity-50'
+                : 'hover:bg-[rgb(68,96,123)]'
+            }`}
+          >
+            <span className="text-3xl leading-none">{'>'}</span>
+          </button>
         </div>
 
         {/* Lessons */}
@@ -66,9 +103,10 @@ function LearnPage() {
             <Link
               key={index}
               href={`/learn/${lesson.slug}`}
-              className="bg-[rgb(86,116,145)] text-shadow-lg shadow-lg text-white text-2xl py-2 rounded text-center hover:bg-[rgb(68,96,123)] transition"
+              className="flex items-center justify-between bg-[rgb(86,116,145)] px-4 py-2 text-2xl text-white text-shadow-lg shadow-lg rounded hover:bg-[rgb(68,96,123)] transition"
             >
-              {lesson.title}
+              <span className="text-left">{`${index + 1}) ${lesson.title}`}</span>
+              <span className="text-right">[ ]</span>
             </Link>
           ))}
         </div>

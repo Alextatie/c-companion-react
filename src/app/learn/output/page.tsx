@@ -1,97 +1,19 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
-
-const unityColorMap: Record<string, string> = {
-  red: '#ff6565',
-  green: '#34d356',
-  blue: '#6d94ff',
-  white: '#ffffff',
-  black: '#222222',
-};
-
-const toUnityHtml = (text: string) => {
-  const tokenized = text
-    .replace(/<size=\d+>/gi, '')
-    .replace(/<\/size>/gi, '')
-    .replace(/<color=([^>]+)>/gi, (_, rawColor: string) => {
-      return `@@COLOR_OPEN:${rawColor.trim()}@@`;
-    })
-    .replace(/<\/color>/gi, '@@COLOR_CLOSE@@');
-
-  const escaped = tokenized
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-
-  return escaped
-    .replace(/@@COLOR_OPEN:([^@]+)@@/gi, (_, rawColor: string) => {
-      const key = rawColor.trim().toLowerCase();
-      const color = key.startsWith('#') ? key : unityColorMap[key] ?? key;
-      return `<span style="color:${color}">`;
-    })
-    .replace(/@@COLOR_CLOSE@@/gi, '</span>')
-    .replace(/\r?\n/g, '<br/>');
-};
-
-function UnityRichText({ text, className }: { text: string; className?: string }) {
-  return <span className={className} dangerouslySetInnerHTML={{ __html: toUnityHtml(text) }} />;
-}
-
-function CodeEditor({
-  code,
-  lineStart = 1,
-  rightSlot,
-}: {
-  code: string[];
-  lineStart?: number;
-  rightSlot?: React.ReactNode;
-}) {
-  return (
-    <div className="w-full rounded-xl overflow-hidden border border-slate-300 bg-white shadow-lg">
-      <div className="grid grid-cols-[20px_1fr]">
-        <div className="bg-[#3c4455] text-[#c2c7d1] text-[17px] leading-7 py-4 select-none">
-          {code.map((_, index) => (
-            <div key={`ln-${index}`} className="text-center font-mono">
-              {lineStart + index}
-            </div>
-          ))}
-        </div>
-        <div className="text-slate-900 text-[17px] leading-7 py-4 px-4 font-mono overflow-x-auto">
-          {code.map((line, index) => (
-            <div key={`code-${index}`} className="whitespace-pre flex items-center">
-              {index === 3 && rightSlot && line.includes('[[INPUT]]') ? (
-                <span className="flex items-center">
-                  {line.split('[[INPUT]]')[0] ? <UnityRichText text={line.split('[[INPUT]]')[0]} /> : null}
-                  <span>{rightSlot}</span>
-                  {line.split('[[INPUT]]')[1] ? <UnityRichText text={line.split('[[INPUT]]')[1]} /> : null}
-                </span>
-              ) : (
-                <UnityRichText text={line || ' '} />
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function OutputPanel({ lines, minHeightClass = 'min-h-[170px]' }: { lines: string[]; minHeightClass?: string }) {
-  return (
-    <div className="output-select w-full rounded-xl overflow-hidden border border-slate-700 bg-black shadow-lg">
-      <div className={`text-[17px] leading-7 py-4 px-4 font-mono ${minHeightClass}`}>
-        {lines.map((line, idx) => (
-          <div key={`${line}-${idx}`} className="whitespace-pre">
-            <UnityRichText text={line || ' '} />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+import { ReactNode, useMemo, useState } from 'react';
+import ScaledLessonFrame from '@/components/scaled-lesson-frame';
+import { EmptyLine, Tone } from '@/components/lesson/text';
+import {
+  CodeEditor,
+  HintButton,
+  HomeButton,
+  LessonBackButton,
+  LessonChip,
+  LessonNextButton,
+  OutputPanel,
+  RunButton,
+} from '@/components/lesson/ui';
 
 function LessonPage() {
   const router = useRouter();
@@ -99,11 +21,11 @@ function LessonPage() {
   const isFirstPage = pageIndex === 0;
   const isLastPage = pageIndex === 2;
 
-  const [page1Output, setPage1Output] = useState<string[]>(['']);
-  const [page2Output, setPage2Output] = useState<string[]>(['']);
+  const [Output_1, setOutput_1] = useState<ReactNode[]>([<EmptyLine key="o1-empty" />]);
+  const [Output_2, setOutput_2] = useState<ReactNode[]>([<EmptyLine key="o2-empty" />]);
   const [missingFn, setMissingFn] = useState('');
   const [page2Result, setPage2Result] = useState<'correct' | 'wrong' | 'lowercase' | null>(null);
-  const [page3Output, setPage3Output] = useState<string[]>(['']);
+  const [Output_3, setOutput_3] = useState<ReactNode[]>([<EmptyLine key="o3-empty" />]);
   const [missingText, setMissingText] = useState('printf(Hello World!);');
   const [page3Result, setPage3Result] = useState<'correct' | 'wrong' | null>(null);
 
@@ -126,10 +48,21 @@ function LessonPage() {
   const page1CodeA = useMemo(
     () => [
       '#include <stdio.h>',
-      '',
-      '<color=blue>int <color=black>main() {',
-      '  printf(<color=red>"Hello World!"<color=black>);',
-      '  <color=blue>return <color=red>0<color=black>;',
+      <EmptyLine />,
+      <>
+        <Tone color="blue">int </Tone>
+        <Tone color="dark">main() {'{'}</Tone>
+      </>,
+      <>
+        {'  '}printf(<Tone color="red">"Hello World!"</Tone>
+        <Tone color="dark">);</Tone>
+      </>,
+      <>
+        {'  '}
+        <Tone color="blue">return </Tone>
+        <Tone color="red">0</Tone>
+        <Tone color="dark">;</Tone>
+      </>,
       '}',
     ],
     []
@@ -137,9 +70,17 @@ function LessonPage() {
 
   const page1CodeB = useMemo(
     () => [
-      '<color=blue>int <color=black>main() {',
+      <>
+        <Tone color="blue">int </Tone>
+        <Tone color="dark">main() {'{'}</Tone>
+      </>,
       '  printf(Hello World!);',
-      '  <color=blue>return <color=red>0<color=black>;',
+      <>
+        {'  '}
+        <Tone color="blue">return </Tone>
+        <Tone color="red">0</Tone>
+        <Tone color="dark">;</Tone>
+      </>,
       '}',
     ],
     []
@@ -148,130 +89,126 @@ function LessonPage() {
   const page2Code = useMemo(
     () => [
       '#include <stdio.h>',
-      '',
-      '<color=blue>int <color=black>main() {',
-      '  [[INPUT]](<color=red>"Hello World!"<color=black>);',
-      '  <color=blue>return <color=red>0<color=black>;',
+      <EmptyLine />,
+      <>
+        <Tone color="blue">int </Tone>
+        <Tone color="dark">main() {'{'}</Tone>
+      </>,
+      null,
+      <>
+        {'  '}
+        <Tone color="blue">return </Tone>
+        <Tone color="red">0</Tone>
+        <Tone color="dark">;</Tone>
+      </>,
       '}',
     ],
     []
   );
 
-  const page1_input1 = () => setPage1Output(['<color=white>Hello World!']);
-  const page1_input2 = () => setPage1Output(['<color=red>Error!']);
+  const page1_input1 = () => setOutput_1([<Tone key="o1-correct" color="white">Hello World!</Tone>]);
+  const page1_input2 = () => setOutput_1([<Tone key="o1-wrong" color="red">Error!</Tone>]);
 
   const page2_input1 = () => {
     if (missingFn === 'printf') {
-      setPage2Output(['<color=white>Hello World!']);
+      setOutput_2([<Tone key="o2-correct" color="white">Hello World!</Tone>]);
       setPage2Result('correct');
       return;
     }
     if (missingFn === 'Printf') {
-      setPage2Output(['<color=red>Error!']);
+      setOutput_2([<Tone key="o2-lowercase" color="red">Error!</Tone>]);
       setPage2Result('lowercase');
       return;
     }
-    setPage2Output(['<color=red>Error!']);
+    setOutput_2([<Tone key="o2-wrong" color="red">Error!</Tone>]);
     setPage2Result('wrong');
   };
 
   const page3_input1 = () => {
     if (missingText === 'printf("Hello World!");') {
-      setPage3Output(['<color=white>Hello World!']);
+      setOutput_3([<Tone key="o3-correct" color="white">Hello World!</Tone>]);
       setPage3Result('correct');
       return;
     }
-    setPage3Output(['<color=red>Error!']);
+    setOutput_3([<Tone key="o3-wrong" color="red">Error!</Tone>]);
     setPage3Result('wrong');
   };
 
   return (
-    <div className="lesson-selectable flex flex-col items-center justify-center min-h-screen -mt-12 text-white text-center px-4 pt-30">
+    <div className="lesson-selectable flex flex-col items-center justify-start min-h-screen -mt-12 text-white text-center px-4 pt-30 pb-12">
       <h1 className="text-5xl text-shadow-lg font-bold mb-8">Output</h1>
 
-      <div className="relative w-full max-w-5xl">
-        <Link
-          href="/"
-          className="no-select absolute -top-[4.7rem] left-0 inline-flex items-center justify-center h-10 w-10 rounded-full bg-white text-[#8fd89a] shadow-lg hover:bg-[rgb(214,232,220)] transition"
-        >
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M3 10.5 12 3l9 7.5" />
-            <path d="M5.5 9.5V21h13V9.5" />
-            <path d="M10 21v-6h4v6" />
-          </svg>
-          <span className="sr-only">Home</span>
-        </Link>
+      <ScaledLessonFrame baseWidth={1030}>
+      <div className="relative w-[1030px] max-w-none">
+        <HomeButton />
 
-        <section className="w-full rounded-2xl bg-black/20 p-6 md:p-8 shadow-lg backdrop-blur-[1px]">
+        <section className="w-full rounded-2xl bg-black/20 p-8 shadow-lg backdrop-blur-[1px]">
           {pageIndex === 0 ? (
-            <div className="space-y-5 text-left">
+            <div className="space-y-3 text-left">
               <p className="text-xl leading-relaxed">
-                <UnityRichText text={'To print a value or a message to the output screen,\nyou can use the <color=red>print()<color=white> function.'} />
+                <>
+                  To print a value or a message to the output screen,
+                  <br />
+                  you can use the <Tone color="red">print()</Tone> function.
+                </>
               </p>
 
               <div className="flex items-start justify-between gap-8">
-                <div className="w-[410px] space-y-0">
-                  <div className="no-select inline-block bg-white/30 text-[#d8e8dc] text-[16px] leading-none px-2 py-[2px] rounded-sm">Input</div>
+                <div className="w-[410px] shrink-0 space-y-0">
+                  <LessonChip text="Input" />
                   <div className="relative">
                     <CodeEditor code={page1CodeA} lineStart={1} />
-                    <button
-                      type="button"
-                      onClick={page1_input1}
-                      className="absolute bottom-2 right-3 bg-[#8fd949] text-white text-xl leading-none px-3 py-0.5 rounded-sm"
-                    >
-                      Run
-                    </button>
+                    <RunButton onClick={page1_input1} className="absolute bottom-2 right-3" />
                   </div>
                 </div>
 
-                <div className="w-[410px] space-y-0">
-                  <div className="no-select inline-block bg-white/30 text-[#d8e8dc] text-[16px] leading-none px-2 py-[2px] rounded-sm">output</div>
-                  <OutputPanel lines={page1Output} minHeightClass="min-h-[200px]" />
+                <div className="w-[410px] shrink-0 space-y-0">
+                  <LessonChip text="output" />
+                  <OutputPanel lines={Output_1} minHeightClass="min-h-[178px]" />
                 </div>
               </div>
 
               <p className="text-xl leading-relaxed">
-                <UnityRichText text={'When working with text, it must be wrapped inside\ndouble quoatation marks <color=red>""<color=white>.'} />
+                <>
+                  When working with text, it must be wrapped inside
+                  <br />
+                  double quoatation marks <Tone color="red">""</Tone>.
+                </>
               </p>
 
-              <div className="w-[410px]">
+              <div className="w-[410px] shrink-0">
                 <div className="space-y-0">
-                  <div className="no-select inline-block bg-white/30 text-[#d8e8dc] text-[16px] leading-none px-2 py-[2px] rounded-sm">Input</div>
+                  <LessonChip text="Input" />
                   <div className="relative">
                     <CodeEditor code={page1CodeB} lineStart={3} />
-                    <button
-                      type="button"
-                      onClick={page1_input2}
-                      className="absolute bottom-2 right-3 bg-[#8fd949] text-white text-xl leading-none px-3 py-0.5 rounded-sm"
-                    >
-                      Run
-                    </button>
+                    <RunButton onClick={page1_input2} className="absolute bottom-2 right-3" />
                   </div>
                 </div>
               </div>
             </div>
           ) : pageIndex === 1 ? (
-            <div className="space-y-5 text-left">
+            <div className="space-y-3 text-left">
               <p className="text-xl leading-relaxed">
-                <UnityRichText text={'Make the code bellow print <color=red>Hello World!<color=white> on the screen.'} />
+                <>
+                  Make the code bellow print <Tone color="red">Hello World!</Tone> on the screen.
+                </>
               </p>
 
               <div className="flex items-start justify-between gap-8">
-                <div className="w-[410px] space-y-0">
-                  <div className="no-select inline-block bg-white/30 text-[#d8e8dc] text-[16px] leading-none px-2 py-[2px] rounded-sm">Input</div>
+                <div className="w-[410px] shrink-0 space-y-0">
+                  <LessonChip text="Input" />
                   <div className="relative">
                     <CodeEditor
                       code={page2Code}
                       lineStart={1}
+                      inputBefore={<span>{'  '}</span>}
+                      inputAfter={
+                        <>
+                          <Tone color="dark">(</Tone>
+                          <Tone color="red">"Hello World!"</Tone>
+                          <Tone color="dark">);</Tone>
+                        </>
+                      }
                       rightSlot={
                         <input
                           value={missingFn}
@@ -280,13 +217,7 @@ function LessonPage() {
                         />
                       }
                     />
-                    <button
-                      type="button"
-                      onClick={page2_input1}
-                      className="absolute bottom-2 right-3 bg-[#8fd949] text-white text-xl leading-none px-3 py-0.5 rounded-sm"
-                    >
-                      Run
-                    </button>
+                    <RunButton onClick={page2_input1} className="absolute bottom-2 right-3" />
                   </div>
                   <div className="mt-2 min-h-[3rem]">
                     {page2Result && (
@@ -297,32 +228,45 @@ function LessonPage() {
                   </div>
                 </div>
 
-                <div className="w-[410px] space-y-0">
-                  <div className="no-select inline-block bg-white/30 text-[#d8e8dc] text-[16px] leading-none px-2 py-[2px] rounded-sm">output</div>
-                  <OutputPanel lines={page2Output} minHeightClass="min-h-[204px]" />
+                <div className="w-[410px] shrink-0 space-y-0">
+                  <LessonChip text="output" />
+                  <OutputPanel lines={Output_2} minHeightClass="min-h-[178px]" />
                 </div>
               </div>
             </div>
           ) : (
-            <div className="space-y-5 text-left">
+            <div className="space-y-3 text-left">
               <p className="text-xl leading-relaxed">
-                <UnityRichText text={"The code bellow should print: <color=red>Hello World!<color=white>\nIt isn't working. What's missing?"} />
+                <>
+                  The code bellow should print: <Tone color="red">Hello World!</Tone>
+                  <br />
+                  It isn't working. What's missing?
+                </>
               </p>
 
               <div className="flex items-start justify-between gap-8">
-                <div className="w-[410px] space-y-0">
-                  <div className="no-select inline-block bg-white/30 text-[#d8e8dc] text-[16px] leading-none px-2 py-[2px] rounded-sm">Input</div>
+                <div className="w-[410px] shrink-0 space-y-0">
+                  <LessonChip text="Input" />
                   <div className="relative">
                     <CodeEditor
                       code={[
                         '#include <stdio.h>',
-                        '',
-                        '<color=blue>int <color=black>main() {',
-                        '  [[INPUT]]',
-                        '  <color=blue>return <color=red>0<color=black>;',
+                        <EmptyLine />,
+                        <>
+                          <Tone color="blue">int </Tone>
+                          <Tone color="dark">main() {'{'}</Tone>
+                        </>,
+                        null,
+                        <>
+                          {'  '}
+                          <Tone color="blue">return </Tone>
+                          <Tone color="red">0</Tone>
+                          <Tone color="dark">;</Tone>
+                        </>,
                         '}',
                       ]}
                       lineStart={1}
+                      inputBefore={<span>{'  '}</span>}
                       rightSlot={
                         <input
                           value={missingText}
@@ -331,13 +275,7 @@ function LessonPage() {
                         />
                       }
                     />
-                    <button
-                      type="button"
-                      onClick={page3_input1}
-                      className="absolute bottom-2 right-3 bg-[#8fd949] text-white text-xl leading-none px-3 py-0.5 rounded-sm"
-                    >
-                      Run
-                    </button>
+                    <RunButton onClick={page3_input1} className="absolute bottom-2 right-3" />
                   </div>
                   <div className="mt-2 min-h-[3rem]">
                     {page3Result && (
@@ -348,9 +286,9 @@ function LessonPage() {
                   </div>
                 </div>
 
-                <div className="w-[410px] space-y-0">
-                  <div className="no-select inline-block bg-white/30 text-[#d8e8dc] text-[16px] leading-none px-2 py-[2px] rounded-sm">output</div>
-                  <OutputPanel lines={page3Output} minHeightClass="min-h-[204px]" />
+                <div className="w-[410px] shrink-0 space-y-0">
+                  <LessonChip text="output" />
+                  <OutputPanel lines={Output_3} minHeightClass="min-h-[178px]" />
                 </div>
               </div>
             </div>
@@ -358,58 +296,30 @@ function LessonPage() {
         </section>
 
         <div className="mt-[2.4rem] flex items-center justify-between">
-          <button
-            type="button"
-            onClick={onBack}
-            className="bg-white text-shadow-lg shadow-lg text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer"
-          >
-            <span>{'<-'}</span>
-            <span className="ml-1">Back</span>
-          </button>
+          <LessonBackButton onClick={onBack} />
 
           <div className="flex items-center gap-1.5">
             {pageIndex > 0 && (
-              <div className="no-select relative group">
-                <div
-                  className={`pointer-events-none absolute bottom-[calc(100%+1.45rem)] right-0 rounded-sm bg-[#e7e7e7] px-3 py-2 text-left text-[16px] leading-tight text-[#5b5b5b] opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 ${
-                    pageIndex === 2 ? 'w-[330px]' : 'w-[238px]'
-                  }`}
-                >
-                  <div className="underline decoration-1 underline-offset-2">Solution:</div>
-                  <div>
-                    {pageIndex === 1 ? (
-                      <>
-                        write <span className="text-[#ff6565]">printf</span>.
-                      </>
-                    ) : (
-                      <>
-                        Add double quoatation
-                        <br />
-                        marks <span className="text-[#ff6565]">" "</span>, around <span className="text-[#ff6565]">Hello World</span>.
-                      </>
-                    )}
-                  </div>
-                  <div>&nbsp;</div>
-                </div>
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded bg-[#d3b93a] text-[32px] leading-none text-[#e4f9d9]">
-                  ?
-                </div>
-              </div>
+              <HintButton widthClass={pageIndex === 2 ? 'w-[330px]' : 'w-[238px]'}>
+                {pageIndex === 1 ? (
+                  <>
+                    write <Tone color="red">printf</Tone>.
+                  </>
+                ) : (
+                  <>
+                    Add double quoatation
+                    <br />
+                    marks <Tone color="red">" "</Tone>, around <Tone color="red">Hello World</Tone>.
+                  </>
+                )}
+              </HintButton>
             )}
 
-            <button
-              type="button"
-              onClick={onNextOrFinish}
-              className={`bg-white text-shadow-lg shadow-lg text-[#3d7f80] text-lg py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer ${
-                isLastPage ? 'px-2.5' : 'px-3'
-              }`}
-            >
-              <span>{isLastPage ? 'Finish Lesson' : 'Next'}</span>
-              {!isLastPage && <span className="ml-1">{'->'}</span>}
-            </button>
+            <LessonNextButton onClick={onNextOrFinish} isLastPage={isLastPage} />
           </div>
         </div>
       </div>
+      </ScaledLessonFrame>
     </div>
   );
 }
