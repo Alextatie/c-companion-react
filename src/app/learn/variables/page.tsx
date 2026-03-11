@@ -14,6 +14,7 @@ import {
   LessonTable,
   OutputPanel,
   RunButton,
+  useDelayedLessonValue,
 } from '@/components/lesson/ui';
 
 function ExerciseInput({
@@ -146,6 +147,8 @@ function LessonPage() {
   const [page6Value5, setPage6Value5] = useState('');
   const [page6Value6, setPage6Value6] = useState('');
   const [page6Result, setPage6Result] = useState<ReactNode[]>([]);
+  const delayedPage4Result = useDelayedLessonValue<ReactNode[]>(page4Result, []);
+  const delayedPage6Result = useDelayedLessonValue<ReactNode[]>(page6Result, []);
 
   const onBack = () => {
     if (showMorePage) {
@@ -308,14 +311,12 @@ function LessonPage() {
   };
 
   return (
-    <div className="lesson-selectable flex min-h-screen flex-col items-center justify-start -mt-12 px-4 pt-30 pb-12 text-center text-white">
-      <h1 className="mb-8 text-5xl font-bold text-shadow-lg">Variables</h1>
-
-      <ScaledLessonFrame baseWidth={1165}>
+    <div className="lesson-selectable h-screen overflow-hidden px-[50px] py-[50px] text-center text-white">
+      <ScaledLessonFrame baseWidth={1165} title="Variables">
         <div className="relative w-[1165px] max-w-none">
           <HomeButton />
 
-          <section className="w-full rounded-2xl bg-black/20 p-8 shadow-lg backdrop-blur-[1px]">
+          <section className="lesson-panel w-full rounded-2xl p-8 shadow-lg backdrop-blur-[1px]">
             {showMorePage ? (
               <div className="relative space-y-3 text-left">
                 <p className="w-full text-[19px] leading-tight">
@@ -749,7 +750,7 @@ function LessonPage() {
                     </div>
                   </div>
 
-                  <div className="w-[360px] shrink-0 pt-0.5">
+                  <div className="relative right-[30px] w-[360px] shrink-0 pt-0.5">
                     <LessonChip text="output" />
                     <OutputPanel lines={Output_3} minHeightClass="min-h-[170px]" />
                   </div>
@@ -818,11 +819,11 @@ function LessonPage() {
                     </div>
                   </div>
 
-                  <div className="w-[360px] shrink-0 pt-4">
+                  <div className="relative -top-1 w-[360px] shrink-0 pt-1">
                     <LessonChip text="output" />
                     <OutputPanel lines={Output_4} minHeightClass="min-h-[134px]" />
                     <div className="mt-2 min-h-[1.75rem] text-[18px] leading-tight">
-                      {page4Result.map((line, index) => (
+                      {delayedPage4Result.map((line, index) => (
                         <div key={index}>{line}</div>
                       ))}
                     </div>
@@ -951,7 +952,7 @@ function LessonPage() {
                   </div>
 
                   <div className="min-h-[7rem] pt-[1.36rem] space-y-0.5 text-[17px] leading-tight">
-                    {page6Result.map((line, index) => (
+                    {delayedPage6Result.map((line, index) => (
                       <div key={index}>{line}</div>
                     ))}
                   </div>

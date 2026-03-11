@@ -13,6 +13,7 @@ import {
   LessonNextButton,
   OutputPanel,
   RunButton,
+  useDelayedLessonValue,
 } from '@/components/lesson/ui';
 
 function LessonPage() {
@@ -28,6 +29,8 @@ function LessonPage() {
   const [Output_3, setOutput_3] = useState<ReactNode[]>([<EmptyLine key="o3-empty" />]);
   const [missingText, setMissingText] = useState('printf(Hello World!);');
   const [page3Result, setPage3Result] = useState<'correct' | 'wrong' | null>(null);
+  const delayedPage2Result = useDelayedLessonValue(page2Result, null);
+  const delayedPage3Result = useDelayedLessonValue(page3Result, null);
 
   const onBack = () => {
     if (isFirstPage) {
@@ -135,14 +138,12 @@ function LessonPage() {
   };
 
   return (
-    <div className="lesson-selectable flex flex-col items-center justify-start min-h-screen -mt-12 text-white text-center px-4 pt-30 pb-12">
-      <h1 className="text-5xl text-shadow-lg font-bold mb-8">Output</h1>
-
-      <ScaledLessonFrame baseWidth={1030}>
+    <div className="lesson-selectable h-screen overflow-hidden px-[50px] py-[50px] text-center text-white">
+      <ScaledLessonFrame baseWidth={1030} title="Output">
       <div className="relative w-[1030px] max-w-none">
         <HomeButton />
 
-        <section className="w-full rounded-2xl bg-black/20 p-8 shadow-lg backdrop-blur-[1px]">
+        <section className="lesson-panel w-full rounded-2xl p-8 shadow-lg backdrop-blur-[1px]">
           {pageIndex === 0 ? (
             <div className="space-y-3 text-left">
               <p className="text-xl leading-relaxed">
@@ -220,9 +221,13 @@ function LessonPage() {
                     <RunButton onClick={page2_input1} className="absolute bottom-2 right-3" />
                   </div>
                   <div className="mt-2 min-h-[3rem]">
-                    {page2Result && (
-                      <div className={`text-xl leading-none ${page2Result === 'correct' ? 'text-[#34d356]' : 'text-[#ff6565]'}`}>
-                        {page2Result === 'correct' ? 'Correct!' : page2Result === 'lowercase' ? 'Wrong! try lowercase' : 'Wrong!'}
+                    {delayedPage2Result && (
+                      <div className={`text-xl leading-none ${delayedPage2Result === 'correct' ? 'text-[#34d356]' : 'text-[#ff6565]'}`}>
+                        {delayedPage2Result === 'correct'
+                          ? 'Correct!'
+                          : delayedPage2Result === 'lowercase'
+                            ? 'Wrong! try lowercase'
+                            : 'Wrong!'}
                       </div>
                     )}
                   </div>
@@ -278,9 +283,9 @@ function LessonPage() {
                     <RunButton onClick={page3_input1} className="absolute bottom-2 right-3" />
                   </div>
                   <div className="mt-2 min-h-[3rem]">
-                    {page3Result && (
-                      <div className={`text-xl leading-none ${page3Result === 'correct' ? 'text-[#34d356]' : 'text-[#ff6565]'}`}>
-                        {page3Result === 'correct' ? 'Correct!' : 'Wrong!'}
+                    {delayedPage3Result && (
+                      <div className={`text-xl leading-none ${delayedPage3Result === 'correct' ? 'text-[#34d356]' : 'text-[#ff6565]'}`}>
+                        {delayedPage3Result === 'correct' ? 'Correct!' : 'Wrong!'}
                       </div>
                     )}
                   </div>

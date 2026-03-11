@@ -4,6 +4,7 @@ import Navbar from './navbar'; // Import the Navbar component
 import type { Metadata } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import { cookies } from 'next/headers';
+import { ButtonSoundProvider } from './providers/button-sound-provider';
 import { GlobalLoadingProvider } from './providers/loading-provider';
 import './globals.css';
 
@@ -44,7 +45,9 @@ export default async function RootLayout({
    <li></li>
 </ul>
         {/*<Navbar />*/}
-        <GlobalLoadingProvider>{children}</GlobalLoadingProvider>
+        <ButtonSoundProvider>
+          <GlobalLoadingProvider>{children}</GlobalLoadingProvider>
+        </ButtonSoundProvider>
       </body>
     </html>
   );

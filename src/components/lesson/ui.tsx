@@ -1,12 +1,14 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 const lessonChipVisualClassName =
   'flex w-fit items-center justify-center rounded-sm bg-white/30 px-2 py-[2px] text-[16px] leading-none text-[#e3efe6] text-center';
 
 const noLigaturesStyle = { fontVariantLigatures: 'none' as const };
+const LESSON_RUN_START_EVENT = 'lesson-run-start';
+const LESSON_RUN_COMPLETE_EVENT = 'lesson-run-complete';
 
 export function HomeButton({ topClass = '-top-[4.7rem]' }: { topClass?: string }) {
   return (
@@ -90,17 +92,88 @@ export function CodeEditor({
 }
 
 export function OutputPanel({ lines, minHeightClass }: { lines: ReactNode[]; minHeightClass: string }) {
+  const latestLinesRef = useRef(lines);
+  const [displayedLines, setDisplayedLines] = useState(lines);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    latestLinesRef.current = lines;
+    if (!isLoading) {
+      setDisplayedLines(lines);
+    }
+  }, [isLoading, lines]);
+
+  useEffect(() => {
+    const handleStart = () => {
+      setIsLoading(true);
+    };
+
+    const handleComplete = () => {
+      setDisplayedLines(latestLinesRef.current);
+      setIsLoading(false);
+    };
+
+    document.addEventListener(LESSON_RUN_START_EVENT, handleStart);
+    document.addEventListener(LESSON_RUN_COMPLETE_EVENT, handleComplete);
+
+    return () => {
+      document.removeEventListener(LESSON_RUN_START_EVENT, handleStart);
+      document.removeEventListener(LESSON_RUN_COMPLETE_EVENT, handleComplete);
+    };
+  }, []);
+
   return (
     <div className="output-select w-full rounded-xl overflow-hidden border border-slate-700 bg-black shadow-lg">
       <div className={`px-3 py-1 font-mono text-[17px] leading-7 ${minHeightClass}`} style={noLigaturesStyle}>
-        {lines.map((line, idx) => (
-          <div key={idx} className="whitespace-pre">
-            {line}
+        {isLoading ? (
+          <div className="flex h-full items-start">
+            <span className="mt-[5px] inline-block h-[1em] w-[1em] animate-spin rounded-full border-2 border-white border-t-transparent align-middle" />
           </div>
-        ))}
+        ) : (
+          displayedLines.map((line, idx) => (
+            <div key={idx} className="whitespace-pre">
+              {line}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
+}
+
+export function useDelayedLessonValue<T>(value: T, emptyValue: T) {
+  const latestValueRef = useRef(value);
+  const [displayedValue, setDisplayedValue] = useState(value);
+  const isLoadingRef = useRef(false);
+
+  useEffect(() => {
+    latestValueRef.current = value;
+    if (!isLoadingRef.current) {
+      setDisplayedValue(value);
+    }
+  }, [value]);
+
+  useEffect(() => {
+    const handleStart = () => {
+      isLoadingRef.current = true;
+      setDisplayedValue(emptyValue);
+    };
+
+    const handleComplete = () => {
+      isLoadingRef.current = false;
+      setDisplayedValue(latestValueRef.current);
+    };
+
+    document.addEventListener(LESSON_RUN_START_EVENT, handleStart);
+    document.addEventListener(LESSON_RUN_COMPLETE_EVENT, handleComplete);
+
+    return () => {
+      document.removeEventListener(LESSON_RUN_START_EVENT, handleStart);
+      document.removeEventListener(LESSON_RUN_COMPLETE_EVENT, handleComplete);
+    };
+  }, [emptyValue]);
+
+  return displayedValue;
 }
 
 export function LessonTable({
@@ -158,11 +231,22 @@ export function LessonTable({
 }
 
 export function RunButton({ onClick, className = '' }: { onClick: () => void; className?: string }) {
+  const handleClick = () => {
+    document.dispatchEvent(new CustomEvent(LESSON_RUN_START_EVENT));
+
+    window.setTimeout(() => {
+      onClick();
+      window.requestAnimationFrame(() => {
+        document.dispatchEvent(new CustomEvent(LESSON_RUN_COMPLETE_EVENT));
+      });
+    }, 750);
+  };
+
   return (
     <button
       type="button"
-      onClick={onClick}
-      className={`rounded-sm bg-[#8fd949] px-3 py-0.5 text-xl leading-none text-white ${className}`}
+      onClick={handleClick}
+      className={`rounded-sm bg-[#8fd949] px-3 py-0.5 text-xl leading-none text-white transition-colors hover:bg-[#9ddf50] active:bg-[#adf758] ${className}`}
     >
       Run
     </button>
@@ -258,7 +342,7 @@ export function HintButton({
         <div className="underline decoration-1 underline-offset-2">Solution:</div>
         <div>{children}</div>
       </div>
-      <div className="inline-flex h-11 w-11 items-center justify-center rounded bg-[#d3b93a] text-[32px] leading-none text-[#e4f9d9]">
+      <div className="inline-flex h-11 w-11 items-center justify-center rounded bg-[#d3b93a] text-[32px] leading-none text-[#e4f9d9] transition-colors duration-150 group-hover:bg-[#e9cc41]">
         ?
       </div>
     </div>

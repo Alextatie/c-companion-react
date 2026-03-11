@@ -1,34 +1,36 @@
-﻿'use client';
+'use client';
 
-import { useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../firebase/config"; // Adjust the path as needed
-import { useRouter } from 'next/navigation';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useGlobalLoading } from "../providers/loading-provider";
+import { useEffect, useState } from 'react';
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
+import { auth } from '../firebase/config';
+import Link from 'next/link';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useGlobalLoading } from '../providers/loading-provider';
 
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const [user, loadingUser] = useAuthState(auth); // Firebase hook to check the user state
+  const [user, loadingUser] = useAuthState(auth);
   const { setLoading: setGlobalLoading, withLoading } = useGlobalLoading();
 
   useEffect(() => {
     setGlobalLoading('signup-auth-state', loadingUser);
     if (!loadingUser && user) {
-      router.push('/');
+      window.location.replace('/');
     }
     return () => setGlobalLoading('signup-auth-state', false);
-  }, [user, loadingUser, router, setGlobalLoading]);
+  }, [user, loadingUser, setGlobalLoading]);
 
-  // Function to handle email and password sign-up
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true when the sign-up starts
+    setLoading(true);
     setError(null);
     setSuccess(false);
 
@@ -37,94 +39,99 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
       );
       setSuccess(true);
-      router.push('/');  // Redirect to homepage after successful sign-up
+      window.location.replace('/');
     } catch (err: any) {
       setError(err.message);
     } finally {
-      setLoading(false); // Set loading to false after operation completes
+      setLoading(false);
     }
   };
 
-  // Function to handle Google sign-up
   const handleGoogleSignUp = async () => {
-    setLoading(true); // Set loading to true when the sign-up starts
+    setLoading(true);
     setError(null);
     setSuccess(false);
 
     try {
-      const result = await withLoading('signup-google', async () =>
-        signInWithPopup(
-          auth,
-          new GoogleAuthProvider().setCustomParameters({
-            prompt: "select_account", // This forces account selection
-          })
-        )
+      const result = await signInWithPopup(
+        auth,
+        new GoogleAuthProvider().setCustomParameters({
+          prompt: 'select_account',
+        })
       );
-      const user = result.user; // user info returned after successful login
-
-      // You can handle the user info here if needed
-      console.log("Google user:", user);
-      setSuccess(true); // Indicating the sign-up was successful
-      router.push('/');  // Redirect to homepage after successful sign-up
+      console.log('Google user:', result.user);
+      setSuccess(true);
+      window.location.replace('/');
     } catch (err: any) {
-      setError("Failed to sign up with Google.");
-    } finally {
-      setLoading(false); // Set loading to false after operation completes
+      if (err?.code === 'auth/popup-closed-by-user') {
+        setLoading(false);
+        return;
+      }
+      setError('Failed to sign up with Google.');
+      setLoading(false);
     }
   };
 
   if (loadingUser || user) return null;
 
   return (
-    <div className="w-[305px] mx-auto mt-10 p-4 mt-26 rounded text-center shadow-lg bg-[rgb(86,118,145)]">
-      <h2 className="text-4xl text-shadow-lg font-bold mb-4">Sign Up</h2>
+    <div className="mx-auto mt-26 w-[305px] text-center">
+      <div className="rounded bg-[rgb(86,118,145)] p-4 shadow-lg">
+        <h2 className="mb-4 text-4xl font-bold text-shadow-lg">Sign Up</h2>
 
-      {/* Email and Password Sign-Up Form */}
-      <form onSubmit={handleSignUp} className="flex flex-col gap-4">
-        <input
-          type="email"
-          placeholder="Email"
-          className="bg-white text-black p-2 rounded shadow-lg "
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="bg-white text-black p-2 rounded shadow-lg "
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          className={`bg-[rgb(107,195,95)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(129,218,133)] transition ${
-            loading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          disabled={loading} // Disable button while loading
-        >
-          Sign Up with Email
-        </button>
-      </form>
+        <form onSubmit={handleSignUp} className="flex flex-col gap-4">
+          <input
+            type="email"
+            placeholder="Email"
+            className="rounded bg-white p-2 text-black shadow-lg"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="rounded bg-white p-2 text-black shadow-lg"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button
+            type="submit"
+            className={`rounded bg-[rgb(107,195,95)] py-2 text-white shadow-lg text-shadow-lg transition hover:bg-[rgb(129,218,133)] ${
+              loading ? 'cursor-not-allowed opacity-50' : ''
+            }`}
+            disabled={loading}
+          >
+            Sign Up with Email
+          </button>
+        </form>
 
-      {/* Google Sign-Up Button */}
-      <div className="flex gap-4 mt-4">
-        <button
-          onClick={handleGoogleSignUp}
-          className={`bg-[rgb(95,165,195)] shadow-lg text-shadow-lg text-white py-2 rounded hover:bg-[rgb(116,181,209)] w-full ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
-          disabled={loading} // Disable button while loading
-        >
-          Sign Up with Google
-        </button>
+        <div className="mt-4 flex gap-4">
+          <button
+            onClick={handleGoogleSignUp}
+            className={`w-full rounded bg-[rgb(95,165,195)] py-2 text-white shadow-lg text-shadow-lg transition hover:bg-[rgb(116,181,209)] ${
+              loading ? 'cursor-not-allowed opacity-50' : ''
+            }`}
+            disabled={loading}
+          >
+            Sign Up with Google
+          </button>
+        </div>
+
+        {error && <p className="mt-4 text-red-500">{error}</p>}
+        {success && <p className="mt-4 text-green-600">Account created successfully!</p>}
       </div>
 
-      {error && <p className="text-red-500 mt-4">{error}</p>}
-      {success && <p className="text-green-600 mt-4">Account created successfully!</p>}
+      <Link
+        href="/"
+        className="mt-4 inline-flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] shadow-lg text-shadow-lg transition hover:bg-[rgb(214,232,220)]"
+      >
+        <span>{'<-'}</span>
+        <span className="ml-1">Back</span>
+      </Link>
     </div>
   );
 };
 
 export default SignUp;
-
-

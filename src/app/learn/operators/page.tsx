@@ -172,14 +172,12 @@ function LessonPage() {
   );
 
   return (
-    <div className="lesson-selectable flex min-h-screen -mt-12 flex-col items-center justify-start px-4 pt-30 pb-12 text-center text-white">
-      <h1 className="mb-8 text-5xl font-bold text-shadow-lg">Operators</h1>
-
-      <ScaledLessonFrame baseWidth={1165}>
+    <div className="lesson-selectable h-screen overflow-hidden px-[50px] py-[50px] text-center text-white">
+      <ScaledLessonFrame baseWidth={1165} title="Operators">
         <div className="relative w-[1165px] max-w-none">
           <HomeButton />
 
-          <section className="w-full rounded-2xl bg-black/20 p-8 shadow-lg backdrop-blur-[1px]">
+          <section className="lesson-panel w-full rounded-2xl p-8 shadow-lg backdrop-blur-[1px]">
             {pageIndex === 0 ? (
               <div className="space-y-3 text-left">
                 <p className="w-full text-[19px] leading-tight">

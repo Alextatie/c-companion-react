@@ -13,6 +13,7 @@ import {
   LessonNextButton,
   OutputPanel,
   RunButton,
+  useDelayedLessonValue,
 } from '@/components/lesson/ui';
 
 function ExerciseEditor({
@@ -76,6 +77,7 @@ function LessonPage() {
   const [Output_2, setOutput_2] = useState<ReactNode[]>([<EmptyLine key="c2-empty" />]);
   const [page2Input, setPage2Input] = useState('');
   const [page2Result, setPage2Result] = useState('');
+  const delayedPage2Result = useDelayedLessonValue(page2Result, '');
 
   const onBack = () => {
     if (isFirstPage) {
@@ -162,14 +164,12 @@ function LessonPage() {
   };
 
   return (
-    <div className="lesson-selectable flex min-h-screen flex-col items-center justify-start -mt-12 px-4 pt-30 pb-12 text-center text-white">
-      <h1 className="mb-8 text-5xl font-bold text-shadow-lg">Comments</h1>
-
-      <ScaledLessonFrame baseWidth={1030}>
+    <div className="lesson-selectable h-screen overflow-hidden px-[50px] py-[50px] text-center text-white">
+      <ScaledLessonFrame baseWidth={1030} title="Comments">
       <div className="relative w-[1030px] max-w-none">
         <HomeButton />
 
-        <section className="w-full rounded-2xl bg-black/20 p-8 shadow-lg backdrop-blur-[1px]">
+        <section className="lesson-panel w-full rounded-2xl p-8 shadow-lg backdrop-blur-[1px]">
           {pageIndex === 0 ? (
             <div className="space-y-3 text-left">
               <p className="w-full text-[19px] leading-tight">
@@ -250,8 +250,10 @@ function LessonPage() {
                     <RunButton onClick={page2_input1} className="absolute bottom-3 right-4" />
                   </div>
                   <div className="mt-2 min-h-[3rem] text-xl leading-tight text-[#ff6565]">
-                    {page2Result && (
-                      <span className={page2Result === 'Correct!' ? 'text-[#34d356]' : 'text-[#ff6565]'}>{page2Result}</span>
+                    {delayedPage2Result && (
+                      <span className={delayedPage2Result === 'Correct!' ? 'text-[#34d356]' : 'text-[#ff6565]'}>
+                        {delayedPage2Result}
+                      </span>
                     )}
                   </div>
                 </div>

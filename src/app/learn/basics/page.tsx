@@ -30,10 +30,11 @@ const lessonPages: LessonPageData[] = [
         heading: 'What is C?',
         body: [
           <>
-            <Tone color="green">C</Tone> is a general-purpose programming language created by Dennis Ritchie at Bell
-            Labs in <Tone color="green">1972</Tone>.
+            <Tone color="green">C</Tone> is a general-purpose programming language created by Dennis Ritchie
+            <br/>
+            at the Bell Laboratories in <Tone color="green">1972</Tone>.
           </>,
-          'It is still very popular, and one of the main reasons is that it is a foundational language in computer science.',
+          'It is a very popular language, despite being old. The main reason for its popularity is because it is a fundamental language in the field of computer science.',
         ],
       },
       {
@@ -121,14 +122,12 @@ function LessonPage() {
   };
 
   return (
-    <div className="lesson-selectable flex flex-col items-center justify-start min-h-screen -mt-12 text-white text-center px-4 pt-30 pb-12">
-      <h1 className="text-5xl text-shadow-lg font-bold mb-8">Basics</h1>
-
-      <ScaledLessonFrame baseWidth={900}>
-      <div className="relative w-[900px] max-w-none">
+    <div className="lesson-selectable h-screen overflow-hidden px-[50px] py-[50px] text-center text-white">
+      <ScaledLessonFrame baseWidth={1090} title="Basics">
+      <div className="relative w-[1090px] max-w-none">
         <HomeButton topClass="-top-[4.6rem]" />
 
-        <section className="w-full rounded-2xl bg-black/20 p-8 shadow-lg backdrop-blur-[1px]">
+        <section className="lesson-panel w-full rounded-2xl p-8 shadow-lg backdrop-blur-[1px]">
           {currentPage.kind === 'sections' ? (
             <div className="space-y-8 text-center text-xl leading-relaxed">
               {currentPage.sections.map((section) => (

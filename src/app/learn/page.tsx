@@ -1,11 +1,33 @@
 ﻿'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+const DIFFICULTY_STORAGE_KEY = 'learn-difficulty';
+
 function LearnPage() {
-  const [difficulty, setDifficulty] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
+  const [difficulty, setDifficulty] = useState<'beginner' | 'intermediate' | 'advanced'>(() => {
+    if (typeof window === 'undefined') {
+      return 'beginner';
+    }
+
+    const savedDifficulty = window.sessionStorage.getItem(DIFFICULTY_STORAGE_KEY);
+
+    if (
+      savedDifficulty === 'beginner' ||
+      savedDifficulty === 'intermediate' ||
+      savedDifficulty === 'advanced'
+    ) {
+      return savedDifficulty;
+    }
+
+    return 'beginner';
+  });
   const difficultyOrder = ['beginner', 'intermediate', 'advanced'] as const;
+
+  useEffect(() => {
+    window.sessionStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
+  }, [difficulty]);
 
   const lessons = {
     beginner: [
