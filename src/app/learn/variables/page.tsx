@@ -1190,7 +1190,7 @@ function LessonPage() {
             )}
           </section>
 
-          <div className="mt-[2.4rem] flex items-center justify-between">
+          <div className="mt-[2.5rem] flex items-center justify-between">
             <LessonBackButton onClick={onBack} />
 
             {!showMorePage && (

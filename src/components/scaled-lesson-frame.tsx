@@ -12,7 +12,7 @@ type ScaledLessonFrameProps = {
 function ScaledLessonFrame({
   baseWidth,
   title,
-  titleClassName = 'mb-8 text-5xl font-bold text-shadow-lg',
+  titleClassName = 'mb-8 text-5xl font-bold text-shadow-lg text-center',
   children,
 }: ScaledLessonFrameProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);

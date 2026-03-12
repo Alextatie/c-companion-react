@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { ReactNode, useState } from 'react';
@@ -125,7 +125,7 @@ function LessonPage() {
     <div className="lesson-selectable h-screen overflow-hidden px-[50px] py-[50px] text-center text-white">
       <ScaledLessonFrame baseWidth={1090} title="Basics">
       <div className="relative w-[1090px] max-w-none">
-        <HomeButton topClass="-top-[4.6rem]" />
+        <HomeButton />
 
         <section className="lesson-panel w-full rounded-2xl p-8 shadow-lg backdrop-blur-[1px]">
           {currentPage.kind === 'sections' ? (

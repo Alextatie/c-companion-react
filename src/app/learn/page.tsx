@@ -6,11 +6,10 @@ import Link from 'next/link';
 const DIFFICULTY_STORAGE_KEY = 'learn-difficulty';
 
 function LearnPage() {
-  const [difficulty, setDifficulty] = useState<'beginner' | 'intermediate' | 'advanced'>(() => {
-    if (typeof window === 'undefined') {
-      return 'beginner';
-    }
+  const [difficulty, setDifficulty] = useState<'beginner' | 'intermediate' | 'advanced' | null>(null);
+  const difficultyOrder = ['beginner', 'intermediate', 'advanced'] as const;
 
+  useEffect(() => {
     const savedDifficulty = window.sessionStorage.getItem(DIFFICULTY_STORAGE_KEY);
 
     if (
@@ -18,16 +17,22 @@ function LearnPage() {
       savedDifficulty === 'intermediate' ||
       savedDifficulty === 'advanced'
     ) {
-      return savedDifficulty;
+      setDifficulty(savedDifficulty);
+      return;
     }
-
-    return 'beginner';
-  });
-  const difficultyOrder = ['beginner', 'intermediate', 'advanced'] as const;
+    setDifficulty('beginner');
+  }, []);
 
   useEffect(() => {
+    if (!difficulty) {
+      return;
+    }
     window.sessionStorage.setItem(DIFFICULTY_STORAGE_KEY, difficulty);
   }, [difficulty]);
+
+  if (!difficulty) {
+    return null;
+  }
 
   const lessons = {
     beginner: [
@@ -64,6 +69,7 @@ function LearnPage() {
         : 'bg-[#d85b5b]';
 
   const difficultyIndex = difficultyOrder.indexOf(difficulty);
+  const lessonNumberOffset = difficulty === 'beginner' ? 0 : difficulty === 'intermediate' ? 6 : 12;
 
   const showPreviousDifficulty = () => {
     if (difficultyIndex === 0) {
@@ -127,7 +133,7 @@ function LearnPage() {
               href={`/learn/${lesson.slug}`}
               className="flex items-center justify-between bg-[rgb(86,116,145)] px-4 py-2 text-2xl text-white text-shadow-lg shadow-lg rounded hover:bg-[rgb(68,96,123)] transition"
             >
-              <span className="text-left">{`${index + 1}) ${lesson.title}`}</span>
+              <span className="text-left">{`${lessonNumberOffset + index + 1}) ${lesson.title}`}</span>
               <span className="text-right">[ ]</span>
             </Link>
           ))}

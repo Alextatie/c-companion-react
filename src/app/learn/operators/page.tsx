@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useRouter } from 'next/navigation';
 import { ReactNode, useMemo, useState } from 'react';
@@ -423,7 +423,7 @@ function LessonPage() {
             )}
           </section>
 
-          <div className="mt-[2.4rem] flex items-center justify-between">
+          <div className="mt-[2.5rem] flex items-center justify-between">
             <LessonBackButton onClick={onBack} />
             <LessonNextButton onClick={onNextOrFinish} isLastPage={isLastPage} />
           </div>
