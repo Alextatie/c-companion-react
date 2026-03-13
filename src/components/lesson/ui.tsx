@@ -10,11 +10,17 @@ const noLigaturesStyle = { fontVariantLigatures: 'none' as const };
 const LESSON_RUN_START_EVENT = 'lesson-run-start';
 const LESSON_RUN_COMPLETE_EVENT = 'lesson-run-complete';
 
-export function HomeButton({ topClass = '-top-[4.7rem]' }: { topClass?: string }) {
+export function HomeButton({
+  topClass = '-top-[4.7rem]',
+  leftClass = 'left-0',
+}: {
+  topClass?: string;
+  leftClass?: string;
+}) {
   return (
     <Link
       href="/"
-      className={`no-select absolute ${topClass} left-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#8fd89a] shadow-lg transition hover:bg-[rgb(214,232,220)]`}
+      className={`no-select absolute ${topClass} ${leftClass} inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#8fd89a] shadow-lg transition hover:bg-[rgb(214,232,220)]`}
     >
       <svg
         aria-hidden="true"
@@ -266,7 +272,7 @@ export function ChoiceButton({
     <button
       type="button"
       onClick={onClick}
-      className={`flex h-[21px] w-full items-center justify-center rounded-[1px] border border-[#3a9cab] bg-[#48ced7] px-2 text-[18px] leading-none text-[#e9ffff] shadow-sm transition hover:bg-[#57dae2] ${className}`}
+      className={`flex h-[21px] w-full items-center justify-center rounded-[1px] border border-[#94c8aa] bg-[#69ac8a] px-2 text-[18px] leading-none text-white shadow-sm transition hover:bg-[#94c8aa] ${className}`}
     >
       {children}
     </button>

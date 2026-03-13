@@ -1,0 +1,6168 @@
+{
+  "gameRootName": "Code Fixer",
+  "gameRootId": 1725597808,
+  "extractedAt": "2026-03-12T22:31:47.690Z",
+  "questionCount": 70,
+  "questions": [
+    {
+      "questionNumber": 1,
+      "objectId": 82445848,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 72,
+      "texts": [
+        {
+          "objectId": 1814119025,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1323053272,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2145212335,
+          "objectName": "Text",
+          "text": "<color=white>Hello World!\\u200B"
+        },
+        {
+          "objectId": 1099553924,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1219346352,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1292420533,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  printf(<color=red> \\\"Hello"
+        },
+        {
+          "objectId": 1475026527,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1485407706,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1138008783,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1433214865,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1838126317,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 797020881,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 156936601,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1263404291,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 847762348,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 2,
+      "objectId": 438240439,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 2,
+      "texts": [
+        {
+          "objectId": 2005414420,
+          "objectName": "Text",
+          "text": "Add a <color=red>comment<color=white> without getting an <color=red>error<color=white>:"
+        },
+        {
+          "objectId": 700239990,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1560986794,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 224173406,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1112631243,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1331584628,
+          "objectName": "Text",
+          "text": "\"<color=blue>int<color=black> num<color=black>;\nprintf(<color=red>\\\"Enter"
+        },
+        {
+          "objectId": 85000806,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 582622184,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 201916199,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 916284143,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 879238164,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 243213914,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 778517849,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 403872040,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1035006954,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 3,
+      "objectId": 1085660313,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 2,
+      "texts": [
+        {
+          "objectId": 515698038,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 429006658,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1259936297,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1791786164,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 85602516,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1426992972,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1846777038,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1694034665,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 662849014,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 959250859,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1637289137,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 464284211,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 236706784,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 205128495,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1768365030,
+          "objectName": "Text",
+          "text": "<color=white>1\\u200B"
+        }
+      ]
+    },
+    {
+      "questionNumber": 4,
+      "objectId": 2006073059,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 990984940,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 1728402504,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1746464109,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1429066553,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 849503664,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1286461535,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 695878980,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 999075549,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2005594871,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 887318274,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 933522535,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1035336236,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 493481014,
+          "objectName": "Text",
+          "text": "<color=white>2\\u200B"
+        },
+        {
+          "objectId": 621291989,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1213836864,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 5,
+      "objectId": 1910293434,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1954058578,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1765974984,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2049896352,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 977803249,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1080469103,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  printf(<color=red>\\\"Hello World!\\\"<color=black>);"
+        },
+        {
+          "objectId": 1107412114,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 58843938,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 222219894,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1718660896,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 751637925,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 437109854,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1006416957,
+          "objectName": "Text",
+          "text": "<color=white>Hello World!\\u200B"
+        },
+        {
+          "objectId": 1733044095,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1367887614,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1714640470,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 6,
+      "objectId": 96758794,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 925917026,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 841693313,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1433862483,
+          "objectName": "Text",
+          "text": "<color=white>Hello World!\\u200B"
+        },
+        {
+          "objectId": 2142486196,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1561186063,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 2078458740,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 416537053,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 679738520,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 475643535,
+          "objectName": "Text",
+          "text": "\"#include <stdio.h>\n\n<color=blue>int <color=black>main() {\r\n  printf(<color=red>\\\"Hello"
+        },
+        {
+          "objectId": 848915621,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1552356249,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1874971865,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2102456129,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 8008991,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 275123913,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 7,
+      "objectId": 348756311,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1822330044,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1851170296,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 325073305,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1194693765,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 212705254,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1152508971,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 814320160,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 818024807,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>float<color=black>"
+        },
+        {
+          "objectId": 460890732,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 507094164,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 754587515,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 317398662,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 317409276,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 244280021,
+          "objectName": "Text",
+          "text": "<color=white>5.300000\\u200B"
+        },
+        {
+          "objectId": 1467413008,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 8,
+      "objectId": 171864668,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 43016550,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 309338213,
+          "objectName": "Text",
+          "text": "<color=white>5\\u200B"
+        },
+        {
+          "objectId": 2054314110,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 92102605,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1117489075,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 766619352,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1113399188,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 814992109,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 756037812,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 779985347,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 1599751645,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 725636716,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 7511676,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1116139518,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1590470117,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 9,
+      "objectId": 1681001435,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 244397134,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1754569187,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 2147428499,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 785303228,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1754299521,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 966666166,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1649318019,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>float<color=black>"
+        },
+        {
+          "objectId": 1817028463,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 882172288,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 678272808,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 82703610,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1769515677,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1407369027,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 354415394,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 468044851,
+          "objectName": "Text",
+          "text": "<color=white>5.300000\\u200B"
+        }
+      ]
+    },
+    {
+      "questionNumber": 10,
+      "objectId": 956629823,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1477651481,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1627819623,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 651303571,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 134865743,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 351495071,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 14593857,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 485984885,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 329535425,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 730606277,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1490739252,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 1457524104,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1602559289,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 764795171,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2011381483,
+          "objectName": "Text",
+          "text": "<color=white>5\\u200B"
+        },
+        {
+          "objectId": 2121030457,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 11,
+      "objectId": 1877318174,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1821496122,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 442522976,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 2133826309,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1512526911,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1863108244,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>float<color=black>"
+        },
+        {
+          "objectId": 211444465,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1893189865,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2039369560,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 385416786,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 895040775,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 27989449,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1006434403,
+          "objectName": "Text",
+          "text": "<color=white>5\\u200B"
+        },
+        {
+          "objectId": 1436545732,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1032664597,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1301036618,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 12,
+      "objectId": 489519357,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 110691342,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 163475588,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 2136998021,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 37839820,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 655562387,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1616988261,
+          "objectName": "Text",
+          "text": "<color=white>5.3\\u200B"
+        },
+        {
+          "objectId": 1109039366,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 282727513,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2040153372,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>float<color=black>"
+        },
+        {
+          "objectId": 297912714,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 404199293,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 435178483,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 2042881992,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1917975996,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1221501246,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 13,
+      "objectId": 671203606,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 92002894,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1011205963,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1563672286,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1031712604,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 10017051,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1072563626,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 345894625,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 433765368,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>char<color=black>"
+        },
+        {
+          "objectId": 1224745388,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 972199099,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 137936860,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1331578284,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 753043658,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1978886869,
+          "objectName": "Text",
+          "text": "<color=white>z\\u200B"
+        },
+        {
+          "objectId": 1088418510,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 14,
+      "objectId": 2028851306,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1349014017,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1156447575,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 333533603,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1366399102,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 19235298,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 404194318,
+          "objectName": "Text",
+          "text": "<color=white>z\\u200B"
+        },
+        {
+          "objectId": 824057476,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 952963533,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1343315208,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 915417733,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2008807661,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1071603147,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1282740905,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>char<color=black>"
+        },
+        {
+          "objectId": 817348590,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 289881411,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        }
+      ]
+    },
+    {
+      "questionNumber": 15,
+      "objectId": 354018528,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1398612899,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 242299254,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1095075005,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>char<color=black>"
+        },
+        {
+          "objectId": 163178359,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1460984326,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 662079820,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1432569412,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1674157552,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 538577699,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 637376845,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2088196499,
+          "objectName": "Text",
+          "text": "<color=white>x\\u200B"
+        },
+        {
+          "objectId": 1324847622,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 692830690,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2079822454,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 304312191,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 16,
+      "objectId": 754195659,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 9764225,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 381034707,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>char<color=black>"
+        },
+        {
+          "objectId": 430973480,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 550447608,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1883506376,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 198036006,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 2129008882,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 878904821,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 529136210,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 105296472,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1725254764,
+          "objectName": "Text",
+          "text": "<color=white>122\\u200B"
+        },
+        {
+          "objectId": 1607628414,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 252481835,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1275825626,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 536455245,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 17,
+      "objectId": 684887928,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1224403926,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 49617869,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 602376404,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1965344584,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 596848015,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1637800828,
+          "objectName": "Text",
+          "text": "<color=red>Error!\\u200B"
+        },
+        {
+          "objectId": 1574191016,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 768771995,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1337630040,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 802464534,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2108150278,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>const int<color=black>"
+        },
+        {
+          "objectId": 1684051204,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 293403290,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1110539027,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1543784759,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 18,
+      "objectId": 1724934491,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1017136551,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1331467174,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 632723726,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 454544331,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 1488956484,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 718016108,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 240974528,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 697138008,
+          "objectName": "Text",
+          "text": "\"#include <  tdibool.  >\n\n<color=blue>int <color=black>main() {"
+        },
+        {
+          "objectId": 929887591,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 952560834,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1924342678,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1348553065,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 882643732,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1113827170,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1671115066,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 19,
+      "objectId": 1611652458,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1295471323,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 452887759,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 622244393,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1086098611,
+          "objectName": "Text",
+          "text": "<color=white>0\\u200B"
+        },
+        {
+          "objectId": 1310326396,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 292845127,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 147876095,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1141715716,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 504752647,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 744579532,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1136025839,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 574471359,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1204900958,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>bool<color=black>"
+        },
+        {
+          "objectId": 1185178034,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1059435324,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 20,
+      "objectId": 270327162,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 142519089,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 736646374,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 533871137,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1082110508,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1775725413,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1961286634,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\n  <color=blue>bool<color=black>"
+        },
+        {
+          "objectId": 1085221200,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 242589777,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 517002585,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1424056928,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1655382901,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1989623969,
+          "objectName": "Text",
+          "text": "<color=white>1\\u200B"
+        },
+        {
+          "objectId": 1687772690,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1812256146,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 779855370,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 21,
+      "objectId": 814700599,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1590198021,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 1709034550,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1650730024,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 624640026,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1086427490,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 478751941,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 368694273,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 409357795,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1782881287,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1493624318,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1891588961,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 859399226,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 391337671,
+          "objectName": "Text",
+          "text": "<color=white>8\\u200B"
+        },
+        {
+          "objectId": 1537013866,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 550873334,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 22,
+      "objectId": 1024521907,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 476528537,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 887031818,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 269497168,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1391598111,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1787066404,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 1099783884,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1616935533,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1068747962,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 416223956,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 702104718,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1141378801,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1862234266,
+          "objectName": "Text",
+          "text": "<color=white>2\\u200B"
+        },
+        {
+          "objectId": 1582297184,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1239459540,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1098604641,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 23,
+      "objectId": 1742136866,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1442152245,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 1135857042,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1416005855,
+          "objectName": "Text",
+          "text": "<color=white>0\\u200B"
+        },
+        {
+          "objectId": 1814348034,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 42752854,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 685320239,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1531145266,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1757148154,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 348441275,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 567336584,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 1492952323,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 722718555,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1989231430,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 246291955,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 716308710,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        }
+      ]
+    },
+    {
+      "questionNumber": 24,
+      "objectId": 2091073032,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1318612780,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 654493815,
+          "objectName": "Text",
+          "text": "<color=white>1\\u200B"
+        },
+        {
+          "objectId": 680417094,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 333493016,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1082795985,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 659764202,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1322118255,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 251257077,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 285499814,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 599906183,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 892328521,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1437092852,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1335053896,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1136190445,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 369892970,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 25,
+      "objectId": 1049953460,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 534792594,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 293374199,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1866018310,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 757055990,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1418492130,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>bool<color=black>"
+        },
+        {
+          "objectId": 352754240,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1908002482,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 770320671,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1265426036,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 878202932,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 965242532,
+          "objectName": "Text",
+          "text": "<color=white>1\\u200B"
+        },
+        {
+          "objectId": 1748180838,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1384482769,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1027866333,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 908929491,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 26,
+      "objectId": 320191363,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1766799769,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 1219743528,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 654488374,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 678798161,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 585692076,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 925843949,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 529184631,
+          "objectName": "Text",
+          "text": "<color=white>0\\u200B"
+        },
+        {
+          "objectId": 1240560260,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 74780126,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1226317113,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 161720962,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 590756716,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>bool<color=black>"
+        },
+        {
+          "objectId": 1980924323,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 440411868,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 484237196,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        }
+      ]
+    },
+    {
+      "questionNumber": 27,
+      "objectId": 256660323,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 586545286,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white>:"
+        },
+        {
+          "objectId": 1204735545,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1405027466,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1344182574,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1903316465,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1078049705,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2139483035,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 1221376768,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 2142220634,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1427383539,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1009205892,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1529087698,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1041497055,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1686432354,
+          "objectName": "Text",
+          "text": "<color=white>1\\u200B"
+        },
+        {
+          "objectId": 2051213570,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 28,
+      "objectId": 235151223,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 559786680,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>operator<color=white> (must use both parameters):"
+        },
+        {
+          "objectId": 1635131832,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2024082148,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1204362344,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 665581437,
+          "objectName": "Text",
+          "text": "<color=white>1\\u200B"
+        },
+        {
+          "objectId": 1270039451,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1878777046,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1790546965,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 664952999,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 216643324,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 932188855,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1375402701,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1616281928,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1368383267,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1184221689,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        }
+      ]
+    },
+    {
+      "questionNumber": 29,
+      "objectId": 850416021,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1578798266,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 647605407,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1509610511,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 173175341,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 71049004,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 564291358,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 514679451,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1975240167,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 151003565,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1547923902,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 126462803,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1719830723,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2087033849,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1227382988,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 103048166,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        }
+      ]
+    },
+    {
+      "questionNumber": 30,
+      "objectId": 1135591753,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1232488161,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 140939803,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 262139908,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 234278755,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 203985256,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1173684488,
+          "objectName": "Text",
+          "text": "\"<color=blue>int <color=black>main() {\r\n  <color=blue>int<color=black>"
+        },
+        {
+          "objectId": 2020809506,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 943930482,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1469702366,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 671943713,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 416614572,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 602099970,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 6155171,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1961247226,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 256968161,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 31,
+      "objectId": 215354512,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 198707165,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 66324557,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1377244260,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1904401529,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1044995337,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 968411422,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 1002317982,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1826381371,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 344376724,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 886495813,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 82606976,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1636087798,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1163088122,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 133142773,
+          "objectName": "Text",
+          "text": "\"<color=blue>bool</color> isTrue = <color=red>false</color>;\n<color=blue>if</color>"
+        },
+        {
+          "objectId": 412244433,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 32,
+      "objectId": 1685996576,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1727803144,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>function<color=white>:"
+        },
+        {
+          "objectId": 1971622465,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 464178994,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1815935040,
+          "objectName": "Text",
+          "text": "<color=white>HelloWorld\\u200B"
+        },
+        {
+          "objectId": 2089842091,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 296523059,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1577661868,
+          "objectName": "lines",
+          "text": "1 2 3 4 5"
+        },
+        {
+          "objectId": 1087364590,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 133639421,
+          "objectName": "Text",
+          "text": "\"<color=blue>char</color> str1[ ] = <color=red>\\\"Hello\\\"</color>;\n<color=blue>char</color>"
+        },
+        {
+          "objectId": 2022218557,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 641424902,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1397441279,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1556763678,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 450794448,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1894118110,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 33,
+      "objectId": 1500540936,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 119559612,
+          "objectName": "Text",
+          "text": "Add the missing <color=red>function<color=white>:"
+        },
+        {
+          "objectId": 1862920915,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1330953391,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1904608431,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1737031355,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 73838262,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1288425302,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1608267252,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 457603287,
+          "objectName": "lines",
+          "text": "1 2 3 4 5"
+        },
+        {
+          "objectId": 143280422,
+          "objectName": "Text",
+          "text": "\"<color=blue>char</color> str1[ ] = <color=red>\\\"Hello\\\"</color>;\n<color=blue>char</color>"
+        },
+        {
+          "objectId": 390576009,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1796136381,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 595330158,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1000495210,
+          "objectName": "Text",
+          "text": "<color=white>World\\u200B"
+        },
+        {
+          "objectId": 2051425384,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 34,
+      "objectId": 695454820,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 102807155,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 178266577,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1561134722,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 332264485,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1059850656,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1669090440,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1205243923,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1952275479,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 733742263,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1155784575,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1075871213,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1378277935,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> main() {\n  <color=blue>int</color> arr[ ] = {<color=red>1,"
+        },
+        {
+          "objectId": 68501705,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 84694223,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1317398925,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 35,
+      "objectId": 1792364239,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 2091020752,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1837264692,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1967887417,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 558178102,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 52875212,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 808291649,
+          "objectName": "Text",
+          "text": "<color=white>Enter a number: 16\nYour number is 16\\u200B"
+        },
+        {
+          "objectId": 534205600,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 980247871,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1284596830,
+          "objectName": "Text",
+          "text": "\"<color=blue>int<color=black> num<color=black>;\nprintf(<color=red>\\\"Enter"
+        },
+        {
+          "objectId": 1076660322,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1234801352,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1469843703,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1098772081,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 2131270157,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2131604154,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 36,
+      "objectId": 1369773190,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 2134695075,
+          "objectName": "Text",
+          "text": "Fill in the blanks:"
+        },
+        {
+          "objectId": 1933441896,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 720523963,
+          "objectName": "Text",
+          "text": "<color=white>10\n0x7ffcd349ea74\\u200B"
+        },
+        {
+          "objectId": 2083780849,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 195367690,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 502541172,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1047152259,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 831818675,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1571193050,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 431419426,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 947060191,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1558675369,
+          "objectName": "lines",
+          "text": "1 2 3 4 5"
+        },
+        {
+          "objectId": 640476668,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> a = <color=red>10</color>;\n<color=blue>int</color>"
+        },
+        {
+          "objectId": 790984268,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 943379694,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1492859900,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 36037795,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 37,
+      "objectId": 1437881740,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1782649872,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 1001219852,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1881374143,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2119655093,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 2079884866,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 408919412,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1638933416,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 718589863,
+          "objectName": "Text",
+          "text": "\"<color=blue>bool</color> isTrue = <color=red>true</color>;\n<color=blue>if</color>"
+        },
+        {
+          "objectId": 1216402784,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1498084870,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1456309561,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 821410347,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1538686215,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 453658471,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 98608855,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 38,
+      "objectId": 1369839853,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 892909479,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 590639041,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 307946989,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1783430209,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1857401310,
+          "objectName": "Text",
+          "text": "\"<color=blue>bool<color=black> a = <color=red>true<color=black> , b = <color=red>false<color=black>;\r\n<color=blue>if</color>"
+        },
+        {
+          "objectId": 1836009348,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1493919787,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1711741023,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1035207061,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1822696439,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 730183311,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 916500839,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1812832683,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 1825014156,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1526654594,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 39,
+      "objectId": 264821242,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1513006445,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 941973544,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1597708247,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 917121775,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 104578960,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 812645795,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 77030567,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 920649812,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1381933547,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1143293235,
+          "objectName": "Text",
+          "text": "\"<color=blue>bool<color=black> a = <color=red>true<color=black> , b = <color=red>false<color=black>;\r\n<color=blue>if</color>"
+        },
+        {
+          "objectId": 1459727499,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 45960457,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 262751839,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1021553042,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 120097239,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 40,
+      "objectId": 701958523,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1717941651,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 784606941,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 940148308,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 2007300472,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1234842375,
+          "objectName": "Text",
+          "text": "\"<color=blue>int<color=black> a = (<color=red>5</color> * <color=red>5</color>)"
+        },
+        {
+          "objectId": 2009282443,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 222399504,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 570925238,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 804046461,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 19919747,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1809076336,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 655066150,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1506199414,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 230548917,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 530268280,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 41,
+      "objectId": 1213274254,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1046065733,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 2117341326,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 325776140,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1196502379,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1677710656,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1943341554,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 2109994313,
+          "objectName": "Text",
+          "text": "\"<color=blue>int<color=black> a = (<color=red>4</color> * <color=red>5</color>)"
+        },
+        {
+          "objectId": 2147055201,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1159663542,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1966160109,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1023355064,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1510616636,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1411668803,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 513053475,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 592141816,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 42,
+      "objectId": 40346329,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 949581178,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1723267461,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1552615834,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1680826725,
+          "objectName": "Text",
+          "text": "<color=white>1\\u200B"
+        },
+        {
+          "objectId": 913962349,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 964784241,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 176404927,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1789393499,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 454620175,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1244875832,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 740096683,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1177468313,
+          "objectName": "Text",
+          "text": "\"         <size=15>   </size>(option){\n  <color=blue>case<color=red> 1<color=black>:"
+        },
+        {
+          "objectId": 307507408,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 71901037,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1375400448,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 43,
+      "objectId": 1588691026,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 217574872,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 555333423,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 2114397427,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 727991094,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1055053990,
+          "objectName": "Text",
+          "text": "<color=white>Today is sunday\\u200B"
+        },
+        {
+          "objectId": 1956973066,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 937331194,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1876270502,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1431943818,
+          "objectName": "Text",
+          "text": "\"<color=blue>switch</color> (day){\n  <color=blue>case<color=red> 1<color=black>:"
+        },
+        {
+          "objectId": 1785878125,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 285371092,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1907920760,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 519626921,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1503623125,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 294917209,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        }
+      ]
+    },
+    {
+      "questionNumber": 44,
+      "objectId": 364681742,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1631643047,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1585466281,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 718410582,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1717009894,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 819952474,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 273617365,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 522747006,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> x = <color=red>1</color>;  \r\n<color=blue>while</color>"
+        },
+        {
+          "objectId": 1469968808,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1959425982,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1643277434,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 81878854,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 2379767,
+          "objectName": "Text",
+          "text": "<color=white>1 2 3 4 5\\u200B"
+        },
+        {
+          "objectId": 714264449,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 125075469,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 888675278,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 45,
+      "objectId": 1381155701,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 89102281,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 197962014,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1443971950,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1139238413,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1049982792,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 33216027,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 33581778,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> x = <color=red>1</color>;  \r\n<color=blue>do</color>"
+        },
+        {
+          "objectId": 1482476378,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 521738767,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1626053532,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 411749253,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1496125817,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1207402304,
+          "objectName": "Text",
+          "text": "<color=white>1 2 3 4 5\\u200B"
+        },
+        {
+          "objectId": 1724577897,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1823635455,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 46,
+      "objectId": 155800834,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1860819966,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1782476879,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 679824454,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1477288259,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1260134142,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 558351536,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 789256145,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1151626341,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1031311144,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1846744224,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> grades[<color=red>5</color>] = {<color=red>85</color>,"
+        },
+        {
+          "objectId": 1598489382,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1563237429,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 926358813,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1444518387,
+          "objectName": "Text",
+          "text": "<color=white>85 90 78 92 88\\u200B"
+        },
+        {
+          "objectId": 459449348,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 47,
+      "objectId": 266182442,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 2007352223,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 79039219,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1269985361,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1347352610,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 621061516,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 2046171874,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 410006406,
+          "objectName": "Text",
+          "text": "\"<color=blue>int </color>main() {\n  <color=blue>int</color> num;"
+        },
+        {
+          "objectId": 1308904183,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1462318351,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1960612563,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 602296738,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1521430312,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 2005338517,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 765714226,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 892999795,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 48,
+      "objectId": 1911923106,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 241701968,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1738622098,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 249252124,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 534979361,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1910308619,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1042951662,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1772284365,
+          "objectName": "Text",
+          "text": "\"<color=blue>int </color>main() {\n  <color=blue>char</color> input[<color=red>100</color>];"
+        },
+        {
+          "objectId": 1784082582,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1883363606,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1619872334,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2130782870,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1844338598,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 2136783394,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 467107744,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 1516259318,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 49,
+      "objectId": 984644000,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 297157949,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 578364566,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 689385086,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1439200228,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2039625067,
+          "objectName": "Text",
+          "text": "<color=white>0x7fffedb839c0\r\n0x7fffedb839c4\r\n0x7fffedb839c8\r\n0x7fffedb839cc\r\n0x7fffedb839d0\\u200B"
+        },
+        {
+          "objectId": 1848293297,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1691709164,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1956764376,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 14926801,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 39098548,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> grades[<color=red>5</color>] = {<color=red>85</color>,"
+        },
+        {
+          "objectId": 230632817,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2097161345,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 798488591,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 658364791,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 433426210,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 50,
+      "objectId": 1960606237,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1274121675,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 443222643,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1314476008,
+          "objectName": "Text",
+          "text": "<color=white>78\\u200B"
+        },
+        {
+          "objectId": 708533406,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1575249488,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1014404753,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1616036744,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1921027553,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 963693636,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 69358364,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> grades[<color=red>5</color>] = {<color=red>85</color>,"
+        },
+        {
+          "objectId": 853408660,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 226660465,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 294795599,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1639794250,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 808145067,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 51,
+      "objectId": 1238899643,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 65428864,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1950804865,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 874041364,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 347657642,
+          "objectName": "Text",
+          "text": "20\\u200B"
+        },
+        {
+          "objectId": 1996433527,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1855034096,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 900042066,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1926919165,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> multiply(<color=blue>int</color> a, <color=blue>int</color>"
+        },
+        {
+          "objectId": 1576678867,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 417188318,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1782004988,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1453558501,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 403466311,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1543939541,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1900893110,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 52,
+      "objectId": 1694724312,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 415433672,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 317292036,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 675614934,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 979152404,
+          "objectName": "Text",
+          "text": "20\\u200B"
+        },
+        {
+          "objectId": 1940207628,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 929071078,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 1230506833,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1209882392,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1214131565,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1845382069,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2132157166,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> multiply(<color=blue>int</color> a, <color=blue>int</color>"
+        },
+        {
+          "objectId": 1712551381,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1091834827,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 695298934,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 608431131,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 53,
+      "objectId": 1551775467,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 898721442,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 263772638,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1891851238,
+          "objectName": "Text",
+          "text": "Hello, Bobby!\\u200B"
+        },
+        {
+          "objectId": 1954516276,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1465434978,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1900218539,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 2010972323,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1203742724,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2126497947,
+          "objectName": "Text",
+          "text": "\"<color=blue>void</color> greeting(<color=blue>char</color> name[]) {"
+        },
+        {
+          "objectId": 702001181,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1617490919,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1274905763,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 2137866577,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 654486330,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 309942722,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        }
+      ]
+    },
+    {
+      "questionNumber": 54,
+      "objectId": 1279942762,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 772951959,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 528432736,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 376453296,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 628492348,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1766877952,
+          "objectName": "Text",
+          "text": "Hello, Bobby!\\u200B"
+        },
+        {
+          "objectId": 1238582106,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1592874856,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 715180567,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 239655787,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1039923263,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 217928790,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1169589426,
+          "objectName": "Text",
+          "text": "\"<color=blue>void</color> greeting( <color=blue>char</color>   name) {"
+        },
+        {
+          "objectId": 1002582836,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 898561320,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1306482446,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 55,
+      "objectId": 1778597260,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1858677978,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1859408184,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1639965632,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 803989401,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1913551965,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2035058308,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 984865788,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 330761221,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2014881140,
+          "objectName": "Text",
+          "text": "\"<color=blue>void</color> print_arr(<color=blue>int</color> arr[], <color=blue>int</color>"
+        },
+        {
+          "objectId": 1878920317,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1248538537,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1753209115,
+          "objectName": "Text",
+          "text": "1 2 3 4 5\\u200B"
+        },
+        {
+          "objectId": 1070358175,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 214285836,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1886063894,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 56,
+      "objectId": 1550952607,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 921423098,
+          "objectName": "Text",
+          "text": "'Insert the line \"<color=red>printf(\"%d\", num);</color>\" in the correct"
+        },
+        {
+          "objectId": 17666192,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 500136008,
+          "objectName": "Text",
+          "text": "10\\u200B"
+        },
+        {
+          "objectId": 1446871285,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 846088517,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 202391339,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 148827699,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 1870625788,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 608786138,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> func() {\r\n  <color=blue>int</color> num = <color=red>10</color>;"
+        },
+        {
+          "objectId": 1223353837,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2039861981,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 163057891,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1120473921,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 834621613,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1557906102,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2133653518,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1282696065,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 57,
+      "objectId": 989398614,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1513338120,
+          "objectName": "Text",
+          "text": "Insert the line \"<color=red>int num = 10;</color>\" in the correct location:"
+        },
+        {
+          "objectId": 1907938244,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 1091015399,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1749884825,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1416075865,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 294365969,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2012988180,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1749265853,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 465595662,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> num = <color=red>10</color>;\r\n<color=blue>int</color>"
+        },
+        {
+          "objectId": 1710953781,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1743793368,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1225180042,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1635394855,
+          "objectName": "Text",
+          "text": "15\\u200B"
+        },
+        {
+          "objectId": 1290124097,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 82192909,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 2045136946,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1267210066,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 58,
+      "objectId": 1959282345,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1849872954,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 114537992,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 2029138135,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1214545612,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1472236710,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 358697809,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1480492882,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1165713136,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 27535132,
+          "objectName": "Text",
+          "text": "\"<color=blue>void</color> func( <color=blue>int</color> num , <color=blue>char</color>"
+        },
+        {
+          "objectId": 1659713086,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 784713089,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1854966740,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 729599425,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1800552663,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 924778002,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 602555507,
+          "objectName": "Text",
+          "text": "10 A Hello\\u200B"
+        },
+        {
+          "objectId": 832305959,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2090527802,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1661643319,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 59,
+      "objectId": 22471239,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 152206703,
+          "objectName": "Text",
+          "text": "What will this code print?"
+        },
+        {
+          "objectId": 271825440,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 710038283,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 677084136,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 728240369,
+          "objectName": "Text",
+          "text": "\"<color=blue>void</color> modify_arr(<color=blue>int</color> arr[]) {"
+        },
+        {
+          "objectId": 841062081,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 601490229,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1099017969,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1551233996,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 383709642,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1873546305,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 433066206,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 564315626,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 94552749,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 100335126,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 60,
+      "objectId": 322520253,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 199931315,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 601425285,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1691789783,
+          "objectName": "Text",
+          "text": "<color=white>8\\u200B"
+        },
+        {
+          "objectId": 1403259911,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1647675735,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 787592466,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 373305681,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1966908266,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> main() {\r\n  <color=blue>double</color> result"
+        },
+        {
+          "objectId": 2072886783,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1793887467,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 395438936,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 231174999,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2121309354,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 290593405,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 2132133123,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 61,
+      "objectId": 2067652958,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 590942090,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1035532491,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 329427713,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1764124750,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 676930531,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 904751870,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 59184844,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> main() {\r\n  <color=blue>double</color> result"
+        },
+        {
+          "objectId": 2039162530,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 942411285,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 539273572,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 590927434,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1663026902,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 295001849,
+          "objectName": "Text",
+          "text": "<color=white>4\\u200B"
+        },
+        {
+          "objectId": 1244126443,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1305960538,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 62,
+      "objectId": 193338000,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 60044594,
+          "objectName": "Text",
+          "text": "'Fix the following function to get a <color=red>factorial<color=white>"
+        },
+        {
+          "objectId": 2121516454,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 945617052,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1547772378,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 563513554,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 997312987,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 135516785,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1937580035,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 531721965,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> func(<color=blue>int</color> n) {\r\n    <color=blue>if</color>"
+        },
+        {
+          "objectId": 1910118475,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 354322335,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7"
+        },
+        {
+          "objectId": 552934885,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1906398870,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 768008844,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 1516477101,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1798723120,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 185135109,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 63,
+      "objectId": 1498642049,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 250332399,
+          "objectName": "Text",
+          "text": "'Fix the following function to get a <color=red>factorial<color=white>"
+        },
+        {
+          "objectId": 2118664473,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 437414030,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 306754815,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1417016397,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1896115907,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 973262985,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> func(<color=blue>int</color> a, <color=blue>int</color>"
+        },
+        {
+          "objectId": 1364919825,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 931154660,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7"
+        },
+        {
+          "objectId": 120467129,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2088924557,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1623331881,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1168701718,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 418403023,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1682629118,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1844133925,
+          "objectName": "Text",
+          "text": "<color=white>\\u200B"
+        },
+        {
+          "objectId": 475471998,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        }
+      ]
+    },
+    {
+      "questionNumber": 64,
+      "objectId": 1330439396,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 477284011,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1375972030,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 924952197,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2006594617,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 827578419,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2139006530,
+          "objectName": "Text",
+          "text": "Hello world!\\u200B"
+        },
+        {
+          "objectId": 2025372805,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 591705988,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 1175236386,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1053664269,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1509553049,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2137271216,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 789102019,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1850942499,
+          "objectName": "Text",
+          "text": "\"<color=blue>struct</color> MyStruct {\r\n    <color=blue>char</color>"
+        },
+        {
+          "objectId": 2016469517,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        }
+      ]
+    },
+    {
+      "questionNumber": 65,
+      "objectId": 1721206927,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1103886533,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1635453162,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 808651100,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 861249025,
+          "objectName": "Text",
+          "text": "\"<color=blue>enum</color> Colors {\n    RED =      ,  \n    GREEN,"
+        },
+        {
+          "objectId": 1308786921,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 847742732,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1125526566,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 873411381,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6 7 8 9 10"
+        },
+        {
+          "objectId": 56923104,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 308495856,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1407597193,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 53171262,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 901286683,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 664284795,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1916078328,
+          "objectName": "Text",
+          "text": "10\\u200B"
+        }
+      ]
+    },
+    {
+      "questionNumber": 66,
+      "objectId": 1646895243,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1099066139,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1285398190,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1648044167,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1665448832,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2105069108,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 530023419,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 2052446849,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 93646056,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> main() {\r\n    FILE</color> *file = fopen</color>(<color=red>\\\"myFile.txt\\\"</color>,"
+        },
+        {
+          "objectId": 1306609330,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1148491725,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 450502567,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 471875651,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 111144013,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2095553922,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 982683317,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 67,
+      "objectId": 1243588150,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1998588624,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 947783449,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2090712423,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1614640855,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 863913231,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1424768622,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1963214482,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 1751957177,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 67575986,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 294252075,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 480056277,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1332138179,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 633347075,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 113134009,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1342047465,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> main() {\n    FILE</color> *file = fopen</color>(<color=red>\\\"example.txt\\\"</color>,"
+        }
+      ]
+    },
+    {
+      "questionNumber": 68,
+      "objectId": 993459184,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 57901279,
+          "objectName": "Text",
+          "text": "Fill in the correct <color=red>output<color=white>:"
+        },
+        {
+          "objectId": 845804617,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1971896178,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 1636511447,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 1782533094,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 2004722968,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 342774568,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 615324640,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 477336234,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> main() {\n    <color=blue>int</color> students[<color=red>35</color>];"
+        },
+        {
+          "objectId": 481254721,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1239645006,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 799428398,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 407265310,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1003836547,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 2040473701,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 69,
+      "objectId": 394257194,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1797992319,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 295720035,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1855761418,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 441927647,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 162908739,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1407643221,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 556178332,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 1294344665,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1126629095,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> *ptr = malloc </color>(sizeof</color>(<color=blue>int</color>));\n*ptr"
+        },
+        {
+          "objectId": 1263173358,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 640939521,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1569762777,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 597366882,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 980178693,
+          "objectName": "Text",
+          "text": "<color=white>10\\u200B"
+        },
+        {
+          "objectId": 1292277947,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        }
+      ]
+    },
+    {
+      "questionNumber": 70,
+      "objectId": 730607755,
+      "ancestorPath": [
+        "Container",
+        "Code Fixer",
+        "Play"
+      ],
+      "candidateCount": 1,
+      "texts": [
+        {
+          "objectId": 1078917520,
+          "objectName": "Text",
+          "text": "'Fix the following code to achieve the right <color=red>output<color=white>"
+        },
+        {
+          "objectId": 1608228263,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 220463292,
+          "objectName": "Text (TMP)",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1065143859,
+          "objectName": "Text (TMP)",
+          "text": "Quit"
+        },
+        {
+          "objectId": 1840771915,
+          "objectName": "Text (TMP)",
+          "text": "Confirm"
+        },
+        {
+          "objectId": 109052177,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 289774603,
+          "objectName": "Text",
+          "text": "<color=white>10\\u200B"
+        },
+        {
+          "objectId": 691926074,
+          "objectName": "Text (TMP)",
+          "text": "output"
+        },
+        {
+          "objectId": 649957614,
+          "objectName": "lines",
+          "text": "1 2 3 4 5 6"
+        },
+        {
+          "objectId": 697163681,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1876388421,
+          "objectName": "Text",
+          "text": "\\u200B"
+        },
+        {
+          "objectId": 196895159,
+          "objectName": "Text (TMP)",
+          "text": "Done"
+        },
+        {
+          "objectId": 1047181434,
+          "objectName": "Text (TMP)",
+          "text": "Input"
+        },
+        {
+          "objectId": 1556096074,
+          "objectName": "Placeholder",
+          "text": "m_isRightToLeft: 0"
+        },
+        {
+          "objectId": 1853192972,
+          "objectName": "Text",
+          "text": "\"<color=blue>int</color> *ptr = malloc</color>(<color=red>2</color> * sizeof</color>(<color=blue>int</color>));"
+        }
+      ]
+    }
+  ]
+}
