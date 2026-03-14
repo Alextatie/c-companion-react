@@ -1,6 +1,6 @@
 ﻿# Session Notes (Codex)
 
-Last updated: 2026-03-12
+Last updated: 2026-03-14
 
 ## Purpose
 Working log and handoff notes to continue this project from another computer.
@@ -48,6 +48,78 @@ Styling:
 - Difficulty buttons use lesson-selector color scheme.
 - Back button uses shared default back style.
 - Home button intentionally absent in play menus for now.
+
+## Session Update (2026-03-14)
+This session was focused on detailed UI/layout polish for both play games, plus timeout behavior fixes.
+
+### Files Changed
+- `src/app/play/code_fixer/page.tsx`
+- `src/app/play/quiz_rush/page.tsx`
+- `src/components/lesson/ui.tsx`
+
+### Global Primitive Change
+- `HomeButton` in `src/components/lesson/ui.tsx` now supports:
+  - `topClass` (existing)
+  - `leftClass` (new; default `left-0`)
+- This was added so play pages can position Home consistently above the game panel without affecting other pages.
+
+### Code Fixer (current final state)
+- Header alignment tuned:
+  - Home and Selector aligned with round title row and moved over panel area.
+  - Current positions are controlled in-page (`top-[6px]`, left offsets).
+- Main round layout rebuilt around shared lesson primitives:
+  - Input uses `CodeEditor` + gutter + `RunButton`.
+  - Output uses `OutputPanel`.
+  - Uses `LessonChip` labels (`Input`, `output`).
+- Panel geometry normalized:
+  - main panel width/padding/gaps and inner column widths were tightened iteratively.
+  - left content column fixed width; right controls fixed width; explicit gap between them.
+- Button text sizing tuned:
+  - `Quit`/`Next` large text retained.
+  - `Confirm` text specifically reduced to fit button.
+  - `Finish` state text reduced so it fits in same button size.
+- Selector button behavior fixed:
+  - no jump/shift when opening dropdown
+  - dropdown is now absolutely positioned under button.
+
+### Quiz Rush (current final state)
+- Layout intentionally matched to Code Fixer structure:
+  - same outer spacing behavior and scaled frame dimensions
+  - same top controls placement style (Home + Selector in debug)
+  - same main panel width/padding/gap pattern
+  - same right-side timer + action-button sizing model
+- Panels switched to primitives:
+  - top uses `CodeEditor` (gutter included)
+  - bottom uses `OutputPanel`
+  - labels use `LessonChip`
+- Multiple-choice buttons were resized to fit tighter layout and then spacing-normalized:
+  - final stack uses fixed heights with even vertical gaps
+  - single-line/ellipsis safeguards added for long labels.
+
+### Timer End Behavior (both games, final)
+- Removed previous full-screen black timeout overlay with giant Finish button.
+- On timeout:
+  - `Next` changes to `Finish`.
+  - non-finish gameplay interactions are locked until game ends/restarts.
+  - `Finish` remains usable to continue to result.
+- Locking includes disabled/pointer-blocked non-finish controls and suppressed interaction highlights.
+
+### Color Experiments During Session (final resolved state)
+- Quiz Rush choice buttons were tested in blue variants, then reverted.
+- Final state: choice buttons are green again.
+- Quit/Confirm/Next buttons remain their intended orange/red/green palette.
+
+### Conflict Log (requests that changed later)
+- Home/Selector vertical offsets were changed multiple times; final is the latest in-file values.
+- Panel width/height were repeatedly tuned; final dimensions reflect latest user-approved state.
+- Quiz Rush choice colors:
+  - changed to blue
+  - user requested only choice buttons blue
+  - later requested back to green
+  - final is green.
+- Timeout UX:
+  - previously overlay-based
+  - replaced by in-button Finish behavior + interaction lock.
 
 ## Leaderboards Status
 - `src/app/play/leaderboards/page.tsx` implemented with static tables and selector tabs.
