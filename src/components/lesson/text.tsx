@@ -2,7 +2,9 @@
 
 import { ReactNode } from 'react';
 
-const toneClass: Record<'red' | 'green' | 'blue' | 'white' | 'dark' | 'yellow', string> = {
+export type LessonToneName = 'red' | 'green' | 'blue' | 'white' | 'dark' | 'yellow';
+
+export const lessonToneClass: Record<LessonToneName, string> = {
   red: 'text-[#ff6565]',
   green: 'text-[#34d356]',
   blue: 'text-[#6d94ff]',
@@ -15,10 +17,10 @@ export function Tone({
   color,
   children,
 }: {
-  color: 'red' | 'green' | 'blue' | 'white' | 'dark' | 'yellow';
+  color: LessonToneName;
   children: ReactNode;
 }) {
-  return <span className={toneClass[color]}>{children}</span>;
+  return <span className={lessonToneClass[color]}>{children}</span>;
 }
 
 export function EmptyLine() {

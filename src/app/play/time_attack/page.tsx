@@ -1,0 +1,495 @@
+'use client';
+
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
+import ScaledLessonFrame from '@/components/scaled-lesson-frame';
+import timeAttackLevelsData from '@/data/game-time-attack-levels.json';
+import { ChoiceButton, CodeEditor, HomeButton, LessonBackButton, LessonChip, OutputPanel } from '@/components/lesson/ui';
+import { renderHighlightedCodeLineWithOptions } from '@/components/lesson/code-highlighting';
+import { useRouter } from 'next/navigation';
+import {
+  getTimeAttackCorrectAnswer,
+  isTimeAttackSelectionCorrect,
+  TIME_ATTACK_DIFFICULTY_MAX,
+  TIME_ATTACK_QUESTION_LIMIT,
+  TIME_ATTACK_ROUND_SECONDS,
+  formatTimeAttackTimer,
+  getTimeAttackStars,
+  getTimeAttackTimerColorClass,
+  pickRandomQuestionNumbers,
+} from '@/lib/games/time-attack-logic';
+
+type Difficulty = 'easy' | 'medium' | 'hard' | 'debug';
+type Phase = 'menu' | 'difficulty' | 'round' | 'result';
+
+type ParsedQuestion = {
+  number: number;
+  prompt: string;
+  code: string;
+  options: string[];
+  answer?: number;
+  expectedOutput: string;
+  screenshot: string;
+};
+
+function renderPromptText(prompt: string) {
+  const highlightedParts = [
+    'output',
+    'function',
+    'data type',
+    'printf()',
+    'scanf()',
+    'condition',
+    'loop',
+    'bool',
+    'strcat',
+    'strcpy',
+    'recursion',
+    'HARD',
+    'edit',
+    'print()',
+  ];
+  const parts = prompt.split(/(output|function|data type|printf\(\)|scanf\(\)|condition|loop|bool|strcat|strcpy|recursion|HARD|edit|print\(\))/g);
+  return parts.map((part, index) =>
+    highlightedParts.includes(part) ? (
+      <span key={`prompt-${index}`} className="text-[#ff6565]">
+        {part}
+      </span>
+    ) : (
+      <span key={`prompt-${index}`}>{part}</span>
+    )
+  );
+}
+
+function TimeAttackPage() {
+  const router = useRouter();
+  const [phase, setPhase] = useState<Phase>('menu');
+  const [roundQuestions, setRoundQuestions] = useState<ParsedQuestion[]>([]);
+  const [roundIndex, setRoundIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [revealedOutput, setRevealedOutput] = useState('');
+  const [answerResultText, setAnswerResultText] = useState('');
+  const [correctCount, setCorrectCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+  const [currentDifficulty, setCurrentDifficulty] = useState<Difficulty | null>(null);
+  const [timerSeconds, setTimerSeconds] = useState(TIME_ATTACK_ROUND_SECONDS);
+  const [timedOut, setTimedOut] = useState(false);
+  const [selectorOpen, setSelectorOpen] = useState(false);
+  const [quitConfirming, setQuitConfirming] = useState(false);
+  const [revealedStars, setRevealedStars] = useState(0);
+
+  const questionsByNumber = useMemo(() => {
+    const source = timeAttackLevelsData as { levels: ParsedQuestion[] };
+    const map = new Map<number, ParsedQuestion>();
+    source.levels.forEach((question) => {
+      map.set(question.number, question);
+    });
+    return map;
+  }, []);
+
+  const currentQuestion = roundQuestions[roundIndex];
+  const debugMode = phase === 'round' && currentDifficulty === 'debug';
+  const timeoutLocked = !debugMode && timedOut;
+  const attemptLocked = selectedOption !== null;
+  const correctAnswer = getTimeAttackCorrectAnswer(currentQuestion?.options, currentQuestion?.answer);
+
+  const startRound = (difficulty: Difficulty) => {
+    const questionNumbers =
+      difficulty === 'debug'
+        ? Array.from({ length: 70 }, (_, index) => index + 1)
+        : pickRandomQuestionNumbers(
+            TIME_ATTACK_DIFFICULTY_MAX[difficulty as Exclude<Difficulty, 'debug'>],
+            TIME_ATTACK_QUESTION_LIMIT
+          );
+
+    const picked = questionNumbers
+      .map((number) => questionsByNumber.get(number))
+      .filter((question): question is ParsedQuestion => Boolean(question));
+
+    setRoundQuestions(picked);
+    setRoundIndex(0);
+    setCorrectCount(0);
+    setCompletedCount(0);
+    setSelectedOption(null);
+    setRevealedOutput('');
+    setAnswerResultText('');
+    setCurrentDifficulty(difficulty);
+    setTimerSeconds(TIME_ATTACK_ROUND_SECONDS);
+    setTimedOut(false);
+    setSelectorOpen(false);
+    setQuitConfirming(false);
+    setPhase('round');
+  };
+
+  useEffect(() => {
+    if (phase !== 'round' || debugMode || timedOut) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setTimerSeconds((prev) => Math.max(prev - 1, 0));
+    }, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, [phase, debugMode, timedOut]);
+
+  useEffect(() => {
+    if (phase === 'round' && !debugMode && timerSeconds === 0) {
+      setTimedOut(true);
+    }
+  }, [phase, debugMode, timerSeconds]);
+
+  const stars = getTimeAttackStars(correctCount);
+  const isGamePhase = phase === 'round';
+  const isResultPhase = phase === 'result';
+  const frameBaseWidth = isGamePhase ? 1040 : isResultPhase ? 760 : 640;
+
+  useEffect(() => {
+    if (phase !== 'result') {
+      setRevealedStars(0);
+      return;
+    }
+
+    setRevealedStars(0);
+
+    if (stars <= 0) {
+      return;
+    }
+
+    let revealed = 0;
+    let intervalId: number | null = null;
+
+    const startTimeout = window.setTimeout(() => {
+      revealed = 1;
+      setRevealedStars(1);
+
+      if (stars <= 1) {
+        return;
+      }
+
+      intervalId = window.setInterval(() => {
+        revealed += 1;
+        setRevealedStars(revealed);
+
+        if (revealed >= stars && intervalId !== null) {
+          window.clearInterval(intervalId);
+        }
+      }, 500);
+    }, 2000);
+
+    return () => {
+      window.clearTimeout(startTimeout);
+      if (intervalId !== null) {
+        window.clearInterval(intervalId);
+      }
+    };
+  }, [phase, stars]);
+
+  const submitAndContinue = () => {
+    if (!debugMode && timedOut) {
+      const answered = selectedOption !== null;
+      const isCorrect =
+        answered && currentQuestion
+          ? isTimeAttackSelectionCorrect(selectedOption, currentQuestion.options, currentQuestion.answer)
+          : false;
+
+      if (answered) {
+        setCorrectCount((prev) => prev + (isCorrect ? 1 : 0));
+        setCompletedCount((prev) => prev + 1);
+      }
+      setPhase('result');
+      return;
+    }
+
+    const answered = selectedOption !== null;
+    const isCorrect = answered && currentQuestion
+      ? isTimeAttackSelectionCorrect(selectedOption, currentQuestion.options, currentQuestion.answer)
+      : false;
+    const nextCorrect = correctCount + (isCorrect ? 1 : 0);
+    setCorrectCount(nextCorrect);
+    setCompletedCount((prev) => prev + 1);
+    setSelectedOption(null);
+    setRevealedOutput('');
+    setAnswerResultText('');
+    setQuitConfirming(false);
+
+    if (debugMode && roundIndex >= roundQuestions.length - 1) {
+      return;
+    }
+
+    if (!debugMode && roundIndex >= roundQuestions.length - 1) {
+      setPhase('result');
+      return;
+    }
+
+    setRoundIndex((prev) => prev + 1);
+  };
+
+  return (
+    <div
+      className={`h-screen overflow-hidden pb-[40px] pt-[24px] text-white ${
+        isGamePhase || isResultPhase ? 'px-[50px]' : 'px-[12px]'
+      }`}
+    >
+      <ScaledLessonFrame baseWidth={frameBaseWidth}>
+        <div className="relative mx-auto text-center" style={{ width: `${frameBaseWidth}px` }}>
+          {phase === 'round' && currentQuestion ? (
+            <>
+              <div className={timeoutLocked ? 'pointer-events-none' : ''}>
+                <HomeButton topClass="top-[6px]" leftClass="left-32" />
+              </div>
+              {debugMode ? (
+                <div className="absolute left-44 top-[6px] z-30">
+                  <button
+                    type="button"
+                    onClick={() => setSelectorOpen((prev) => !prev)}
+                    className="inline-flex h-10 w-[110px] items-center justify-center rounded bg-white px-3 text-lg leading-none text-[#5d9d87] shadow-lg transition-colors hover:bg-[rgb(214,232,220)] focus:outline-none"
+                  >
+                    Selector
+                  </button>
+                  {selectorOpen ? (
+                    <div className="absolute left-0 top-full mt-2 h-[360px] w-[260px] overflow-y-auto rounded-sm border border-white/30 bg-black/70 p-2 text-left">
+                      <div className="grid grid-cols-5 gap-1">
+                        {roundQuestions.map((question, index) => (
+                          <button
+                            key={question.number}
+                            type="button"
+                            onClick={() => {
+                              setRoundIndex(index);
+                              setSelectedOption(null);
+                              setRevealedOutput('');
+                              setAnswerResultText('');
+                              setQuitConfirming(false);
+                              setSelectorOpen(false);
+                            }}
+                            className={`h-9 rounded-sm text-sm text-white transition ${
+                              index === roundIndex ? 'bg-[#8fd949]' : 'bg-[rgb(86,116,145)] hover:bg-[rgb(68,96,123)]'
+                            }`}
+                          >
+                            {question.number}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+              <h1 className="mb-[17px] text-5xl font-bold text-shadow-lg">Round {roundIndex + 1}</h1>
+              <section className="lesson-panel mx-auto w-[800px] rounded-2xl p-5 shadow-lg backdrop-blur-[1px]">
+                <p className="mb-4 w-full text-left text-[17px] leading-tight">{renderPromptText(currentQuestion.prompt)}</p>
+                <div className="mx-auto flex w-full items-start justify-start gap-[36px] text-left">
+                  <div className="w-[500px] shrink-0">
+                    <div className="w-full">
+                      <LessonChip text="Input" />
+                        <CodeEditor
+                            code={
+                              currentQuestion.code
+                              ? currentQuestion.code.split('\n').map((line, idx) =>
+                                  renderHighlightedCodeLineWithOptions(line, `ta-${currentQuestion.number}-${idx}`, {
+                                    highlightQuestionMarks: false,
+                                    questionMarkClassName: '',
+                                    questionMarkStyle: { color: '#c2c2c2' },
+                                  })
+                                )
+                              : ['(question data loaded)']
+                            }
+                        lineStart={1}
+                        activeLineIndex={0}
+                      />
+                    </div>
+                    <div className="mt-4 w-full">
+                      <LessonChip text="output" />
+                      <div className="relative">
+                        <OutputPanel lines={revealedOutput ? revealedOutput.split('\n') : ['']} minHeightClass="min-h-[170px]" />
+                        {answerResultText ? (
+                          <div
+                            className={`pointer-events-none absolute bottom-2 right-3 text-[20px] leading-none ${
+                              answerResultText === 'Correct!' ? 'text-[#34d356]' : 'text-[#ff6565]'
+                            }`}
+                          >
+                            {answerResultText}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex w-[220px] shrink-0 self-stretch translate-y-2 flex-col justify-end pb-2">
+                    <div className={`mb-3 flex flex-col gap-1 ${timeoutLocked ? 'pointer-events-none' : ''}`}>
+                      {(currentQuestion.options.length > 0 ? currentQuestion.options : ['Option 1', 'Option 2', 'Option 3', 'Option 4']).map((option) => (
+                        <ChoiceButton
+                          key={option}
+                          onClick={() => {
+                            if (attemptLocked) {
+                              return;
+                            }
+                            setSelectedOption(option);
+                            setRevealedOutput(currentQuestion.expectedOutput || correctAnswer);
+                            setAnswerResultText(
+                              isTimeAttackSelectionCorrect(option, currentQuestion.options, currentQuestion.answer)
+                                ? 'Correct!'
+                                : 'Wrong!'
+                            );
+                          }}
+                          disabled={attemptLocked}
+                          className={`h-[40px] !rounded-sm !border-[#94c8aa] !bg-[#69ac8a] !px-2 !text-[18px] !leading-none !text-white !whitespace-nowrap overflow-hidden text-ellipsis hover:!bg-[#94c8aa] ${
+                            selectedOption === option ? '!bg-[#94c8aa]' : ''
+                          }`}
+                        >
+                          {option}
+                        </ChoiceButton>
+                      ))}
+                    </div>
+                    <div className="mb-3 rounded-sm bg-black/30 py-2 text-center shadow-lg">
+                      <div className={`font-mono text-[56px] leading-none ${getTimeAttackTimerColorClass(timerSeconds)}`}>
+                        {debugMode ? formatTimeAttackTimer(TIME_ATTACK_ROUND_SECONDS) : formatTimeAttackTimer(timerSeconds)}
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (quitConfirming) {
+                            setPhase('result');
+                            return;
+                          }
+                          setQuitConfirming(true);
+                        }}
+                        disabled={timeoutLocked}
+                        className={`h-[58px] w-[104px] rounded-sm leading-none text-white transition ${
+                          quitConfirming
+                            ? 'bg-[#d85b5b] text-[24px] hover:bg-[#e56d6d]'
+                            : 'bg-[#df7d3f] text-[36px] hover:bg-[#eb8c50]'
+                        } ${timeoutLocked ? 'pointer-events-none opacity-60' : ''}`}
+                      >
+                        {quitConfirming ? 'Confirm' : 'Quit'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={submitAndContinue}
+                        className={`h-[58px] w-[104px] rounded-sm bg-[#8fd949] leading-none text-white transition hover:bg-[#9eeb54] ${
+                          !debugMode && (timedOut || roundIndex === roundQuestions.length - 1) ? 'text-[24px]' : 'text-[36px]'
+                        }`}
+                      >
+                        {!debugMode && (timedOut || roundIndex === roundQuestions.length - 1) ? 'Finish' : 'Next'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </>
+          ) : phase === 'result' ? (
+            <>
+              <HomeButton topClass="top-0" />
+              <h1 className="mb-3 mt-10 text-7xl font-bold text-shadow-lg">Game Finished!</h1>
+              <p className="text-5xl leading-tight">
+                You answered <span className="text-[#ffae5a]">{correctCount}</span> out of {completedCount} questions correctly!
+              </p>
+              <div className="mt-6 text-[100px] leading-none tracking-[0.25em]">
+                <span className={revealedStars >= 1 ? '' : 'text-black/40'} style={revealedStars >= 1 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
+                <span className={revealedStars >= 2 ? '' : 'text-black/40'} style={revealedStars >= 2 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
+                <span className={revealedStars >= 3 ? '' : 'text-black/40'} style={revealedStars >= 3 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
+              </div>
+              <div className="mx-auto mt-4 flex w-[420px] flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => setPhase('difficulty')}
+                  className="h-16 rounded-sm bg-[#8fd949] text-5xl text-white transition hover:bg-[#9eeb54]"
+                >
+                  Play again
+                </button>
+                <div className="mx-auto">
+                  <LessonBackButton onClick={() => router.push('/play')} />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <h1 className="mb-1 mt-[2.7rem] text-[58px] font-bold text-shadow-lg">Time Attack</h1>
+
+              <section
+                className="lesson-panel mx-auto rounded-2xl shadow-lg backdrop-blur-[1px]"
+                style={{ width: '600px', height: '260px' }}
+              >
+                <div className="flex h-full w-full flex-col items-center justify-center text-center">
+                  <p className="text-[24px] leading-tight">
+                    You have <span className="text-[#ff6565]">90 seconds</span> to answer as many
+                    <br />
+                    <span className="text-[#ff6565]">multiple choice</span> questions as you can.
+                  </p>
+
+                  <p className="mt-2 leading-none font-semibold" style={{ fontSize: '34px' }}>
+                    {phase === 'menu' ? 'Ready?' : 'Difficulty:'}
+                  </p>
+
+                  <div className="mx-auto mt-3">
+                    {phase === 'menu' ? (
+                      <button
+                        type="button"
+                        onClick={() => setPhase('difficulty')}
+                        className="w-full rounded-sm leading-none text-white text-shadow-lg shadow-lg transition"
+                        style={{ backgroundColor: '#69ac8a', height: '80px', width: '160px', fontSize: '54px' }}
+                        onMouseEnter={(event) => {
+                          event.currentTarget.style.backgroundColor = '#6eb290';
+                        }}
+                        onMouseLeave={(event) => {
+                          event.currentTarget.style.backgroundColor = '#69ac8a';
+                        }}
+                      >
+                        Play
+                      </button>
+                    ) : (
+                      <div className="mx-auto flex w-[300px] items-center justify-between">
+                        <button
+                          type="button"
+                          onClick={() => startRound('easy')}
+                          aria-label="Easy"
+                          className="rounded-full bg-[#8fd949] transition hover:bg-[#9eeb54]"
+                          style={{ height: '80px', width: '80px' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => startRound('medium')}
+                          aria-label="Medium"
+                          className="rounded-full bg-[#d3b93a] transition hover:bg-[#e1c74a]"
+                          style={{ height: '80px', width: '80px' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => startRound('hard')}
+                          aria-label="Hard"
+                          className="rounded-full bg-[#d85b5b] transition hover:bg-[#e56d6d]"
+                          style={{ height: '80px', width: '80px' }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </section>
+
+              <div className="relative mx-auto mt-6 w-[220px]">
+                <Link
+                  href="/play"
+                  className="mx-auto inline-flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
+                >
+                  <span>{'<-'}</span>
+                  <span className="ml-1">Back</span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => startRound('debug')}
+                  aria-label="Start debug mode"
+                  className="absolute inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[rgb(86,116,145)] text-[24px] leading-none text-white shadow-lg transition hover:bg-[rgb(68,96,123)]"
+                  style={{ left: '167px', top: '3px' }}
+                >
+                  O
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </ScaledLessonFrame>
+    </div>
+  );
+}
+
+export default TimeAttackPage;

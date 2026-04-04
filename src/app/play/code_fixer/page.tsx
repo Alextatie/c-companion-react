@@ -1,109 +1,106 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import ScaledLessonFrame from '@/components/scaled-lesson-frame';
-import codeFixerQuestionData from '@/data/unity-code-fixer-questions.json';
-import { CodeEditor, HomeButton, LessonBackButton, LessonChip, OutputPanel, RunButton } from '@/components/lesson/ui';
+import codeFixerLevelsData from '@/data/code-fixer-levels.json';
+import { CodeEditor, HomeButton, LessonBackButton, LessonChip, OutputPanel } from '@/components/lesson/ui';
+import { renderHighlightedCodeLineWithOptions } from '@/components/lesson/code-highlighting';
 import { useRouter } from 'next/navigation';
+import {
+  CODE_FIXER_DIFFICULTY_MAX,
+  CODE_FIXER_QUESTION_LIMIT,
+  CODE_FIXER_ROUND_SECONDS,
+  isCodeFixerOutputCorrect,
+  formatCodeFixerTimer,
+  getCodeFixerInputWidthPx,
+  getCodeFixerStars,
+  getCodeFixerTimerColorClass,
+  pickRandomQuestionNumbers,
+  type CodeFixerRule,
+  validateCodeFixerInput,
+} from '@/lib/games/code-fixer-logic';
 
 type Difficulty = 'easy' | 'medium' | 'hard' | 'debug';
 type Phase = 'menu' | 'difficulty' | 'round' | 'result';
-
-type ImportedQuestion = {
-  questionNumber: number;
-  texts: Array<{ objectName: string; text: string }>;
-};
 
 type ParsedQuestion = {
   number: number;
   prompt: string;
   code: string;
+  expectedOutput: string;
+  expectedFix?: string;
+  screenshot: string;
+  validator?: CodeFixerRule | null;
 };
 
-const QUESTION_LIMIT = 10;
-const ROUND_SECONDS = 120;
-const WARNING_SECONDS = 20;
-const DANGER_SECONDS = 10;
+const OUTPUT_FIX_LEVELS = new Set<number>([29, 30, 31, 34, 37, 38, 39, 40, 41, 59, 68]);
+const INPUT_FIELD_TOKEN_REGEX = /\[\[(input(?:_[a-d])?)\]\]/g;
 
-const DIFFICULTY_MAX: Record<Exclude<Difficulty, 'debug'>, number> = {
-  easy: 30,
-  medium: 50,
-  hard: 70,
-};
-
-function stripUnityTags(value: string): string {
-  return value
-    .replace(/<color=[^>]*>/gi, '')
-    .replace(/<\/color>/gi, '')
-    .replace(/<size=[^>]*>/gi, '')
-    .replace(/<\/size>/gi, '')
-    .replace(/\u200b/gi, '')
-    .replace(/\r/g, '')
-    .replace(/^['"]|['"]$/g, '')
-    .trim();
+function renderPromptText(prompt: string): ReactNode {
+  const parts = prompt.split(/(output|comment|error|operator|function)/g);
+  return parts.map((part, index) =>
+    part === 'output' || part === 'comment' || part === 'error' || part === 'operator' || part === 'function' ? (
+      <span key={`prompt-${index}`} className="text-[#ff6565]">
+        {part}
+      </span>
+    ) : (
+      <span key={`prompt-${index}`}>{part}</span>
+    )
+  );
 }
 
-function parsePrompt(question: ImportedQuestion): string {
-  const preferred = question.texts.find((entry) => {
-    const value = stripUnityTags(entry.text).toLowerCase();
-    if (entry.objectName !== 'Text') {
-      return false;
+function renderInlineCodeSegment(segment: string, lineKey: string): ReactNode {
+  if (segment.length === 0) {
+    return null;
+  }
+
+  const nodes: ReactNode[] = [];
+  let workingSegment = segment;
+
+  if (workingSegment.endsWith('"')) {
+    const withoutTrailingQuote = workingSegment.slice(0, -1);
+    if (withoutTrailingQuote.length > 0) {
+      nodes.push(
+        <span key={`${lineKey}-body`}>
+          {renderGameCodeLine(withoutTrailingQuote, `${lineKey}-body-content`)}
+        </span>
+      );
     }
-    return value.includes('?') || value.includes('fix') || value.includes('fill');
+    nodes.push(
+      <span key={`${lineKey}-quote-end`} className="text-[#ff6565]">
+        "
+      </span>
+    );
+    return <>{nodes}</>;
+  }
+
+  if (workingSegment.startsWith('"')) {
+    nodes.push(
+      <span key={`${lineKey}-quote-start`} className="text-[#ff6565]">
+        "
+      </span>
+    );
+    workingSegment = workingSegment.slice(1);
+    if (workingSegment.length > 0) {
+      nodes.push(
+        <span key={`${lineKey}-body`}>
+          {renderGameCodeLine(workingSegment, `${lineKey}-body-content`)}
+        </span>
+      );
+    }
+    return <>{nodes}</>;
+  }
+
+  return renderGameCodeLine(workingSegment, lineKey);
+}
+
+function renderGameCodeLine(line: string, lineKey: string): ReactNode {
+  return renderHighlightedCodeLineWithOptions(line, lineKey, {
+    highlightQuestionMarks: false,
+    questionMarkClassName: '',
+    questionMarkStyle: { color: '#c2c2c2' },
   });
-  if (preferred) {
-    return stripUnityTags(preferred.text);
-  }
-  const fallback = question.texts.find((entry) => entry.objectName === 'Text');
-  return fallback ? stripUnityTags(fallback.text) : `Question ${question.questionNumber}`;
-}
-
-function parseCode(question: ImportedQuestion): string {
-  const codeLine = question.texts.find((entry) => {
-    const text = stripUnityTags(entry.text);
-    return text.includes('main()') || text.includes('printf') || text.includes(';');
-  });
-  return codeLine ? stripUnityTags(codeLine.text) : '';
-}
-
-function pickRandomQuestionNumbers(maxNumber: number, count: number): number[] {
-  const pool = Array.from({ length: maxNumber }, (_, index) => index + 1);
-  for (let i = pool.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
-  }
-  return pool.slice(0, count);
-}
-
-function getStars(correctCount: number): number {
-  if (correctCount >= 9) {
-    return 3;
-  }
-  if (correctCount >= 7) {
-    return 2;
-  }
-  if (correctCount >= 5) {
-    return 1;
-  }
-  return 0;
-}
-
-function formatTimer(seconds: number): string {
-  const safeSeconds = Math.max(0, seconds);
-  const minutes = Math.floor(safeSeconds / 60);
-  const remainder = safeSeconds % 60;
-  return `${String(minutes).padStart(2, '0')}:${String(remainder).padStart(2, '0')}`;
-}
-
-function timerColorClass(seconds: number): string {
-  if (seconds <= DANGER_SECONDS) {
-    return 'text-[#ff6b6b]';
-  }
-  if (seconds <= WARNING_SECONDS) {
-    return 'text-[#f0db5a]';
-  }
-  return 'text-white';
 }
 
 function CodeFixerPage() {
@@ -111,26 +108,31 @@ function CodeFixerPage() {
   const [phase, setPhase] = useState<Phase>('menu');
   const [roundQuestions, setRoundQuestions] = useState<ParsedQuestion[]>([]);
   const [roundIndex, setRoundIndex] = useState(0);
-  const [answerDraft, setAnswerDraft] = useState('');
+  const [inputDrafts, setInputDrafts] = useState<Record<string, string>>({
+    input_a: '',
+    input_b: '',
+    input_c: '',
+    input_d: '',
+  });
   const [correctCount, setCorrectCount] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
   const [currentDifficulty, setCurrentDifficulty] = useState<Difficulty | null>(null);
-  const [timerSeconds, setTimerSeconds] = useState(ROUND_SECONDS);
+  const [timerSeconds, setTimerSeconds] = useState(CODE_FIXER_ROUND_SECONDS);
   const [timedOut, setTimedOut] = useState(false);
   const [selectorOpen, setSelectorOpen] = useState(false);
   const [quitConfirming, setQuitConfirming] = useState(false);
   const [outputText, setOutputText] = useState('');
+  const [outputDraft, setOutputDraft] = useState('');
   const [ranLevel, setRanLevel] = useState(false);
+  const [runResultText, setRunResultText] = useState('');
+  const [lastRunCorrect, setLastRunCorrect] = useState(false);
+  const [revealedStars, setRevealedStars] = useState(0);
 
   const questionsByNumber = useMemo(() => {
-    const source = codeFixerQuestionData as { questions: ImportedQuestion[] };
+    const source = codeFixerLevelsData as { levels: ParsedQuestion[] };
     const map = new Map<number, ParsedQuestion>();
-    source.questions.forEach((question) => {
-      map.set(question.questionNumber, {
-        number: question.questionNumber,
-        prompt: parsePrompt(question),
-        code: parseCode(question),
-      });
+    source.levels.forEach((question) => {
+      map.set(question.number, question);
     });
     return map;
   }, []);
@@ -138,12 +140,142 @@ function CodeFixerPage() {
   const currentQuestion = roundQuestions[roundIndex];
   const debugMode = phase === 'round' && currentDifficulty === 'debug';
   const timeoutLocked = !debugMode && timedOut;
+  const attemptLocked = ranLevel;
+  const answerTarget = currentQuestion && OUTPUT_FIX_LEVELS.has(currentQuestion.number) ? 'output' : 'input';
+  const hasAnyInputDraft = Object.values(inputDrafts).some((value) => value.trim().length > 0);
+  const activeAnswerDraft = answerTarget === 'output' ? outputDraft : hasAnyInputDraft ? inputDrafts.input_a || '__filled__' : '';
+  const displayedOutput = answerTarget === 'output' ? outputText : currentQuestion?.expectedOutput || '';
+  const codeLines = currentQuestion?.code ? currentQuestion.code.split('\n') : [];
+  const blockInputWidthPx = getCodeFixerInputWidthPx({
+    validator: currentQuestion?.validator || undefined,
+    expectedOutput: answerTarget === 'output' ? currentQuestion?.expectedOutput : undefined,
+    inline: false,
+  });
+  const outputPanelLines: ReactNode[] =
+    answerTarget === 'output'
+      ? [
+          <input
+            key="output-draft"
+            type="text"
+            value={outputDraft}
+            disabled={attemptLocked}
+            onChange={(event) => !attemptLocked && setOutputDraft(event.target.value)}
+            placeholder=""
+            className={`h-8 rounded-sm border px-2 font-mono text-[17px] outline-none ${
+              attemptLocked ? 'cursor-default' : ''
+            }`}
+            style={{
+              width: `${blockInputWidthPx}px`,
+              backgroundColor: '#262626',
+              color: '#ffffff',
+              borderColor: '#333333',
+              transform: 'translate(-2px, 3px)',
+              opacity: 1,
+              WebkitTextFillColor: '#ffffff',
+            }}
+          />,
+        ]
+      : [displayedOutput];
+
+  const renderInputField = (field: string, inline: boolean) => (
+    <input
+      type="text"
+      value={inputDrafts[field] || ''}
+      disabled={attemptLocked}
+      onChange={(event) =>
+        !attemptLocked &&
+        setInputDrafts((prev) => ({
+          ...prev,
+          [field]: event.target.value,
+        }))
+      }
+      placeholder={inline ? '' : 'Type your fix...'}
+      className={`rounded border border-slate-400 bg-white px-1.5 font-mono text-[17px] text-slate-900 outline-none ${
+        inline ? 'h-7' : 'h-8'
+      } ${attemptLocked ? 'cursor-default' : ''}`}
+      style={{
+        width: `${
+          currentQuestion?.number === 2
+            ? 280
+            : inline
+            ? getCodeFixerInputWidthPx({
+                validator: currentQuestion?.validator || undefined,
+                inline: true,
+                field,
+              })
+            : blockInputWidthPx
+        }px`,
+      }}
+    />
+  );
+
+  const renderCodeLineWithInputs = (line: string, index: number): ReactNode => {
+      if (answerTarget !== 'input' || !line.includes('[[')) {
+      return renderGameCodeLine(line, `cf-${currentQuestion?.number ?? 'x'}-${index}`);
+      }
+
+    const segments: ReactNode[] = [];
+    let lastIndex = 0;
+    let tokenIndex = 0;
+
+    for (const match of line.matchAll(INPUT_FIELD_TOKEN_REGEX)) {
+      const field = match[1] === 'input' ? 'input_a' : match[1];
+      const tokenIndexStart = match.index ?? 0;
+
+      if (tokenIndexStart > lastIndex) {
+        segments.push(
+          <span key={`cf-${currentQuestion?.number ?? 'x'}-${index}-text-${tokenIndex}`}>
+            {renderInlineCodeSegment(
+              line.slice(lastIndex, tokenIndexStart),
+              `cf-${currentQuestion?.number ?? 'x'}-${index}-seg-${tokenIndex}`
+            )}
+          </span>
+        );
+      }
+
+      segments.push(
+        <span key={`cf-${currentQuestion?.number ?? 'x'}-${index}-input-${field}`} className="inline-flex items-center">
+          {renderInputField(field, true)}
+        </span>
+      );
+
+      lastIndex = tokenIndexStart + match[0].length;
+      tokenIndex += 1;
+    }
+
+    if (lastIndex < line.length) {
+      segments.push(
+        <span key={`cf-${currentQuestion?.number ?? 'x'}-${index}-tail`}>
+          {renderInlineCodeSegment(
+            line.slice(lastIndex),
+            `cf-${currentQuestion?.number ?? 'x'}-${index}-tail`
+          )}
+        </span>
+      );
+    }
+
+    return <>{segments}</>;
+  };
+
+  const codeHasInlineInputs = answerTarget === 'input' && codeLines.some((line) => line.includes('[['));
+  const renderedCodeLines =
+    answerTarget === 'input'
+      ? codeHasInlineInputs
+        ? codeLines.map((line, idx) => renderCodeLineWithInputs(line, idx))
+        : [
+            ...codeLines.map((line, idx) => renderGameCodeLine(line, `cf-${currentQuestion?.number ?? 'x'}-${idx}`)),
+            renderInputField('input_a', false),
+          ]
+      : codeLines.map((line, idx) => renderGameCodeLine(line, `cf-${currentQuestion?.number ?? 'x'}-${idx}`));
 
   const startRound = (difficulty: Difficulty) => {
     const questionNumbers =
       difficulty === 'debug'
         ? Array.from({ length: 70 }, (_, index) => index + 1)
-        : pickRandomQuestionNumbers(DIFFICULTY_MAX[difficulty], QUESTION_LIMIT);
+        : pickRandomQuestionNumbers(
+            CODE_FIXER_DIFFICULTY_MAX[difficulty as Exclude<Difficulty, 'debug'>],
+            CODE_FIXER_QUESTION_LIMIT
+          );
 
     const picked = questionNumbers
       .map((number) => questionsByNumber.get(number))
@@ -153,14 +285,22 @@ function CodeFixerPage() {
     setRoundIndex(0);
     setCorrectCount(0);
     setCompletedCount(0);
-    setAnswerDraft('');
+    setInputDrafts({
+      input_a: '',
+      input_b: '',
+      input_c: '',
+      input_d: '',
+    });
+    setOutputDraft('');
     setCurrentDifficulty(difficulty);
-    setTimerSeconds(ROUND_SECONDS);
+    setTimerSeconds(CODE_FIXER_ROUND_SECONDS);
     setTimedOut(false);
     setSelectorOpen(false);
     setQuitConfirming(false);
     setOutputText('');
     setRanLevel(false);
+    setRunResultText('');
+    setLastRunCorrect(false);
     setPhase('round');
   };
 
@@ -182,20 +322,81 @@ function CodeFixerPage() {
     }
   }, [phase, debugMode, timerSeconds]);
 
+  const stars = getCodeFixerStars(correctCount);
+  const isGamePhase = phase === 'round';
+  const isResultPhase = phase === 'result';
+  const frameBaseWidth = isGamePhase ? 1040 : isResultPhase ? 760 : 600;
+
+  useEffect(() => {
+    if (phase !== 'result') {
+      setRevealedStars(0);
+      return;
+    }
+
+    setRevealedStars(0);
+
+    if (stars <= 0) {
+      return;
+    }
+
+    let revealed = 0;
+    let intervalId: number | null = null;
+
+    const startTimeout = window.setTimeout(() => {
+      revealed = 1;
+      setRevealedStars(1);
+
+      if (stars <= 1) {
+        return;
+      }
+
+      intervalId = window.setInterval(() => {
+        revealed += 1;
+        setRevealedStars(revealed);
+
+        if (revealed >= stars && intervalId !== null) {
+          window.clearInterval(intervalId);
+        }
+      }, 500);
+    }, 2000);
+
+    return () => {
+      window.clearTimeout(startTimeout);
+      if (intervalId !== null) {
+        window.clearInterval(intervalId);
+      }
+    };
+  }, [phase, stars]);
+
   const submitAndContinue = () => {
     if (!debugMode && timedOut) {
+      const answered = ranLevel && activeAnswerDraft.trim().length > 0;
+      const isCorrect = answered && lastRunCorrect;
+
+      if (answered) {
+        setCorrectCount((prev) => prev + (isCorrect ? 1 : 0));
+        setCompletedCount((prev) => prev + 1);
+      }
       setPhase('result');
       return;
     }
 
-    const answered = ranLevel && answerDraft.trim().length > 0;
-    const nextCorrect = correctCount + (answered ? 1 : 0);
+    const answered = ranLevel && activeAnswerDraft.trim().length > 0;
+    const nextCorrect = correctCount + (answered && lastRunCorrect ? 1 : 0);
     setCorrectCount(nextCorrect);
     setCompletedCount((prev) => prev + 1);
-    setAnswerDraft('');
+    setInputDrafts({
+      input_a: '',
+      input_b: '',
+      input_c: '',
+      input_d: '',
+    });
+    setOutputDraft('');
     setQuitConfirming(false);
     setOutputText('');
     setRanLevel(false);
+    setRunResultText('');
+    setLastRunCorrect(false);
 
     if (debugMode && roundIndex >= roundQuestions.length - 1) {
       return;
@@ -210,20 +411,39 @@ function CodeFixerPage() {
   };
 
   const runCurrentLevel = () => {
-    setRanLevel(true);
-    if (answerDraft.trim().length === 0) {
-      setOutputText('Error!');
+    if (attemptLocked) {
       return;
     }
-    setOutputText(answerDraft.trim());
+    setRanLevel(true);
+    if (activeAnswerDraft.trim().length === 0) {
+      setRunResultText('Wrong!');
+      setLastRunCorrect(false);
+      return;
+    }
+    if (answerTarget === 'output') {
+      const actual = outputDraft.trim();
+      setOutputText(actual);
+      const isCorrect = isCodeFixerOutputCorrect(currentQuestion?.expectedOutput, outputDraft);
+      setRunResultText(isCorrect ? 'Correct!' : 'Wrong!');
+      setLastRunCorrect(isCorrect);
+      return;
+    }
+    const validator = currentQuestion?.validator || undefined;
+    const isCorrect = validateCodeFixerInput(validator, {
+      ...inputDrafts,
+    });
+    setRunResultText(isCorrect ? 'Correct!' : 'Wrong!');
+    setLastRunCorrect(isCorrect);
   };
 
-  const stars = getStars(correctCount);
-
   return (
-    <div className="h-screen overflow-hidden px-[50px] pb-[40px] pt-[24px] text-white">
-      <ScaledLessonFrame baseWidth={1040}>
-        <div className="relative mx-auto w-[1040px] text-center">
+    <div
+      className={`h-screen overflow-hidden pb-[40px] pt-[24px] text-white ${
+        isGamePhase || isResultPhase ? 'px-[50px]' : 'px-[12px]'
+      }`}
+    >
+      <ScaledLessonFrame baseWidth={frameBaseWidth}>
+        <div className="relative mx-auto text-center" style={{ width: `${frameBaseWidth}px` }}>
           {phase === 'round' && currentQuestion ? (
             <>
               <div className={timeoutLocked ? 'pointer-events-none' : ''}>
@@ -247,10 +467,18 @@ function CodeFixerPage() {
                             type="button"
                             onClick={() => {
                               setRoundIndex(index);
-                              setAnswerDraft('');
+                              setInputDrafts({
+                                input_a: '',
+                                input_b: '',
+                                input_c: '',
+                                input_d: '',
+                              });
+                              setOutputDraft('');
                               setQuitConfirming(false);
                               setOutputText('');
                               setRanLevel(false);
+                              setRunResultText('');
+                              setLastRunCorrect(false);
                               setSelectorOpen(false);
                             }}
                             className={`h-9 rounded-sm text-sm text-white transition ${
@@ -267,38 +495,49 @@ function CodeFixerPage() {
               ) : null}
               <h1 className="mb-[17px] text-5xl font-bold text-shadow-lg">Round {roundIndex + 1}</h1>
               <section className="lesson-panel mx-auto w-[800px] rounded-2xl p-5 shadow-lg backdrop-blur-[1px]">
+                <p className="mb-4 w-full text-left text-[17px] leading-tight">{renderPromptText(currentQuestion.prompt)}</p>
                 <div className="mx-auto flex w-full items-start justify-start gap-[36px]">
                   <div className={`w-[500px] shrink-0 ${timeoutLocked ? 'pointer-events-none' : ''}`}>
-                    <p className="mx-auto mb-4 max-w-[820px] text-[17px] leading-tight">{currentQuestion.prompt}</p>
                     <div className="w-full text-left">
                       <LessonChip text="Input" />
                       <div className="relative">
                         <CodeEditor
-                          code={[...(currentQuestion.code ? currentQuestion.code.split('\n') : ['(question data loaded)']), '']}
+                          code={renderedCodeLines.length > 0 ? renderedCodeLines : ['(question data loaded)']}
                           lineStart={1}
-                          activeLineIndex={currentQuestion.code ? currentQuestion.code.split('\n').length : 1}
-                          rightSlot={
-                            <input
-                              type="text"
-                              value={answerDraft}
-                              onChange={(event) => setAnswerDraft(event.target.value)}
-                              placeholder="Type your fix..."
-                              className="h-8 w-[280px] rounded border border-slate-400 bg-white px-1.5 text-[17px] text-slate-900 outline-none"
-                            />
-                          }
+                          activeLineIndex={999}
                         />
-                        <RunButton onClick={runCurrentLevel} className="absolute bottom-2 right-3" />
+                        <button
+                          type="button"
+                          onClick={runCurrentLevel}
+                          disabled={attemptLocked}
+                          className={`absolute bottom-2 right-3 rounded-sm bg-[#8fd949] px-3 py-0.5 text-xl leading-none text-white transition-colors ${
+                            attemptLocked ? 'cursor-default' : 'hover:bg-[#9ddf50] active:bg-[#adf758]'
+                          }`}
+                        >
+                          Run
+                        </button>
                       </div>
                     </div>
                     <div className="mt-4 w-full text-left">
                       <LessonChip text="output" />
-                      <OutputPanel lines={[outputText]} minHeightClass="min-h-[170px]" />
+                      <div className="relative">
+                        <OutputPanel lines={outputPanelLines} minHeightClass="min-h-[170px]" />
+                        {runResultText ? (
+                          <div
+                            className={`pointer-events-none absolute bottom-3 right-3 text-[20px] leading-none ${
+                              runResultText === 'Correct!' ? 'text-[#34d356]' : 'text-[#ff6565]'
+                            }`}
+                          >
+                            {runResultText}
+                          </div>
+                        ) : null}
+                      </div>
                     </div>
                   </div>
                   <div className="flex w-[220px] shrink-0 self-stretch translate-y-2 flex-col justify-end pb-2">
                     <div className="mb-3 rounded-sm bg-black/30 py-2 text-center shadow-lg">
-                      <div className={`font-mono text-[56px] leading-none ${timerColorClass(timerSeconds)}`}>
-                        {debugMode ? formatTimer(ROUND_SECONDS) : formatTimer(timerSeconds)}
+                      <div className={`font-mono text-[56px] leading-none ${getCodeFixerTimerColorClass(timerSeconds)}`}>
+                        {debugMode ? formatCodeFixerTimer(CODE_FIXER_ROUND_SECONDS) : formatCodeFixerTimer(timerSeconds)}
                       </div>
                     </div>
                     <div className="flex items-center justify-between gap-2">
@@ -342,9 +581,9 @@ function CodeFixerPage() {
                 You answered <span className="text-[#ffae5a]">{correctCount}</span> out of {completedCount} questions correctly!
               </p>
               <div className="mt-6 text-[100px] leading-none tracking-[0.25em]">
-                <span className={stars >= 1 ? 'text-[#e9f7a1]' : 'text-black/40'}>{'\u2605'}</span>
-                <span className={stars >= 2 ? 'text-[#e9f7a1]' : 'text-black/40'}>{'\u2605'}</span>
-                <span className={stars >= 3 ? 'text-[#e9f7a1]' : 'text-black/40'}>{'\u2605'}</span>
+                <span className={revealedStars >= 1 ? '' : 'text-black/40'} style={revealedStars >= 1 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
+                <span className={revealedStars >= 2 ? '' : 'text-black/40'} style={revealedStars >= 2 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
+                <span className={revealedStars >= 3 ? '' : 'text-black/40'} style={revealedStars >= 3 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
               </div>
               <div className="mx-auto mt-4 flex w-[420px] flex-col gap-2">
                 <button
@@ -361,66 +600,86 @@ function CodeFixerPage() {
             </>
           ) : (
             <>
-              <h1 className="mb-5 mt-[2.7rem] text-7xl font-bold text-shadow-lg">Code Fixer</h1>
+              <h1 className="mb-1 mt-[2.7rem] text-[58px] font-bold text-shadow-lg">Code Fixer</h1>
 
-              <p className="mt-3 text-[41px] leading-tight">
-                You have <span className="text-[#ff6565]">2 minutes</span> to fix as many
-                <br />
-                <span className="text-[#ff6565]">code segments</span> as you can.
-              </p>
-
-              <p className="mt-2 text-[58px] leading-none font-semibold">Ready?</p>
-
-              <div className="mx-auto mt-3 w-[245px]">
-                {phase === 'menu' ? (
-                  <button
-                    type="button"
-                    onClick={() => setPhase('difficulty')}
-                    className="h-[95px] w-full rounded-sm bg-[rgb(143,217,73)] text-[71px] leading-none text-white text-shadow-lg shadow-lg transition hover:bg-[rgb(158,235,84)]"
-                  >
-                    Play
-                  </button>
-                ) : (
-                  <div className="space-y-[2px]">
-                    <button
-                      type="button"
-                      onClick={() => startRound('easy')}
-                      className="h-[58px] w-full rounded-none bg-[#8fd949] text-[56px] leading-none text-white transition hover:bg-[#9eeb54]"
-                    >
-                      Easy
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => startRound('medium')}
-                      className="h-[58px] w-full rounded-none bg-[#d3b93a] text-[56px] leading-none text-white transition hover:bg-[#e1c74a]"
-                    >
-                      Medium
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => startRound('hard')}
-                      className="h-[58px] w-full rounded-none bg-[#d85b5b] text-[56px] leading-none text-white transition hover:bg-[#e56d6d]"
-                    >
-                      Hard
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => startRound('debug')}
-                      className="h-[58px] w-full rounded-none bg-[rgb(86,116,145)] text-[52px] leading-none text-white transition hover:bg-[rgb(68,96,123)]"
-                    >
-                      Debug
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <Link
-                href="/play"
-                className="mt-6 inline-flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
+              <section
+                className="lesson-panel mx-auto rounded-2xl shadow-lg backdrop-blur-[1px]"
+                style={{ width: '560px', height: '260px' }}
               >
-                <span>{'<-'}</span>
-                <span className="ml-1">Back</span>
-              </Link>
+                <div className="flex h-full w-full flex-col items-center justify-center text-center">
+                  <p className="text-[24px] leading-tight">
+                    You have <span className="text-[#ff6565]">2 minutes</span> to fix as many
+                    <br />
+                    <span className="text-[#ff6565]">code segments</span> as you can.
+                  </p>
+
+                  <p className="mt-2 leading-none font-semibold" style={{ fontSize: '34px' }}>
+                    {phase === 'menu' ? 'Ready?' : 'Difficulty:'}
+                  </p>
+
+                  <div className="mx-auto mt-3">
+                    {phase === 'menu' ? (
+                      <button
+                        type="button"
+                        onClick={() => setPhase('difficulty')}
+                        className=" w-full rounded-sm leading-none text-white text-shadow-lg shadow-lg transition"
+                        style={{ backgroundColor: '#69ac8a', height: '80px', width: '160px', fontSize: '54px'}}
+                        onMouseEnter={(event) => {
+                          event.currentTarget.style.backgroundColor = '#6eb290';
+                        }}
+                        onMouseLeave={(event) => {
+                          event.currentTarget.style.backgroundColor = '#69ac8a';
+                        }}
+                      >
+                        Play
+                      </button>
+                    ) : (
+                      <div className="mx-auto flex w-[300px] items-center justify-between">
+                        <button
+                          type="button"
+                          onClick={() => startRound('easy')}
+                          aria-label="Easy"
+                          className="rounded-full bg-[#8fd949] transition hover:bg-[#9eeb54]"
+                          style={{ height: '80px', width: '80px' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => startRound('medium')}
+                          aria-label="Medium"
+                          className="rounded-full bg-[#d3b93a] transition hover:bg-[#e1c74a]"
+                          style={{ height: '80px', width: '80px' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => startRound('hard')}
+                          aria-label="Hard"
+                          className="rounded-full bg-[#d85b5b] transition hover:bg-[#e56d6d]"
+                          style={{ height: '80px', width: '80px' }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </section>
+
+              <div className="relative mx-auto mt-6 w-[220px]">
+                <Link
+                  href="/play"
+                  className="mx-auto inline-flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
+                >
+                  <span>{'<-'}</span>
+                  <span className="ml-1">Back</span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => startRound('debug')}
+                  aria-label="Start debug mode"
+                  className="absolute inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[rgb(86,116,145)] text-[24px] leading-none text-white shadow-lg transition hover:bg-[rgb(68,96,123)]"
+                  style={{ left: '167px', top: '3px' }}
+                >
+                  O
+                </button>
+              </div>
             </>
           )}
         </div>

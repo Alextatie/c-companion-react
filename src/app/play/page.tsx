@@ -14,23 +14,26 @@ function PlayPage() {
             {/* Learn */}
             <Link
               href="play/code_fixer"
-              className="bg-[rgb(86,117,145)] text-shadow-lg shadow-lg text-white text-4xl py-2 rounded text-center hover:bg-[rgb(68,96,123)] transition"
+              className="flex h-[52px] items-center justify-center rounded bg-[rgb(86,117,145)] text-center text-4xl leading-none text-shadow-lg shadow-lg text-white transition hover:bg-[rgb(68,96,123)]"
+              style={{ fontSize: '36px' }}
             >
               Code Fixer
             </Link>
 
             {/* Play */}
             <Link
-              href="play/quiz_rush"
-              className="bg-[rgb(86,116,145)] text-shadow-lg shadow-lg text-white text-4xl py-2 rounded text-center hover:bg-[rgb(68,96,123)] transition"
+              href="play/time_attack"
+              className="flex h-[52px] items-center justify-center rounded bg-[rgb(86,116,145)] text-center leading-none text-shadow-lg shadow-lg text-white transition hover:bg-[rgb(68,96,123)]"
+              style={{ fontSize: '33px' }}
             >
-              Quiz Rush
+              Time Attack
             </Link>
 
             {/* Profile */}
             <Link
               href="play/leaderboards"
-              className="bg-[rgb(86,116,145)] text-shadow-lg shadow-lg text-white text-4xl py-2 rounded text-center hover:bg-[rgb(68,96,123)] transition"
+              className="flex h-[52px] items-center justify-center rounded bg-[rgb(86,116,145)] text-center text-3xl leading-none text-shadow-lg shadow-lg text-white transition hover:bg-[rgb(68,96,123)]"
+              style={{ fontSize: '30px' }}
             >
               Leaderboards
             </Link>

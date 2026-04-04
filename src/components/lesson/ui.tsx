@@ -263,16 +263,19 @@ export function ChoiceButton({
   onClick,
   children,
   className = '',
+  disabled = false,
 }: {
   onClick: () => void;
   children: ReactNode;
   className?: string;
+  disabled?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`flex h-[21px] w-full items-center justify-center rounded-[1px] border border-[#94c8aa] bg-[#69ac8a] px-2 text-[18px] leading-none text-white shadow-sm transition hover:bg-[#94c8aa] ${className}`}
+      disabled={disabled}
+      className={`flex h-[21px] w-full items-center justify-center rounded-[1px] border border-[#94c8aa] bg-[#69ac8a] px-2 text-[18px] leading-none text-white shadow-sm transition ${disabled ? 'cursor-default opacity-100' : 'hover:bg-[#94c8aa]'} ${className}`}
     >
       {children}
     </button>

@@ -1,0 +1,1050 @@
+{
+  "game": "Code Fixer",
+  "levelCount": 70,
+  "schema": "code-fixer-levels-v2",
+  "levels": [
+    {
+      "number": 1,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  printf([[input]]);\n  return 0;\n}",
+      "expectedOutput": "Hello World!",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/1.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "\"Hello World!\""
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "prompt": "Add a comment without getting an error:",
+      "code": "int num;\nprintf(\"Enter a number: \");\n[[input]]\nscanf(\"%d\", &num);\nprintf(\"Your number is %d\", num);",
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/2.png",
+      "validator": {
+        "type": "comment_input",
+        "field": "input_a",
+        "description": "Input must be a C-style comment (//... or /*...*/)."
+      }
+    },
+    {
+      "number": 3,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  int a = 5, b = 3;\n  a [[input]]= b;\n  printf(\"%d\", a);\n  return 0;\n}",
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/3.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "/"
+        ]
+      }
+    },
+    {
+      "number": 4,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  int a = 5, b = 3;\n  a [[input]]= b;\n  printf(\"%d\", a);\n  return 0;\n}",
+      "expectedOutput": "2",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/4.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "%"
+        ]
+      }
+    },
+    {
+      "number": 5,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  [[input]](\"Hello World!\");\n  return 0;\n}",
+      "expectedOutput": "Hello World!",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/5.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "printf"
+        ]
+      }
+    },
+    {
+      "number": 6,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "#include <[[input]]>\n\nint main() {\n  printf(\"Hello World!\");\n  return 0;\n}",
+      "expectedOutput": "Hello World!",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/6.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "stdio.h"
+        ]
+      }
+    },
+    {
+      "number": 7,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  float x = 5.3;\n  printf(\"[[input]]\", x);\n  return 0;\n}",
+      "expectedOutput": "5.300000",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/7.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "%f"
+        ]
+      }
+    },
+    {
+      "number": 8,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  int x = 5;\n  printf(\"[[input]]\", x);\n  return 0;\n}",
+      "expectedOutput": "5",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/8.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "%d"
+        ]
+      }
+    },
+    {
+      "number": 9,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  [[input]] x = 5.3;\n  printf(\"%f\", x);\n  return 0;\n}",
+      "expectedOutput": "5.300000",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/9.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "float"
+        ]
+      }
+    },
+    {
+      "number": 10,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  [[input]] x = 5;\n  printf(\"%d\", x);\n  return 0;\n}",
+      "expectedOutput": "5",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/10.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "int"
+        ]
+      }
+    },
+    {
+      "number": 11,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  float x = 5.3;\n  printf(\"[[input]]\", x);\n  return 0;\n}",
+      "expectedOutput": "5",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/11.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "%.0f"
+        ]
+      }
+    },
+    {
+      "number": 12,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  float x = 5.3;\n  printf(\"[[input]]\", x);\n  return 0;\n}",
+      "expectedOutput": "5.3",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/12.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "%.1f"
+        ]
+      }
+    },
+    {
+      "number": 13,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  [[input]] x = 'z';\n  printf(\"%c\", x);\n  return 0;\n}",
+      "expectedOutput": "z",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/13.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "char"
+        ]
+      }
+    },
+    {
+      "number": 14,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  char x = 'z';\n  printf(\"[[input]]\", x);\n  return 0;\n}",
+      "expectedOutput": "z",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/14.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "%c"
+        ]
+      }
+    },
+    {
+      "number": 15,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  char x = 'z';\n  printf(\"%c\", [[input]]);\n  return 0;\n}",
+      "expectedOutput": "x",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/15.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "'x'"
+        ]
+      }
+    },
+    {
+      "number": 16,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  char x = 'z';\n  printf(\"[[input]]\", x);\n  return 0;\n}",
+      "expectedOutput": "122",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/16.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "%d"
+        ]
+      }
+    },
+    {
+      "number": 17,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  const int x = 33;\n  int y = 34;\n  [[input]] = 35;\n  return 0;\n}",
+      "expectedOutput": "Error!",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/17.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "x"
+        ]
+      }
+    },
+    {
+      "number": 18,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "#include <[[input]]>\n\nint main() {\n  bool x = true;\n  return 0;\n}",
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/18.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "stdbool.h"
+        ]
+      }
+    },
+    {
+      "number": 19,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  bool x = true, y = false;\n  printf(\"[[input]]\", y);\n  return 0;\n}",
+      "expectedOutput": "0",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/19.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "%d"
+        ]
+      }
+    },
+    {
+      "number": 20,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  bool x = [[input]];\n  printf(\"%d\", x);\n  return 0;\n}",
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/20.png",
+      "validator": {
+        "type": "truthy_or_quoted",
+        "field": "input_a",
+        "description": "Accept true, any non-zero integer, or quoted value."
+      }
+    },
+    {
+      "number": 21,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  int a = 5, b = 3;\n  a [[input]]= b;\n  printf(\"%d\", a);\n  return 0;\n}",
+      "expectedOutput": "8",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/21.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "+"
+        ]
+      }
+    },
+    {
+      "number": 22,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  int a = 5, b = 3;\n  a [[input]]= b;\n  printf(\"%d\", a);\n  return 0;\n}",
+      "expectedOutput": "2",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/22.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "-"
+        ]
+      }
+    },
+    {
+      "number": 23,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  int a = 7 % 5, b = 5 % 7;\n  printf(\"%d\", a [[input]] b);\n  return 0;\n}",
+      "expectedOutput": "0",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/23.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          ">"
+        ]
+      }
+    },
+    {
+      "number": 24,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  int a = 7 % 5, b = 5 % 7;\n  printf(\"%d\", a [[input]] b);\n  return 0;\n}",
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/24.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "<"
+        ]
+      }
+    },
+    {
+      "number": 25,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  bool a = true, b = false;\n  printf(\"%d\", a [[input]] b);\n  return 0;\n}",
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/25.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "||"
+        ]
+      }
+    },
+    {
+      "number": 26,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  bool a = true, b = false;\n  printf(\"%d\", a [[input]] b);\n  return 0;\n}",
+      "expectedOutput": "0",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/26.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "&&"
+        ]
+      }
+    },
+    {
+      "number": 27,
+      "prompt": "Add the missing operator:",
+      "code": "int main() {\n  int a = 15, b = 5;\n  printf(\"%d\", a == [[input]] b);\n  return 0;\n}",
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/27.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "3*"
+        ]
+      }
+    },
+    {
+      "number": 28,
+      "prompt": "Add the missing operator (must use both parameters):",
+      "code": "int main() {\n  int a = 45, b = 10;\n  printf(\"%d\", [[input]] == 4);\n  return 0;\n}",
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/28.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "a/b"
+        ]
+      }
+    },
+    {
+      "number": 29,
+      "prompt": "Fill in the correct output:",
+      "code": "int main() {\n  int a = 33;\n  a *= 3;\n  printf(\"%d\", a / 25);\n  return 0;\n}",
+      "expectedOutput": "3",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/29.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "3"
+        ]
+      }
+    },
+    {
+      "number": 30,
+      "prompt": "Fill in the correct output:",
+      "code": "int main() {\n  int a = 47;\n  a %= 10;\n  printf(\"%d\", --a);\n  return 0;\n}",
+      "expectedOutput": "6",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/30.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "6"
+        ]
+      }
+    },
+    {
+      "number": 31,
+      "prompt": "Fill in the correct output:",
+      "code": "bool isTrue = false;\nif (!isTrue)\n  printf(\"Not False\");\nelse\n  printf(\"Not True\");",
+      "expectedOutput": "Not False",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/31.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "Not False"
+        ]
+      }
+    },
+    {
+      "number": 32,
+      "prompt": "Add the missing function:",
+      "code": "char str1[] = \"Hello\";\nchar str2[] = \"World\";\n[[input]](str1, str2);\nprintf(\"%s\", str1);",
+      "expectedOutput": "HelloWorld",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/32.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "strcat"
+        ]
+      }
+    },
+    {
+      "number": 33,
+      "prompt": "Add the missing function:",
+      "code": "char str1[] = \"Hello\";\nchar str2[] = \"World\";\n[[input]](str1, str2);\nprintf(\"%s\", str1);",
+      "expectedOutput": "World",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/33.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "strcpy"
+        ]
+      }
+    },
+    {
+      "number": 34,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  int arr[] = {1, 2, 3, 4, 5};\n  printf(\"%d\", arr[2] + arr[4]);\n  return 0;\n}",
+      "expectedOutput": "8",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/34.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "8"
+        ]
+      }
+    },
+    {
+      "number": 35,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int num;\nprintf(\"Enter a number: \");\n[[input]](\"%d\", &num);\nprintf(\"Your number is %d\", num);",
+      "expectedOutput": "Enter a number: 16\nYour number is 16",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/35.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "scanf"
+        ]
+      }
+    },
+    {
+      "number": 36,
+      "prompt": "Fill in the blanks:",
+      "code": "int a = 10;\nint *ptr = &a;\nprintf(\"%d\\n\", [[input_a]]);\nprintf(\"%p\\n\", [[input_b]]);",
+      "expectedOutput": "10\n0x7ffcd349ea74",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/36.png",
+      "validator": {
+        "type": "two_field_pair",
+        "allOf": [
+          {
+            "field": "input_a",
+            "accepted": [
+              "a",
+              "*ptr"
+            ]
+          },
+          {
+            "field": "input_b",
+            "accepted": [
+              "&a",
+              "ptr"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "number": 37,
+      "prompt": "Fill in the correct output:",
+      "code": "bool isTrue = true;\nif (!isTrue)\n  printf(\"Not False\");\nelse\n  printf(\"Not True\");",
+      "expectedOutput": "Not True",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/37.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "Not True"
+        ]
+      }
+    },
+    {
+      "number": 38,
+      "prompt": "Fill in the correct output:",
+      "code": "bool a = true, b = false;\nif (a || b)\n  printf(\"passed\");\nelse\n  printf(\"failed\");",
+      "expectedOutput": "passed",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/38.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "passed"
+        ]
+      }
+    },
+    {
+      "number": 39,
+      "prompt": "Fill in the correct output:",
+      "code": "bool a = true, b = false;\nif (a && b)\n  printf(\"passed\");\nelse\n  printf(\"failed\");",
+      "expectedOutput": "failed",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/39.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "failed"
+        ]
+      }
+    },
+    {
+      "number": 40,
+      "prompt": "Fill in the correct output:",
+      "code": "int a = (5 * 5) - (4 * 6);\nif (a < 0)\n  printf(\"passed\");\nelse\n  printf(\"failed\");",
+      "expectedOutput": "failed",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/40.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "failed"
+        ]
+      }
+    },
+    {
+      "number": 41,
+      "prompt": "Fill in the correct output:",
+      "code": "int a = (4 * 5) - (3 * 7);\nif (a < 0)\n  printf(\"passed\");\nelse\n  printf(\"failed\");",
+      "expectedOutput": "passed",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/41.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "passed"
+        ]
+      }
+    },
+    {
+      "number": 42,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "[[input]](option){\n  case 1:\n    printf(\"1\");\n    break;\n}",
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/42.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "switch"
+        ]
+      }
+    },
+    {
+      "number": 43,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "switch (day){\n  [[input]] 1:\n    printf(\"Today is sunday\");\n    break;\n  default:\n    printf(\"Try again\");",
+      "expectedOutput": "Today is sunday",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/43.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "case"
+        ]
+      }
+    },
+    {
+      "number": 44,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int x = 1;\nwhile ([[input]]) {\n  printf(\"%d \", x);\n  ++x;\n}",
+      "expectedOutput": "1 2 3 4 5",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/44.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "x<6"
+        ]
+      }
+    },
+    {
+      "number": 45,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int x = 1;\ndo {\n  printf(\"%d \", x);\n  x *= 2;\n} while ([[input]]);",
+      "expectedOutput": "1 2 4 8 16",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/45.png",
+      "validator": {
+        "type": "prefix_int_range",
+        "field": "input_a",
+        "prefix": "x<",
+        "min": 17,
+        "max": 32
+      }
+    },
+    {
+      "number": 46,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int grades[5] = {85, 90, 78, 92, 88};\n\nfor (int i = 0; i < 5; i++) {\n  printf(\"%d \", [[input]]);\n}",
+      "expectedOutput": "85 90 78 92 88",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/46.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "grades[i]"
+        ]
+      }
+    },
+    {
+      "number": 47,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  int num;\n  scanf(\"%d\", [[input]]);\n  printf(\"%d\", num);\n  return 0;\n}",
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/47.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "&num"
+        ]
+      }
+    },
+    {
+      "number": 48,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  char input[100];\n  [[input]](input, 100, stdin);\n  printf(\"%s\", input);\n  return 0;\n}",
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/48.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "fgets"
+        ]
+      }
+    },
+    {
+      "number": 49,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int grades[5] = {85, 90, 78, 92, 88};\n\nfor (int i = 0; i < 5; i++) {\n  printf(\"%p\\n\", [[input]]);\n}",
+      "expectedOutput": "0x7fffedb839c0\n0x7fffedb839c4\n0x7fffedb839c8\n0x7fffedb839cc\n0x7fffedb839d0",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/49.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "&grades[i]"
+        ]
+      }
+    },
+    {
+      "number": 50,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int grades[5] = {85, 90, 78, 92, 88};\nprintf(\"%d\\n\", *([[input]]));",
+      "expectedOutput": "78",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/50.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "grades+2"
+        ]
+      }
+    },
+    {
+      "number": 51,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int multiply(int a, int b) {\n  return a * b;\n}\n\nint main() {\n  int result = [[input]](4, 5);\n  printf(\"%d\", result);\n  return 0;\n}",
+      "expectedOutput": "20",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/51.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "multiply"
+        ]
+      }
+    },
+    {
+      "number": 52,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int multiply(int a, int b) {\n  return [[input]];\n}\n\nint main() {\n  int result = multiply(4, 5);\n  printf(\"%d\", result);\n  return 0;\n}",
+      "expectedOutput": "20",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/52.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "a*b",
+          "b*a"
+        ]
+      }
+    },
+    {
+      "number": 53,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "void greeting(char name[]) {\n  printf(\"Hello, %s!\\n\", name);\n}\n\nint main() {\n  [[input]](\"Bobby\");\n  return 0;\n}",
+      "expectedOutput": "Hello, Bobby!",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/53.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "greeting"
+        ]
+      }
+    },
+    {
+      "number": 54,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "void greeting([[input]]name) {\n  printf(\"Hello, %s!\\n\", name);\n}\n\nint main() {\n  greeting(\"Bobby\");\n  return 0;\n}",
+      "expectedOutput": "Hello, Bobby!",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/54.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "char*",
+          "char* ",
+          "char *"
+        ]
+      }
+    },
+    {
+      "number": 55,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "void print_arr(int arr[], int size) {\n  for (int i = 0; i < size; i++)\n    printf(\"%d \", arr[i]);\n}\n\nint main() {\n  int numbers[] = {1, 2, 3, 4, 5};\n  print_arr([[input]]);\n  return 0;\n}",
+      "expectedOutput": "1 2 3 4 5",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/55.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "numbers, 5"
+        ]
+      }
+    },
+    {
+      "number": 56,
+      "prompt": "Insert the line \"printf(\"%d\", num);\" in the correct location:",
+      "code": "int func() {\n  int num = 10;\n  [[input_a]]\n}\n\nint main() {\n  func();\n  [[input_b]]\n  return 0;\n}",
+      "expectedOutput": "10",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/56.png",
+      "validator": {
+        "type": "exact_any_plus_empty",
+        "primary": {
+          "field": "input_a",
+          "accepted": [
+            "printf(\"%d\", num);",
+            "printf(\"%d\",num);",
+            "printf(\"%d\" ,num);"
+          ]
+        },
+        "secondaryMustBeEmpty": "input_b"
+      }
+    },
+    {
+      "number": 57,
+      "prompt": "Insert the line \"int num = 10;\" in the correct location:",
+      "code": "[[input_b]]\nint func() {\n  num += 5;\n}\n\nint main() {\n  [[input_a]]\n  func();\n  printf(\"%d\", num);\n}",
+      "expectedOutput": "15",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/57.png",
+      "validator": {
+        "type": "exact_any_plus_empty",
+        "primary": {
+          "field": "input_a",
+          "accepted": [
+            "int num = 10;",
+            "int num =10;",
+            "int num= 10;",
+            "int num=10;"
+          ]
+        },
+        "secondaryMustBeEmpty": "input_b"
+      }
+    },
+    {
+      "number": 58,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "void func([[input_a]], [[input_b]], [[input_c]]) {\n  printf(\"%d %c %s\\n\", num, letter, text);\n}\n\nint main() {\n  func(10, 'A', \"Hello\");\n  return 0;\n}",
+      "expectedOutput": "10 A Hello",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/58.png",
+      "validator": {
+        "type": "three_field_exact",
+        "allOf": [
+          {
+            "field": "input_a",
+            "accepted": [
+              "int num"
+            ]
+          },
+          {
+            "field": "input_b",
+            "accepted": [
+              "char letter"
+            ]
+          },
+          {
+            "field": "input_c",
+            "accepted": [
+              "char text[]",
+              "char *text",
+              "char* text"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "number": 59,
+      "prompt": "What will this code print?",
+      "code": "void modify_arr(int arr[]) {\n  arr[2] = 9;\n}\n\nint main() {\n  int arr[5] = {1, 2, 3, 4, 5};\n  modify_arr(arr);\n  printf(\"%d\", arr[2]);\n  return 0;\n}",
+      "expectedOutput": "9",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/59.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "9"
+        ]
+      }
+    },
+    {
+      "number": 60,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  double result = [[input]](2, 3);\n  printf(\"%.0f\", result);\n  return 0;\n}",
+      "expectedOutput": "8",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/60.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "pow"
+        ]
+      }
+    },
+    {
+      "number": 61,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  double result = [[input]](16);\n  printf(\"%.0f\", result);\n  return 0;\n}",
+      "expectedOutput": "4",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/61.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "sqrt"
+        ]
+      }
+    },
+    {
+      "number": 62,
+      "prompt": "Fix the following function to get a factorial as recursion:",
+      "code": "int func(int n) {\n  if (n == 0 || [[input_a]]) {\n    return 1;\n  } else {\n    return n * func([[input_b]]);\n  }\n}",
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/62.png",
+      "validator": {
+        "type": "two_field_pair",
+        "allOf": [
+          {
+            "field": "input_a",
+            "accepted": [
+              "n==1",
+              "n == 1"
+            ]
+          },
+          {
+            "field": "input_b",
+            "accepted": [
+              "n-1",
+              "n - 1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "number": 63,
+      "prompt": "Fix the following function to get a factorial as recursion:",
+      "code": "int func(int a, int b) {\n  if ([[input_a]]) {\n    return 1;\n  } else {\n    return a * func([[input_b]], b - 1);\n  }\n}",
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/63.png",
+      "validator": {
+        "type": "two_field_pair",
+        "allOf": [
+          {
+            "field": "input_a",
+            "accepted": [
+              "b==0",
+              "b == 0"
+            ]
+          },
+          {
+            "field": "input_b",
+            "accepted": [
+              "a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "number": 64,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "struct MyStruct {\n  char text[20];\n};\n\nint main() {\n  struct MyStruct s1;\n  [[input]](s1.text, \"Hello world!\");\n  printf(\"%s\\n\", s1.text);\n  return 0;\n}",
+      "expectedOutput": "Hello world!",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/64.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "strcpy"
+        ]
+      }
+    },
+    {
+      "number": 65,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "enum Colors {\n  RED = [[input]],\n  GREEN,\n  BLUE\n};\n\nint main() {\n  enum Colors color = BLUE;\n  printf(\"%d\\n\", color);\n}",
+      "expectedOutput": "10",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/65.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "8"
+        ]
+      }
+    },
+    {
+      "number": 66,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  FILE *file = fopen(\"myFile.txt\", \"w\");\n  [[input]](file, \"Hello world!\");\n  fclose(file);\n  return 0;\n}",
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/66.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "fprintf"
+        ]
+      }
+    },
+    {
+      "number": 67,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int main() {\n  FILE *file = fopen(\"example.txt\", \"r\");\n  char buffer[100];\n  [[input]](buffer, 100, file);\n  return 0;\n}",
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/67.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "fgets"
+        ]
+      }
+    },
+    {
+      "number": 68,
+      "prompt": "Fill in the correct output:",
+      "code": "int main() {\n  int students[35];\n  printf(\"%lu\\n\", sizeof(students));\n  return 0;\n}",
+      "expectedOutput": "140",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/68.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "140"
+        ]
+      }
+    },
+    {
+      "number": 69,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int *ptr = [[input]](sizeof(int));\n*ptr = 10;\nprintf(\"%d\\n\", *ptr);\nfree(ptr);",
+      "expectedOutput": "10",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/69.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "malloc"
+        ]
+      }
+    },
+    {
+      "number": 70,
+      "prompt": "Fix the following code to achieve the right output as seen bellow:",
+      "code": "int *ptr = malloc(2 * sizeof(int));\nptr = [[input]](ptr, 4 * sizeof(int));\nptr[0] = 10;\nprintf(\"%d\", ptr[0]);\nfree(ptr);",
+      "expectedOutput": "10",
+      "screenshot": "/data/Screenshots/Game-Levels/CodeFixer/70.png",
+      "validator": {
+        "type": "exact_any",
+        "field": "input_a",
+        "accepted": [
+          "realloc"
+        ]
+      }
+    }
+  ]
+}

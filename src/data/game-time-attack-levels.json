@@ -1,0 +1,986 @@
+{
+  "game": "Time Attack",
+  "levelCount": 70,
+  "levels": [
+    {
+      "number": 1,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n printf(\"Hello World!\");\n return 0;\n}\n\n",
+      "options": [
+        "0",
+        "Hello World!",
+        "Error",
+        "World Hello!"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/1.png",
+      "answer": 2
+    },
+    {
+      "number": 2,
+      "prompt": "What function is missing?",
+      "code": "int main() {\n ???(\"My name is Bob.\");\n return 0;\n}\n\n",
+      "options": [
+        "print",
+        "scan",
+        "printf",
+        "load"
+      ],
+      "expectedOutput": "My name is Bob.",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/2.png",
+      "answer": 3
+    },
+    {
+      "number": 3,
+      "prompt": "What data type is num?",
+      "code": "int main() {\n ??? num = 6;\n return 0;\n}\n\n",
+      "options": [
+        "int",
+        "char",
+        "bool",
+        "string"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/3.png",
+      "answer": 1
+    },
+    {
+      "number": 4,
+      "prompt": "What will the output be?",
+      "code": "int main() {\n int a = 5, b = 3;\n a += ++b;\n printf(\"%d\", a);\n return 0;\n}",
+      "options": [
+        "3",
+        "5",
+        "8",
+        "9"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/4.png",
+      "answer": 4
+    },
+    {
+      "number": 5,
+      "prompt": "What will the output be?",
+      "code": "int main() {\n int a = 5, b = 3;\n a += b++;\n printf(\"%d\", a);\n return 0;\n}",
+      "options": [
+        "3",
+        "5",
+        "8",
+        "9"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/5.png",
+      "answer": 3
+    },
+    {
+      "number": 6,
+      "prompt": "What line of code is missing?\n(a library that contains the printf() function)",
+      "code": "???\n\nint main() {\n printf(\"Hello World!\");\n return 0;\n}",
+      "options": [
+        "#include <stdio.h>",
+        "#include <stdlib.h>",
+        "#using  <stdio.h>",
+        "#using  <stdlib.h>"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/6.png",
+      "answer": 1
+    },
+    {
+      "number": 7,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n printf(Hello World!);\n return 0;\n}\n\n",
+      "options": [
+        "0",
+        "Hello World!",
+        "Error",
+        "World Hello!"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/7.png",
+      "answer": 3
+    },
+    {
+      "number": 8,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n //printf(\"Hello World!\");\n return 0;\n}\n\n",
+      "options": [
+        "0",
+        "Hello World!",
+        "Error",
+        "Nothing"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/8.png",
+      "answer": 4
+    },
+    {
+      "number": 9,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n printf(\"Hello World!\"); /print function\n return 0;\n}\n\n",
+      "options": [
+        "0",
+        "Hello World!",
+        "Error",
+        "Nothing"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/9.png",
+      "answer": 3
+    },
+    {
+      "number": 10,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n int x = 5;\n printf(x);\n return 0;\n}\n\n",
+      "options": [
+        "5",
+        "x",
+        "Error",
+        "Nothing"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/10.png",
+      "answer": 3
+    },
+    {
+      "number": 11,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n int x = 5;\n printf(\"%d\", x);\n return 0;\n}\n\n",
+      "options": [
+        "5",
+        "x",
+        "Error",
+        "Nothing"
+      ],
+      "expectedOutput": "5",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/11.png",
+      "answer": 1
+    },
+    {
+      "number": 12,
+      "prompt": "What data type is x?",
+      "code": "int main() {\n ??? x = 5.3;\n return 0;\n}\n\n",
+      "options": [
+        "int",
+        "float",
+        "char",
+        "string"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/12.png",
+      "answer": 2
+    },
+    {
+      "number": 13,
+      "prompt": "What data type is x?",
+      "code": "int main() {\n ??? x = 'z';\n return 0;\n}\n\n",
+      "options": [
+        "int",
+        "float",
+        "char",
+        "string"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/13.png",
+      "answer": 3
+    },
+    {
+      "number": 14,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n float x = 3.333;\n printf(\"%d\", x);\n return 0;\n}\n\n",
+      "options": [
+        "3.333",
+        "3.333000",
+        "Error",
+        "Garbage Output"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/14.png",
+      "answer": 4
+    },
+    {
+      "number": 15,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n float x = 3.333;\n printf(\"%f\", x);\n return 0;\n}\n\n",
+      "options": [
+        "3.333",
+        "3.333000",
+        "Error",
+        "Garbage Output"
+      ],
+      "expectedOutput": "3.333000",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/15.png",
+      "answer": 2
+    },
+    {
+      "number": 16,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n float x = 3.333;\n printf(\"%.3f\", x);\n return 0;\n}\n\n",
+      "options": [
+        "3.333",
+        "3.333000",
+        "Error",
+        "Garbage Output"
+      ],
+      "expectedOutput": "3.333",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/16.png",
+      "answer": 1
+    },
+    {
+      "number": 17,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n char c = 'z';\n printf(\"%c\", c);\n return 0;\n}\n\n",
+      "options": [
+        "z",
+        "c",
+        "122 (ASCII)",
+        "Error"
+      ],
+      "expectedOutput": "z",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/17.png",
+      "answer": 1
+    },
+    {
+      "number": 18,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n char c = 'z';\n printf(\"%c\", 'c');\n return 0;\n}\n\n",
+      "options": [
+        "z",
+        "c",
+        "122 (ASCII)",
+        "Error"
+      ],
+      "expectedOutput": "c",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/18.png",
+      "answer": 2
+    },
+    {
+      "number": 19,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n char c = 'z';\n int x = 122;\n printf(\"%d\", c);\n return 0;\n}\n\n",
+      "options": [
+        "z",
+        "c",
+        "122 (ASCII)",
+        "Error"
+      ],
+      "expectedOutput": "122 (ASCII)",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/19.png",
+      "answer": 3
+    },
+    {
+      "number": 20,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n char c = 'z';\n int x = 122;\n printf(\"%c\", x);\n return 0;\n}\n\n",
+      "options": [
+        "z",
+        "c",
+        "122 (ASCII)",
+        "Error"
+      ],
+      "expectedOutput": "z",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/20.png",
+      "answer": 1
+    },
+    {
+      "number": 21,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n const int x = 33;\n x = 34;\n printf(\"%d\",x);\n return 0;\n}\n",
+      "options": [
+        "33",
+        "34",
+        "x",
+        "Error"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/21.png",
+      "answer": 4
+    },
+    {
+      "number": 22,
+      "prompt": "What line of code is missing?\n(a library that contains bool)",
+      "code": "???\n\nint main() {\n bool x = true;\n return 0;\n}\n",
+      "options": [
+        "#include <stdio.h>",
+        "#include <stdlib.h>",
+        "#include <stdmath.h>",
+        "#include <stdbool.h>"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/22.png",
+      "answer": 4
+    },
+    {
+      "number": 23,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n bool x = true;\n printf(\"%d\",x);\n return 0;\n}\n\n",
+      "options": [
+        "true",
+        "nothing",
+        "1",
+        "Error"
+      ],
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/23.png",
+      "answer": 3
+    },
+    {
+      "number": 24,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n bool x = false;\n printf(\"%d\",x);\n return 0;\n}\n\n",
+      "options": [
+        "false",
+        "nothing",
+        "0",
+        "Error"
+      ],
+      "expectedOutput": "0",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/24.png",
+      "answer": 3
+    },
+    {
+      "number": 25,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n int x = 7, y = 5;\n printf(\"%d\",x / y);\n return 0;\n}\n\n",
+      "options": [
+        "1.4",
+        "1",
+        "2",
+        "Error"
+      ],
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/25.png",
+      "answer": 2
+    },
+    {
+      "number": 26,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n int x = 7, y = 5;\n printf(\"%d\",x % y);\n return 0;\n}\n\n",
+      "options": [
+        "1.4",
+        "1",
+        "2",
+        "Error"
+      ],
+      "expectedOutput": "2",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/26.png",
+      "answer": 3
+    },
+    {
+      "number": 27,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n int x = 7 % 5, y = 5 % 7;\n printf(\"%d\",x > y);\n return 0;\n}\n\n",
+      "options": [
+        "0",
+        "1",
+        "nothing",
+        "Error"
+      ],
+      "expectedOutput": "0",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/27.png",
+      "answer": 1
+    },
+    {
+      "number": 28,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n int x = 6, y = 3, z = x % y;\n printf(\"%d\",y % z);\n return 0;\n}\n\n",
+      "options": [
+        "0",
+        "1",
+        "nothing",
+        "Error"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/28.png",
+      "answer": 4
+    },
+    {
+      "number": 29,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n bool x = true, y = false;\n printf(\"%d\",x || y);\n return 0;\n}\n\n",
+      "options": [
+        "true",
+        "1",
+        "false",
+        "0"
+      ],
+      "expectedOutput": "1",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/29.png",
+      "answer": 2
+    },
+    {
+      "number": 30,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n bool x = true, y = false;\n printf(\"%d\",x && y);\n return 0;\n}\n\n",
+      "options": [
+        "true",
+        "1",
+        "false",
+        "0"
+      ],
+      "expectedOutput": "0",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/30.png",
+      "answer": 4
+    },
+    {
+      "number": 31,
+      "prompt": "What's missing in the condition?",
+      "code": "int num = 10;\nif (??? == 0)\n printf(\"Even\");\nelse\n printf(\"Odd\");\n",
+      "options": [
+        "num",
+        "num / 2",
+        "num / 10",
+        "num % 2"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/31.png",
+      "answer": 4
+    },
+    {
+      "number": 32,
+      "prompt": "What's missing in the condition?",
+      "code": "int num = 10;\nif (num % 2 ???)\n printf(\"Odd\");\nelse\n printf(\"Even\");\n",
+      "options": [
+        "!= 2",
+        "== 2",
+        "!= 0",
+        "== 0"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/32.png",
+      "answer": 3
+    },
+    {
+      "number": 33,
+      "prompt": "What's will this loop print?",
+      "code": "for (int i = 1; i <= 5; i++) {\n if (i == 3)\n  continue;\n printf(\"%d \", i);\n}\n",
+      "options": [
+        "1 2 3 4 5",
+        "1 2 4 5",
+        "1 2 3 5",
+        "1 2"
+      ],
+      "expectedOutput": "1 2 4 5",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/33.png",
+      "answer": 2
+    },
+    {
+      "number": 34,
+      "prompt": "What's will this loop print?",
+      "code": "for (int i = 1; i <= 5; i++) {\n if (i == 3)\n  break;\n printf(\"%d \", i);\n}\n",
+      "options": [
+        "1 2 3 4 5",
+        "1 2 4 5",
+        "1 2 3 5",
+        "1 2"
+      ],
+      "expectedOutput": "1 2",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/34.png",
+      "answer": 4
+    },
+    {
+      "number": 35,
+      "prompt": "What's will the output be?",
+      "code": "int a = 5;\nint *ptr = &a;\n*ptr = 10;\nprintf(\"a = %d\", a);\n\n",
+      "options": [
+        "5",
+        "10",
+        "a",
+        "Error"
+      ],
+      "expectedOutput": "a = 10",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/35.png",
+      "answer": 2
+    },
+    {
+      "number": 36,
+      "prompt": "What will be the output of the following code?",
+      "code": "bool x = true, y = false;\nif (x || y){\n printf(\"True\");\n} else {\n printf(\"False\")\n}\n",
+      "options": [
+        "True",
+        "False",
+        "Error",
+        "Nothing"
+      ],
+      "expectedOutput": "True",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/36.png",
+      "answer": 1
+    },
+    {
+      "number": 37,
+      "prompt": "What will be the output of the following code?",
+      "code": "bool x = true, y = false;\nif (x && y){\n printf(\"True\");\n} else {\n printf(\"False\")\n}\n",
+      "options": [
+        "True",
+        "False",
+        "Error",
+        "Nothing"
+      ],
+      "expectedOutput": "False",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/37.png",
+      "answer": 2
+    },
+    {
+      "number": 38,
+      "prompt": "What will be the output of the following code?",
+      "code": "int x = 6 % 3;\nif (x > 0){\n printf(\"True\");\n} else {\n printf(\"False\")\n}\n",
+      "options": [
+        "True",
+        "False",
+        "Error",
+        "Nothing"
+      ],
+      "expectedOutput": "False",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/38.png",
+      "answer": 2
+    },
+    {
+      "number": 39,
+      "prompt": "What will be the output of the following code?",
+      "code": "int x = 6 % 4;\nif (x > 0){\n printf(\"True\");\n} else {\n printf(\"False\")\n}\n",
+      "options": [
+        "True",
+        "False",
+        "Error",
+        "Nothing"
+      ],
+      "expectedOutput": "True",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/39.png",
+      "answer": 1
+    },
+    {
+      "number": 40,
+      "prompt": "What will this loop create?",
+      "code": "for (int i = 0; i >= 0; i++) {\n printf(\"%d \", i);\n}\n\n",
+      "options": [
+        "Nothing",
+        "A short print",
+        "A compilation error",
+        "A logical error"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/40.png",
+      "answer": 4
+    },
+    {
+      "number": 41,
+      "prompt": "What will be the output of this code?",
+      "code": "int x = 4;\nswitch (x){\n case 1:\n  printf(\"1\");\n case 2:\n  printf(\"2\");\n default:\n  printf(\"3\");\n}\n",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "expectedOutput": "3",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/41.png",
+      "answer": 3
+    },
+    {
+      "number": 42,
+      "prompt": "What will be the output of this code?",
+      "code": "int x = 4;\nswitch (x){\n case 1:\n  printf(\"1\");\n case 2:\n  printf(\"2\");\n}\n\n",
+      "options": [
+        "1",
+        "2",
+        "nothing",
+        "Error"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/42.png",
+      "answer": 3
+    },
+    {
+      "number": 43,
+      "prompt": "What line of code is missing? (a library that contains strcat and strcpy)",
+      "code": "???\n\nint main() {\n char str1[] = \"Hello\";\n char str2[] = \"World\";\n strcat(str1, str2);\n return 0;\n}\n",
+      "options": [
+        "#include <stdio.h>",
+        "#include <stdlib.h>",
+        "#include <stdbool.h>",
+        "#include <string.h>"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/43.png",
+      "answer": 4
+    },
+    {
+      "number": 44,
+      "prompt": "What will be the output of this code?",
+      "code": "int main() {\n int nums[5] = {1, 2, 3, 4, 5};\n printf(\"%d\", nums);\n return 0;\n}\n\n",
+      "options": [
+        "1",
+        "1 2 3 4 5",
+        "Garbage Number",
+        "Error"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/44.png",
+      "answer": 3
+    },
+    {
+      "number": 45,
+      "prompt": "What will be the output of this code?",
+      "code": "int main() {\n int nums[5] = {1, 2, 3, 4, 5, 6};\n for (int i = 0; i < 5; i++) {\n  printf(\"%d \", nums[i]);\n }\n return 0;\n}\n",
+      "options": [
+        "1",
+        "1 2 3 4 5",
+        "Garbage Number",
+        "Error"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/45.png",
+      "answer": 4
+    },
+    {
+      "number": 46,
+      "prompt": "What is missing in the scanf() function?",
+      "code": "int main() {\n int nums[5] = {1, 2, 3, 4, 5};\n printf(\"Enter 5 numbers: \");\n for (int i = 0; i < 5; i++) {\n  scanf(\"%d\", ???);\n }\n return 0;\n}\n",
+      "options": [
+        "nums[i]",
+        "*nums[i]",
+        "%nums[i]",
+        "&nums[i]"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/46.png",
+      "answer": 4
+    },
+    {
+      "number": 47,
+      "prompt": "What is missing in the scanf() function?",
+      "code": "int main() {\n printf(\"Enter your name: \");\n char name[30];\n scanf(\"%s\", ???);\n return 0;\n}\n\n",
+      "options": [
+        "name",
+        "*name",
+        "%name",
+        "&name"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/47.png",
+      "answer": 1
+    },
+    {
+      "number": 48,
+      "prompt": "What will be the output of this code?",
+      "code": "int main() {\n int nums[5] = {1, 2, 3, 4, 5};\n for (int i = 0; i < 5; i++) {\n  printf(\"%d \", nums[i]);\n }\n return 0;\n}\n\n",
+      "options": [
+        "1",
+        "1 2 3 4 5",
+        "Garbage Number",
+        "Error"
+      ],
+      "expectedOutput": "1 2 3 4 5",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/48.png",
+      "answer": 2
+    },
+    {
+      "number": 49,
+      "prompt": "What will be the output of the following code?",
+      "code": "int main() {\n int nums[5] = {1, 2, 3, 4, 5};\n printf(\"%d\", *(nums + 1));\n return 0;\n}\n\n",
+      "options": [
+        "1",
+        "2",
+        "nothing",
+        "Error"
+      ],
+      "expectedOutput": "2",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/49.png",
+      "answer": 2
+    },
+    {
+      "number": 50,
+      "prompt": "What is missing inside the printf() function?",
+      "code": "int main() {\n int nums[5] = {1, 2, 3, 4, 5};\n printf(\"???\", &nums[1]);\n return 0;\n}\n\n",
+      "options": [
+        "Hello World!",
+        "%d",
+        "%p",
+        "???"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/50.png",
+      "answer": 3
+    },
+    {
+      "number": 51,
+      "prompt": "What is the return type of the function?",
+      "code": "??? multiply(int a, int b) {\n return a * b;\n}\n\nint main() {\n printf(\"3 * 4 = %d\\n\", multiply(3, 4));\n return 0;\n}\n",
+      "options": [
+        "float",
+        "func",
+        "string",
+        "int"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/51.png",
+      "answer": 4
+    },
+    {
+      "number": 52,
+      "prompt": "What should this function return?",
+      "code": "int multiply(int a, int b) {\n return ???;\n}\n\nint main() {\n printf(\"3 * 4 = %d\\n\", multiply(3, 4));\n return 0;\n}\n",
+      "options": [
+        "a * b",
+        "multiply",
+        "multiply(a,b)",
+        "0"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/52.png",
+      "answer": 1
+    },
+    {
+      "number": 53,
+      "prompt": "What is the function parameter?",
+      "code": "void printString(???) {\n printf(char str[]);\n}\n\nint main() {\n printString(\"Hello World!\");\n return 0;\n}\n",
+      "options": [
+        "char str[ ]",
+        "char *str",
+        "string str",
+        "string *str"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/53.png",
+      "answer": 1
+    },
+    {
+      "number": 54,
+      "prompt": "What will this function print?",
+      "code": "void printString(char str[]) {\n printf(char str[]);\n}\n\nint main() {\n char myArr[] = {97, 98, 99, 100, '\\0'};\n printString(myArr);\n return 0;\n}\n",
+      "options": [
+        "979899100",
+        "979899100\\0",
+        "abcd",
+        "Error"
+      ],
+      "expectedOutput": "abcd",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/54.png",
+      "answer": 3
+    },
+    {
+      "number": 55,
+      "prompt": "Where is the unnecessary [ ]?",
+      "code": "void printString(char str[]) {\n printf(char str[]);\n}\n\nint main() {\n char myStr[] = \"Hello World!\";\n printString(myArr[]);\n return 0;\n}\n",
+      "options": [
+        "printf( )",
+        "Function definition",
+        "myStr declaration",
+        "Function call"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/55.png",
+      "answer": 4
+    },
+    {
+      "number": 56,
+      "prompt": "What is the return type of this function?",
+      "code": "??? ReturnWorld() {\n return \"Hello World!\";\n}\n\nint main() {\n printString(ReturnWorld());\n return 0;\n}\n",
+      "options": [
+        "char*",
+        "char[ ]",
+        "char",
+        "string"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/56.png",
+      "answer": 1
+    },
+    {
+      "number": 57,
+      "prompt": "What will be the output of this code?",
+      "code": "void func() {\n int x = 5;\n printf(\"%d\", x);\n}\n\nint main() {\n func();\n return 0;\n}\n",
+      "options": [
+        "5",
+        "x",
+        "Nothing",
+        "Error"
+      ],
+      "expectedOutput": "5",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/57.png",
+      "answer": 1
+    },
+    {
+      "number": 58,
+      "prompt": "What will be the output of this code?",
+      "code": "void func() {\n printf(\"%d\", x);\n}\n\nint main() {\n int x = 5;\n func();\n return 0;\n}\n",
+      "options": [
+        "5",
+        "x",
+        "Nothing",
+        "Error"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/58.png",
+      "answer": 4
+    },
+    {
+      "number": 59,
+      "prompt": "What will be the output of this code?",
+      "code": "void func(int num) {\n num = 10;\n}\n\nint main() {\n int x = 5;\n func(x);\n printf(\"%d\", x);\n return 0;\n}\n",
+      "options": [
+        "10",
+        "5",
+        "Nothing",
+        "Error"
+      ],
+      "expectedOutput": "5",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/59.png",
+      "answer": 2
+    },
+    {
+      "number": 60,
+      "prompt": "What will be the output of this code?",
+      "code": "void func(int arr[]) {\n arr[0] = 10;\n}\n\nint main() {\n int x[] = {5, 4, 3, 2, 1};\n func(x);\n printf(\"%d\", x[0]);\n return 0;\n}\n",
+      "options": [
+        "10",
+        "5",
+        "Nothing",
+        "Error"
+      ],
+      "expectedOutput": "10",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/60.png",
+      "answer": 1
+    },
+    {
+      "number": 61,
+      "prompt": "What line of code is missing? (a library that contains strcat\n    and strcpy)",
+      "code": "???\n\nint main() {\n double num = sqrt(16);\n printf(\"%f\", num);\n return 0;\n}\n\n",
+      "options": [
+        "#include <stdio.h>",
+        "#include <stdlib.h>",
+        "#include <math.h>",
+        "#include <string.h>"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/61.png",
+      "answer": 3
+    },
+    {
+      "number": 62,
+      "prompt": "What is the function of this recursion?",
+      "code": "int func(int n) {\n if (n == 0 || n == 1) {\n  return 1;\n } else {\n  return n * func(n - 1);\n }\n}\n",
+      "options": [
+        "Multiplication",
+        "Factorial",
+        "Power",
+        "Fibonacci"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/62.png",
+      "answer": 2
+    },
+    {
+      "number": 63,
+      "prompt": "What is the function of this recursion?",
+      "code": "int func(int a, int b) {\n if (b== 0) {\n  return 1;\n } else {\n  return a * func(a, b - 1);\n }\n}\n",
+      "options": [
+        "Multiplication",
+        "Factorial",
+        "Power",
+        "Fibonacci"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/63.png",
+      "answer": 3
+    },
+    {
+      "number": 64,
+      "prompt": "What type of structure is this?",
+      "code": "??? myPerson {\n int age;\n char grade;\n char name[30];\n};\n\nint main() {\n ??? myPerson p1 = {30, 'A', \"George\"};\n return 0;\n}\n",
+      "options": [
+        "Function",
+        "Class",
+        "Enum",
+        "Struct"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/64.png",
+      "answer": 4
+    },
+    {
+      "number": 65,
+      "prompt": "What is the value of HARD?",
+      "code": "enum Difficulty {\n EASY = 10,\n MEDIUM,\n HARD\n};\n\nint main() {\n enum Difficulty level = HARD;\n printf(\"%d\", level);\n}\n",
+      "options": [
+        "3",
+        "30",
+        "12",
+        "10"
+      ],
+      "expectedOutput": "12",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/65.png",
+      "answer": 3
+    },
+    {
+      "number": 66,
+      "prompt": "What flag would you use to edit a file?",
+      "code": "int main() {\n FILE *file;\n char text[] = \"Hello, this is my file.\";\n file = fopen(\"myfile.txt\", \"?\");\n fputs(text, file);\n fclose(file);\n return 0;\n}\n\n",
+      "options": [
+        "a",
+        "e",
+        "+",
+        "||"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/66.png",
+      "answer": 1
+    },
+    {
+      "number": 67,
+      "prompt": "What will happen if the file doesn't exist?",
+      "code": "int main() {\n FILE *file;\n char text[] = \"Hello, this is my new file.\";\n file = fopen(\"myfile.txt\", \"w\");\n fputs(text, file);\n fclose(file);\n return 0;\n}\n\n",
+      "options": [
+        "A new one will be created",
+        "Will append another file",
+        "Nothing",
+        "Error"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/67.png",
+      "answer": 1
+    },
+    {
+      "number": 68,
+      "prompt": "What's will the output be?",
+      "code": "int main() {\n printf(\"%lu \", sizeof(int));\n printf(\"%lu \", sizeof(float));\n printf(\"%lu \", sizeof(double));\n printf(\"%lu\", sizeof(char));\n return 0;\n}\n\n",
+      "options": [
+        "1 2 4 1",
+        "2 2 4 2",
+        "4 8 16 2",
+        "4 4 8 1"
+      ],
+      "expectedOutput": "4 4 8 1",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/68.png",
+      "answer": 4
+    },
+    {
+      "number": 69,
+      "prompt": "What function is missing?",
+      "code": "int main() {\n int *ptr = ???(sizeof(int));\n *ptr = 10;\n free(ptr);\n return 0;\n}\n\n",
+      "options": [
+        "malloc",
+        "calloc",
+        "realloc",
+        "free"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/69.png",
+      "answer": 1
+    },
+    {
+      "number": 70,
+      "prompt": "What function is missing?",
+      "code": "int main() {\n int *ptr = malloc(sizeof(int));\n *ptr = 10;\n ???(ptr);\n return 0;\n}\n\n",
+      "options": [
+        "malloc",
+        "calloc",
+        "realloc",
+        "free"
+      ],
+      "expectedOutput": "",
+      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/70.png",
+      "answer": 4
+    }
+  ]
+}
