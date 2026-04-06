@@ -2,6 +2,9 @@
 
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { auth } from '@/app/firebase/config';
+import { lessonSlugFromPathname, markLessonCompleted } from '@/lib/lesson-progress';
 
 const lessonChipVisualClassName =
   'flex w-fit items-center justify-center rounded-sm bg-white/30 px-2 py-[2px] text-[16px] leading-none text-[#e3efe6] text-center';
@@ -19,8 +22,8 @@ export function HomeButton({
 }) {
   return (
     <Link
-      href="/"
-      className={`no-select absolute ${topClass} ${leftClass} inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#8fd89a] shadow-lg transition hover:bg-[rgb(214,232,220)]`}
+      href="/Home"
+      className={`no-select absolute ${topClass} ${leftClass} inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#8fd89a] shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(214,232,220)]`}
     >
       <svg
         aria-hidden="true"
@@ -322,10 +325,43 @@ export function LessonNextButton({
   onClick: () => void;
   isLastPage: boolean;
 }) {
+  const pathname = usePathname();
+  const [isFinishing, setIsFinishing] = useState(false);
+
+  const handleClick = async () => {
+    if (!isLastPage) {
+      onClick();
+      return;
+    }
+
+    const user = auth.currentUser;
+    if (!user || user.isAnonymous || isFinishing) {
+      onClick();
+      return;
+    }
+
+    const lessonSlug = lessonSlugFromPathname(pathname);
+    if (!lessonSlug) {
+      onClick();
+      return;
+    }
+
+    setIsFinishing(true);
+    try {
+      await markLessonCompleted(user.uid, lessonSlug);
+    } catch (error) {
+      console.error('Failed to mark lesson completed:', lessonSlug, error);
+    } finally {
+      onClick();
+      setIsFinishing(false);
+    }
+  };
+
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={handleClick}
+      disabled={isFinishing}
       className={`flex cursor-pointer items-center rounded bg-white py-2 text-lg text-[#3d7f80] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)] ${
         isLastPage ? 'px-2.5' : 'px-3'
       }`}
@@ -343,15 +379,34 @@ export function HintButton({
   widthClass: string;
   children: ReactNode;
 }) {
+  const [hintsEnabled, setHintsEnabled] = useState(true);
+
+  useEffect(() => {
+    const applyHintsState = () => {
+      const isHintsOff = document.documentElement.getAttribute('data-hints') === 'off';
+      setHintsEnabled(!isHintsOff);
+    };
+
+    applyHintsState();
+    window.addEventListener('hints-setting-change', applyHintsState);
+    return () => {
+      window.removeEventListener('hints-setting-change', applyHintsState);
+    };
+  }, []);
+
+  if (!hintsEnabled) {
+    return null;
+  }
+
   return (
     <div className="no-select relative group">
       <div
-        className={`pointer-events-none absolute bottom-full right-0 mb-[1.45rem] rounded-sm bg-[#e7e7e7] px-3 py-2 text-left text-[16px] leading-tight text-[#5b5b5b] opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 ${widthClass}`}
+        className={`pointer-events-none absolute bottom-full right-0 mb-[1.45rem] rounded-sm bg-[#e7e7e7] px-3 py-2 text-left text-[16px] leading-tight text-[#5b5b5b] opacity-0 shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition-opacity duration-150 group-hover:opacity-100 ${widthClass}`}
       >
         <div className="underline decoration-1 underline-offset-2">Solution:</div>
         <div>{children}</div>
       </div>
-      <div className="inline-flex h-11 w-11 items-center justify-center rounded bg-[#d3b93a] text-[32px] leading-none text-[#e4f9d9] transition-colors duration-150 group-hover:bg-[#e9cc41]">
+      <div className="inline-flex h-11 w-11 items-center justify-center rounded bg-[#d3b93a] text-[32px] leading-none text-[#e4f9d9] shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition-colors duration-150 group-hover:bg-[#e9cc41]">
         ?
       </div>
     </div>

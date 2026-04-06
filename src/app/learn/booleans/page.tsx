@@ -13,6 +13,8 @@ import {
   OutputPanel,
   RunButton,
 } from '@/components/lesson/ui';
+import { auth } from '@/app/firebase/config';
+import { markLessonCompleted } from '@/lib/lesson-progress';
 
 function LessonPage() {
   const router = useRouter();
@@ -23,7 +25,15 @@ function LessonPage() {
     router.push('/learn');
   };
 
-  const onFinish = () => {
+  const onFinish = async () => {
+    const user = auth.currentUser;
+    if (user && !user.isAnonymous) {
+      try {
+        await markLessonCompleted(user.uid, 'booleans');
+      } catch (error) {
+        console.error('Failed to mark lesson completed: booleans', error);
+      }
+    }
     router.push('/learn');
   };
 

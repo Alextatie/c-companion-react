@@ -13,8 +13,8 @@
         "World Hello!"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/1.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 2,
@@ -27,8 +27,8 @@
         "load"
       ],
       "expectedOutput": "My name is Bob.",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/2.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 3,
@@ -41,12 +41,12 @@
         "string"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/3.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 4,
-      "prompt": "What will the output be?",
+      "prompt": "What will be the output of the following code??",
       "code": "int main() {\n int a = 5, b = 3;\n a += ++b;\n printf(\"%d\", a);\n return 0;\n}",
       "options": [
         "3",
@@ -55,12 +55,12 @@
         "9"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/4.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "after_choice"
     },
     {
       "number": 5,
-      "prompt": "What will the output be?",
+      "prompt": "What will be the output of the following code??",
       "code": "int main() {\n int a = 5, b = 3;\n a += b++;\n printf(\"%d\", a);\n return 0;\n}",
       "options": [
         "3",
@@ -69,8 +69,8 @@
         "9"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/5.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "after_choice"
     },
     {
       "number": 6,
@@ -83,8 +83,8 @@
         "#using  <stdlib.h>"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/6.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 7,
@@ -97,8 +97,8 @@
         "World Hello!"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/7.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "after_choice"
     },
     {
       "number": 8,
@@ -111,8 +111,8 @@
         "Nothing"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/8.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "after_choice"
     },
     {
       "number": 9,
@@ -125,8 +125,8 @@
         "Nothing"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/9.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "after_choice"
     },
     {
       "number": 10,
@@ -139,8 +139,8 @@
         "Nothing"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/10.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "after_choice"
     },
     {
       "number": 11,
@@ -153,8 +153,8 @@
         "Nothing"
       ],
       "expectedOutput": "5",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/11.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "after_choice"
     },
     {
       "number": 12,
@@ -167,8 +167,8 @@
         "string"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/12.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "start"
     },
     {
       "number": 13,
@@ -181,8 +181,8 @@
         "string"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/13.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 14,
@@ -195,8 +195,8 @@
         "Garbage Output"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/14.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "after_choice"
     },
     {
       "number": 15,
@@ -209,8 +209,8 @@
         "Garbage Output"
       ],
       "expectedOutput": "3.333000",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/15.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 16,
@@ -223,8 +223,8 @@
         "Garbage Output"
       ],
       "expectedOutput": "3.333",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/16.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "after_choice"
     },
     {
       "number": 17,
@@ -237,8 +237,8 @@
         "Error"
       ],
       "expectedOutput": "z",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/17.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "after_choice"
     },
     {
       "number": 18,
@@ -251,8 +251,8 @@
         "Error"
       ],
       "expectedOutput": "c",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/18.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 19,
@@ -265,8 +265,8 @@
         "Error"
       ],
       "expectedOutput": "122 (ASCII)",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/19.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "after_choice"
     },
     {
       "number": 20,
@@ -279,8 +279,8 @@
         "Error"
       ],
       "expectedOutput": "z",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/20.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "after_choice"
     },
     {
       "number": 21,
@@ -293,8 +293,8 @@
         "Error"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/21.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "after_choice"
     },
     {
       "number": 22,
@@ -307,8 +307,8 @@
         "#include <stdbool.h>"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/22.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 23,
@@ -321,8 +321,8 @@
         "Error"
       ],
       "expectedOutput": "1",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/23.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "after_choice"
     },
     {
       "number": 24,
@@ -335,8 +335,8 @@
         "Error"
       ],
       "expectedOutput": "0",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/24.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "after_choice"
     },
     {
       "number": 25,
@@ -349,8 +349,8 @@
         "Error"
       ],
       "expectedOutput": "1",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/25.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 26,
@@ -363,8 +363,8 @@
         "Error"
       ],
       "expectedOutput": "2",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/26.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "after_choice"
     },
     {
       "number": 27,
@@ -377,8 +377,8 @@
         "Error"
       ],
       "expectedOutput": "0",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/27.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "after_choice"
     },
     {
       "number": 28,
@@ -391,8 +391,8 @@
         "Error"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/28.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "after_choice"
     },
     {
       "number": 29,
@@ -405,8 +405,8 @@
         "0"
       ],
       "expectedOutput": "1",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/29.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 30,
@@ -419,8 +419,8 @@
         "0"
       ],
       "expectedOutput": "0",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/30.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "after_choice"
     },
     {
       "number": 31,
@@ -433,8 +433,8 @@
         "num % 2"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/31.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 32,
@@ -447,8 +447,8 @@
         "== 0"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/32.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 33,
@@ -461,8 +461,8 @@
         "1 2"
       ],
       "expectedOutput": "1 2 4 5",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/33.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "start"
     },
     {
       "number": 34,
@@ -475,12 +475,12 @@
         "1 2"
       ],
       "expectedOutput": "1 2",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/34.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 35,
-      "prompt": "What's will the output be?",
+      "prompt": "What's will What will be the output of the following code??",
       "code": "int a = 5;\nint *ptr = &a;\n*ptr = 10;\nprintf(\"a = %d\", a);\n\n",
       "options": [
         "5",
@@ -489,8 +489,8 @@
         "Error"
       ],
       "expectedOutput": "a = 10",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/35.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 36,
@@ -503,8 +503,8 @@
         "Nothing"
       ],
       "expectedOutput": "True",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/36.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "after_choice"
     },
     {
       "number": 37,
@@ -517,8 +517,8 @@
         "Nothing"
       ],
       "expectedOutput": "False",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/37.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 38,
@@ -531,8 +531,8 @@
         "Nothing"
       ],
       "expectedOutput": "False",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/38.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 39,
@@ -545,8 +545,8 @@
         "Nothing"
       ],
       "expectedOutput": "True",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/39.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "after_choice"
     },
     {
       "number": 40,
@@ -559,8 +559,8 @@
         "A logical error"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/40.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 41,
@@ -573,8 +573,8 @@
         "4"
       ],
       "expectedOutput": "3",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/41.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 42,
@@ -587,8 +587,8 @@
         "Error"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/42.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 43,
@@ -601,8 +601,8 @@
         "#include <string.h>"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/43.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 44,
@@ -615,8 +615,8 @@
         "Error"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/44.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 45,
@@ -629,8 +629,8 @@
         "Error"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/45.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 46,
@@ -643,8 +643,8 @@
         "&nums[i]"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/46.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 47,
@@ -657,8 +657,8 @@
         "&name"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/47.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 48,
@@ -671,8 +671,8 @@
         "Error"
       ],
       "expectedOutput": "1 2 3 4 5",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/48.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "start"
     },
     {
       "number": 49,
@@ -685,8 +685,8 @@
         "Error"
       ],
       "expectedOutput": "2",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/49.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "after_choice"
     },
     {
       "number": 50,
@@ -699,8 +699,8 @@
         "???"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/50.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 51,
@@ -713,8 +713,8 @@
         "int"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/51.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 52,
@@ -727,8 +727,8 @@
         "0"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/52.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 53,
@@ -741,8 +741,8 @@
         "string *str"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/53.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 54,
@@ -755,8 +755,8 @@
         "Error"
       ],
       "expectedOutput": "abcd",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/54.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 55,
@@ -769,8 +769,8 @@
         "Function call"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/55.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 56,
@@ -783,8 +783,8 @@
         "string"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/56.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 57,
@@ -797,8 +797,8 @@
         "Error"
       ],
       "expectedOutput": "5",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/57.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 58,
@@ -811,8 +811,8 @@
         "Error"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/58.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 59,
@@ -825,8 +825,8 @@
         "Error"
       ],
       "expectedOutput": "5",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/59.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "start"
     },
     {
       "number": 60,
@@ -839,8 +839,8 @@
         "Error"
       ],
       "expectedOutput": "10",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/60.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 61,
@@ -853,8 +853,8 @@
         "#include <string.h>"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/61.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 62,
@@ -867,8 +867,8 @@
         "Fibonacci"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/62.png",
-      "answer": 2
+      "answer": 2,
+      "outputReveal": "start"
     },
     {
       "number": 63,
@@ -881,8 +881,8 @@
         "Fibonacci"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/63.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 64,
@@ -895,8 +895,8 @@
         "Struct"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/64.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     },
     {
       "number": 65,
@@ -909,8 +909,8 @@
         "10"
       ],
       "expectedOutput": "12",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/65.png",
-      "answer": 3
+      "answer": 3,
+      "outputReveal": "start"
     },
     {
       "number": 66,
@@ -923,8 +923,8 @@
         "||"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/66.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 67,
@@ -937,12 +937,12 @@
         "Error"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/67.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 68,
-      "prompt": "What's will the output be?",
+      "prompt": "What's will What will be the output of the following code??",
       "code": "int main() {\n printf(\"%lu \", sizeof(int));\n printf(\"%lu \", sizeof(float));\n printf(\"%lu \", sizeof(double));\n printf(\"%lu\", sizeof(char));\n return 0;\n}\n\n",
       "options": [
         "1 2 4 1",
@@ -951,8 +951,8 @@
         "4 4 8 1"
       ],
       "expectedOutput": "4 4 8 1",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/68.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "after_choice"
     },
     {
       "number": 69,
@@ -965,8 +965,8 @@
         "free"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/69.png",
-      "answer": 1
+      "answer": 1,
+      "outputReveal": "start"
     },
     {
       "number": 70,
@@ -979,8 +979,8 @@
         "free"
       ],
       "expectedOutput": "",
-      "screenshot": "/data/Screenshots/Game-Levels/TimeAttack/70.png",
-      "answer": 4
+      "answer": 4,
+      "outputReveal": "start"
     }
   ]
 }

@@ -32,7 +32,7 @@ function AboutPage() {
 
   {/* Back button container */}
   <div className="mt-12">
-    <Link href="/" className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(208,233,216)] transition flex items-center cursor-pointer">
+    <Link href="/Home" className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(208,233,216)] transition flex items-center cursor-pointer">
     <span>{'<-'}</span> <span className="ml-1">Back</span>
   </Link>
   </div>

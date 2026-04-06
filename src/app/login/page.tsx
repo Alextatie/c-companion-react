@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useState } from 'react';
 import {
@@ -10,19 +10,19 @@ import { auth } from '../firebase/config';
 import Link from 'next/link';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useGlobalLoading } from '../providers/loading-provider';
+import { defaultUsernameFromEmail, setStatsDisplayName } from '@/lib/username';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
   const [user, loadingUser] = useAuthState(auth);
   const { setLoading, withLoading } = useGlobalLoading();
 
   useEffect(() => {
     setLoading('login-auth-state', loadingUser);
     if (!loadingUser && user) {
-      window.location.replace('/');
+      window.location.replace('/Home');
     }
     return () => setLoading('login-auth-state', false);
   }, [user, loadingUser, setLoading]);
@@ -30,14 +30,12 @@ const LoginPage = () => {
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    setSuccess(false);
 
     try {
       await withLoading('login-email', async () =>
         signInWithEmailAndPassword(auth, email, password)
       );
-      setSuccess(true);
-      window.location.replace('/');
+      window.location.replace('/Home');
     } catch (err: any) {
       setError(err.message);
     }
@@ -45,17 +43,19 @@ const LoginPage = () => {
 
   const handleGoogleLogin = async () => {
     setError(null);
-    setSuccess(false);
 
     try {
-      await signInWithPopup(
+      const credential = await signInWithPopup(
         auth,
         new GoogleAuthProvider().setCustomParameters({
           prompt: 'select_account',
         })
       );
-      setSuccess(true);
-      window.location.replace('/');
+      await setStatsDisplayName({
+        uid: credential.user.uid,
+        displayName: defaultUsernameFromEmail(credential.user.email),
+      });
+      window.location.replace('/Home');
     } catch (err: any) {
       if (err?.code === 'auth/popup-closed-by-user') {
         return;
@@ -68,9 +68,10 @@ const LoginPage = () => {
 
   return (
     <div className="mx-auto mt-26 w-[305px] text-center">
-      <div className="rounded bg-[rgb(86,118,145)] p-4 shadow-lg">
-        <h2 className="mb-4 text-4xl font-bold text-shadow-lg">Log In</h2>
+      <h2 className="mb-4 text-5xl font-bold text-white text-shadow-lg">Log In</h2>
+      <div className="rounded bg-black/20 p-4 shadow-lg backdrop-blur-[1px]">
         <form onSubmit={handleEmailLogin} className="flex flex-col gap-4">
+          <label className="-mb-4 text-left text-white text-shadow-lg">Email:</label>
           <input
             type="email"
             placeholder="Email"
@@ -79,6 +80,7 @@ const LoginPage = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <label className="-mb-4 text-left text-white text-shadow-lg">Password:</label>
           <input
             type="password"
             placeholder="Password"
@@ -104,12 +106,11 @@ const LoginPage = () => {
           </button>
         </div>
 
-        {error && <p className="mt-4 text-red-500">{error}</p>}
-        {success && <p className="mt-4 text-green-600">Logged in successfully!</p>}
+        {error && <p className="mt-4 text-red-400">{error}</p>}
       </div>
 
       <Link
-        href="/"
+        href="/Home"
         className="mt-4 inline-flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] shadow-lg text-shadow-lg transition hover:bg-[rgb(214,232,220)]"
       >
         <span>{'<-'}</span>

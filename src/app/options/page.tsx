@@ -2,24 +2,9 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
-const applyDarkMode = (enabled: boolean) => {
-  const html = document.documentElement;
-  const body = document.body;
-
-  if (enabled) {
-    html.setAttribute('data-dark-mode', 'on');
-    body.setAttribute('data-dark-mode', 'on');
-    document.cookie = 'dark-mode=on; path=/; max-age=31536000; samesite=lax';
-    html.setAttribute('data-bg-anim', 'off');
-    body.setAttribute('data-bg-anim', 'off');
-    document.cookie = 'bg-anim=off; path=/; max-age=31536000; samesite=lax';
-  } else {
-    html.setAttribute('data-dark-mode', 'off');
-    body.setAttribute('data-dark-mode', 'off');
-    document.cookie = 'dark-mode=off; path=/; max-age=31536000; samesite=lax';
-  }
-};
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase/config';
+import { LESSON_DEFAULT_FIELDS } from '@/lib/lesson-progress';
 
 const applyAnimation = (enabled: boolean) => {
   const html = document.documentElement;
@@ -36,91 +21,199 @@ const applyAnimation = (enabled: boolean) => {
   }
 };
 
+const applyHints = (enabled: boolean) => {
+  const html = document.documentElement;
+  const body = document.body;
+
+  if (enabled) {
+    html.removeAttribute('data-hints');
+    body.removeAttribute('data-hints');
+    document.cookie = 'hints=on; path=/; max-age=31536000; samesite=lax';
+  } else {
+    html.setAttribute('data-hints', 'off');
+    body.setAttribute('data-hints', 'off');
+    document.cookie = 'hints=off; path=/; max-age=31536000; samesite=lax';
+  }
+  window.dispatchEvent(new Event('hints-setting-change'));
+};
+
 function OptionsPage() {
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
   const [animationEnabled, setAnimationEnabled] = useState(true);
+  const [hintsEnabled, setHintsEnabled] = useState(true);
+  const [showResetLessonsConfirm, setShowResetLessonsConfirm] = useState(false);
+  const [showResetGameScoresConfirm, setShowResetGameScoresConfirm] = useState(false);
+
+  const handleConfirmResetLessons = async () => {
+    const user = auth.currentUser;
+    if (!user || user.isAnonymous) {
+      setShowResetLessonsConfirm(false);
+      return;
+    }
+
+    try {
+      await setDoc(
+        doc(db, 'stats', user.uid),
+        {
+          ...LESSON_DEFAULT_FIELDS,
+          updatedAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+    } catch (error) {
+      console.error('Failed to reset lesson progress', error);
+    } finally {
+      setShowResetLessonsConfirm(false);
+    }
+  };
+
+  const handleConfirmResetGameScores = async () => {
+    const user = auth.currentUser;
+    if (!user || user.isAnonymous) {
+      setShowResetGameScoresConfirm(false);
+      return;
+    }
+
+    try {
+      await setDoc(
+        doc(db, 'stats', user.uid),
+        {
+          codeFixerStars: 0,
+          timeAttackStars: 0,
+          totalStars: 0,
+          codeFixerBestTimeMs: 0,
+          timeAttackBestTimeMs: 0,
+          updatedAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+    } catch (error) {
+      console.error('Failed to reset game scores', error);
+    } finally {
+      setShowResetGameScoresConfirm(false);
+    }
+  };
 
   useEffect(() => {
-    const isDarkMode = document.documentElement.getAttribute('data-dark-mode') === 'on';
     const isAnimationOff = document.documentElement.getAttribute('data-bg-anim') === 'off';
-    setDarkModeEnabled(isDarkMode);
+    const isHintsOff = document.documentElement.getAttribute('data-hints') === 'off';
     setAnimationEnabled(!isAnimationOff);
+    setHintsEnabled(!isHintsOff);
+  }, []);
+
+  useEffect(() => {
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest('[data-confirm-button="true"]')) {
+        return;
+      }
+      setShowResetLessonsConfirm(false);
+      setShowResetGameScoresConfirm(false);
+    };
+
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen -mt-25 text-white text-center px-4 pt-30">
+    <div className="flex min-h-screen flex-col items-center justify-start px-4 pt-[130px] text-center text-white">
       <h1 className="text-5xl text-shadow-lg font-bold mb-5">Options</h1>
 
-      <div className="w-full max-w-[440px] mx-auto p-2 space-y-4">
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-2xl text-shadow-lg">Dark Mode:</span>
-          <button
-            type="button"
-            role="checkbox"
-            aria-checked={darkModeEnabled}
-            onClick={() => {
-              const next = !darkModeEnabled;
-              setDarkModeEnabled(next);
-              applyDarkMode(next);
-              if (next) {
-                setAnimationEnabled(false);
-              }
-            }}
-            className={`w-8 h-8 rounded border-2 shadow-lg transition cursor-pointer flex items-center justify-center text-xl font-bold ${
-              darkModeEnabled
-                ? 'bg-transparent text-white border-white'
-                : 'bg-transparent text-transparent border-white'
-            }`}
-          >
-            {darkModeEnabled ? '\u2713' : ''}
-          </button>
-        </div>
+      <div className="w-full max-w-[440px] mx-auto rounded-xl bg-black/20 p-4 shadow-lg backdrop-blur-[1px]">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-2xl text-shadow-lg">Animation:</span>
+            <button
+              type="button"
+              role="checkbox"
+              aria-checked={animationEnabled}
+              onClick={() => {
+                const next = !animationEnabled;
+                setAnimationEnabled(next);
+                applyAnimation(next);
+              }}
+              className={`w-8 h-8 rounded border-2 shadow-lg transition cursor-pointer flex items-center justify-center text-xl font-bold ${
+                animationEnabled
+                  ? 'bg-transparent text-white border-white'
+                  : 'bg-transparent text-transparent border-white'
+              }`}
+            >
+              {animationEnabled ? '\u2713' : ''}
+            </button>
+          </div>
 
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-2xl text-shadow-lg">Animation:</span>
-          <button
-            type="button"
-            role="checkbox"
-            aria-checked={animationEnabled}
-            onClick={() => {
-              const next = !animationEnabled;
-              setAnimationEnabled(next);
-              applyAnimation(next);
-            }}
-            className={`w-8 h-8 rounded border-2 shadow-lg transition cursor-pointer flex items-center justify-center text-xl font-bold ${
-              animationEnabled
-                ? 'bg-transparent text-white border-white'
-                : 'bg-transparent text-transparent border-white'
-            }`}
-          >
-            {animationEnabled ? '\u2713' : ''}
-          </button>
-        </div>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-2xl text-shadow-lg">Hints:</span>
+            <button
+              type="button"
+              role="checkbox"
+              aria-checked={hintsEnabled}
+              onClick={() => {
+                const next = !hintsEnabled;
+                setHintsEnabled(next);
+                applyHints(next);
+              }}
+              className={`w-8 h-8 rounded border-2 shadow-lg transition cursor-pointer flex items-center justify-center text-xl font-bold ${
+                hintsEnabled
+                  ? 'bg-transparent text-white border-white'
+                  : 'bg-transparent text-transparent border-white'
+              }`}
+            >
+              {hintsEnabled ? '\u2713' : ''}
+            </button>
+          </div>
 
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-2xl text-shadow-lg">Reset Progress:</span>
-          <span className="text-xl text-shadow-lg">[WIP]</span>
-        </div>
-
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-2xl text-shadow-lg">Change Username:</span>
-          <span className="text-xl text-shadow-lg">[WIP]</span>
-        </div>
-
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-2xl text-shadow-lg">Disable Hints:</span>
-          <span className="text-xl text-shadow-lg">[WIP]</span>
-        </div>
-
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-2xl text-shadow-lg">Disable Sound:</span>
-          <span className="text-xl text-shadow-lg">[WIP]</span>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-2xl text-shadow-lg">Reset Lessons:</span>
+            <div className="flex items-center gap-2">
+              {showResetLessonsConfirm ? (
+                <button
+                  type="button"
+                  onClick={handleConfirmResetLessons}
+                  data-confirm-button="true"
+                  className="h-8 rounded border-2 border-[#bb6666] bg-transparent px-2 text-sm text-white shadow-lg transition hover:border-[#ca7a7a] hover:bg-transparent focus:bg-transparent active:bg-transparent hover:text-white"
+                >
+                  Confirm
+                </button>
+              ) : null}
+              <button
+                type="button"
+                onClick={() => setShowResetLessonsConfirm(true)}
+                className="h-8 w-8 cursor-pointer rounded border-2 border-[#bb6666] bg-transparent shadow-lg transition hover:border-[#ca7a7a] hover:bg-[rgba(202,122,122,0.08)]"
+              >
+                <span className="sr-only">Reset Lessons</span>
+              </button>
+            </div>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-2xl text-shadow-lg">Reset Game Scores:</span>
+            <div className="flex items-center gap-2">
+              {showResetGameScoresConfirm ? (
+                <button
+                  type="button"
+                  onClick={handleConfirmResetGameScores}
+                  data-confirm-button="true"
+                  className="h-8 rounded border-2 border-[#bb6666] bg-transparent px-2 text-sm text-white shadow-lg transition hover:border-[#ca7a7a] hover:bg-transparent focus:bg-transparent active:bg-transparent hover:text-white"
+                >
+                  Confirm
+                </button>
+              ) : null}
+              <button
+                type="button"
+                onClick={() => setShowResetGameScoresConfirm(true)}
+                className="h-8 w-8 cursor-pointer rounded border-2 border-[#bb6666] bg-transparent shadow-lg transition hover:border-[#ca7a7a] hover:bg-[rgba(202,122,122,0.08)]"
+              >
+                <span className="sr-only">Reset Game Scores</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="mt-12">
         <Link
-          href="/"
+          href="/Home"
           className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer"
         >
           <span>{'<-'}</span> <span className="ml-1">Back</span>
@@ -131,5 +224,3 @@ function OptionsPage() {
 }
 
 export default OptionsPage;
-
-

@@ -45,7 +45,7 @@ function PlayPage() {
   <div className="mt-12">
   
   
-  <Link href="./" className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer">
+  <Link href="./Home" className="bg-white text-shadow-lg shadow-lg w-full text-[#5d9d87] text-lg px-3 py-2 rounded hover:bg-[rgb(214,232,220)] transition flex items-center cursor-pointer">
     <span>{'<-'}</span> <span className="ml-1">Back</span>
   </Link>
 

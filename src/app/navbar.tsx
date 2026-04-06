@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full bg-transparent px-5 py-5 drop-shadow-lg z-50">
   <div className="flex justify-start items-center">
     <Link
-      href="/"
+      href="/Home"
       className="text-[rgb(86,116,145)] hover:text-[rgb(68,96,123)] transition"
     >
       <FaHome size={34} />

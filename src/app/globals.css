@@ -83,17 +83,17 @@ body {
   background: rgb(0 0 0 / 0.2);
 }
 
-html[data-dark-mode='on'] .lesson-panel,
-body[data-dark-mode='on'] .lesson-panel {
-  background: rgb(255 255 255 / 0.1);
-}
-
 button {
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55) !important;
+}
+
+a.text-shadow-lg {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55) !important;
 }
 
 @keyframes animate {
@@ -121,21 +121,6 @@ button {
   background: var(--bg-gradient);
   overflow: hidden;
   pointer-events: none;
-}
-
-html[data-dark-mode='on'] {
-  --bg-gradient: linear-gradient(
-    to bottom right,
-    #363636 0%,
-    #313131 25%,
-    #272727 50%,
-    #202020 75%,
-    #181818 100%
-  );
-}
-
-html[data-dark-mode='off'] {
-  --bg-gradient: var(--bg-gradient-light);
 }
 
 html[data-bg-anim='off'] .background li,

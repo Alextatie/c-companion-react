@@ -7,19 +7,22 @@ import codeFixerLevelsData from '@/data/code-fixer-levels.json';
 import { CodeEditor, HomeButton, LessonBackButton, LessonChip, OutputPanel } from '@/components/lesson/ui';
 import { renderHighlightedCodeLineWithOptions } from '@/components/lesson/code-highlighting';
 import { useRouter } from 'next/navigation';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   CODE_FIXER_DIFFICULTY_MAX,
   CODE_FIXER_QUESTION_LIMIT,
   CODE_FIXER_ROUND_SECONDS,
-  isCodeFixerOutputCorrect,
   formatCodeFixerTimer,
   getCodeFixerInputWidthPx,
   getCodeFixerStars,
   getCodeFixerTimerColorClass,
+  isCodeFixerOutputCorrect,
   pickRandomQuestionNumbers,
   type CodeFixerRule,
   validateCodeFixerInput,
 } from '@/lib/games/code-fixer-logic';
+import { auth } from '@/app/firebase/config';
+import { submitGameStats } from '@/lib/leaderboards';
 
 type Difficulty = 'easy' | 'medium' | 'hard' | 'debug';
 type Phase = 'menu' | 'difficulty' | 'round' | 'result';
@@ -30,7 +33,6 @@ type ParsedQuestion = {
   code: string;
   expectedOutput: string;
   expectedFix?: string;
-  screenshot: string;
   validator?: CodeFixerRule | null;
 };
 
@@ -103,8 +105,20 @@ function renderGameCodeLine(line: string, lineKey: string): ReactNode {
   });
 }
 
+function renderOutputLine(line: string, key: string): ReactNode {
+  if (line.trim().toLowerCase() === 'error') {
+    return (
+      <span key={key} className="text-[#ff6565]">
+        {line}
+      </span>
+    );
+  }
+  return line;
+}
+
 function CodeFixerPage() {
   const router = useRouter();
+  const [user] = useAuthState(auth);
   const [phase, setPhase] = useState<Phase>('menu');
   const [roundQuestions, setRoundQuestions] = useState<ParsedQuestion[]>([]);
   const [roundIndex, setRoundIndex] = useState(0);
@@ -127,6 +141,11 @@ function CodeFixerPage() {
   const [runResultText, setRunResultText] = useState('');
   const [lastRunCorrect, setLastRunCorrect] = useState(false);
   const [revealedStars, setRevealedStars] = useState(0);
+  const [roundSessionId, setRoundSessionId] = useState(0);
+  const [submittedSessionId, setSubmittedSessionId] = useState<number | null>(null);
+  const [bestTimeEligible, setBestTimeEligible] = useState(false);
+  const [roundStartedAtMs, setRoundStartedAtMs] = useState<number | null>(null);
+  const [roundFinishedAtMs, setRoundFinishedAtMs] = useState<number | null>(null);
 
   const questionsByNumber = useMemo(() => {
     const source = codeFixerLevelsData as { levels: ParsedQuestion[] };
@@ -167,15 +186,17 @@ function CodeFixerPage() {
             style={{
               width: `${blockInputWidthPx}px`,
               backgroundColor: '#262626',
-              color: '#ffffff',
+              color: outputDraft.trim().toLowerCase() === 'error' ? '#ff6565' : '#ffffff',
               borderColor: '#333333',
               transform: 'translate(-2px, 3px)',
               opacity: 1,
-              WebkitTextFillColor: '#ffffff',
+              WebkitTextFillColor: outputDraft.trim().toLowerCase() === 'error' ? '#ff6565' : '#ffffff',
             }}
           />,
         ]
-      : [displayedOutput];
+      : (displayedOutput || '')
+          .split('\n')
+          .map((line, index) => renderOutputLine(line, `cf-output-${index}`));
 
   const renderInputField = (field: string, inline: boolean) => (
     <input
@@ -301,6 +322,11 @@ function CodeFixerPage() {
     setRanLevel(false);
     setRunResultText('');
     setLastRunCorrect(false);
+    setBestTimeEligible(false);
+    setRoundFinishedAtMs(null);
+    setRoundStartedAtMs(Date.now());
+    setSubmittedSessionId(null);
+    setRoundSessionId((prev) => prev + 1);
     setPhase('round');
   };
 
@@ -377,6 +403,7 @@ function CodeFixerPage() {
         setCorrectCount((prev) => prev + (isCorrect ? 1 : 0));
         setCompletedCount((prev) => prev + 1);
       }
+      setBestTimeEligible(false);
       setPhase('result');
       return;
     }
@@ -403,6 +430,8 @@ function CodeFixerPage() {
     }
 
     if (!debugMode && roundIndex >= roundQuestions.length - 1) {
+      setBestTimeEligible(true);
+      setRoundFinishedAtMs(Date.now());
       setPhase('result');
       return;
     }
@@ -410,16 +439,60 @@ function CodeFixerPage() {
     setRoundIndex((prev) => prev + 1);
   };
 
+  useEffect(() => {
+    if (phase !== 'result' || debugMode || !user || user.isAnonymous) {
+      return;
+    }
+    if (submittedSessionId === roundSessionId) {
+      return;
+    }
+
+    const elapsedMs =
+      roundStartedAtMs !== null
+        ? Math.max(0, (roundFinishedAtMs ?? Date.now()) - roundStartedAtMs)
+        : Math.max(0, (CODE_FIXER_ROUND_SECONDS - timerSeconds) * 1000);
+
+    submitGameStats({
+      uid: user.uid,
+      game: 'code_fixer',
+      starsEarned: stars,
+      completionTimeMs: bestTimeEligible && stars === 3 ? elapsedMs : null,
+    })
+      .catch((error) => {
+        console.error('Failed to submit Code Fixer stats', error);
+      })
+      .finally(() => {
+        setSubmittedSessionId(roundSessionId);
+      });
+  }, [
+    phase,
+    debugMode,
+    user,
+    submittedSessionId,
+    roundSessionId,
+    timerSeconds,
+    stars,
+    bestTimeEligible,
+    roundStartedAtMs,
+    roundFinishedAtMs,
+  ]);
+
   const runCurrentLevel = () => {
     if (attemptLocked) {
       return;
     }
+
+    if (!currentQuestion) {
+      return;
+    }
+
     setRanLevel(true);
     if (activeAnswerDraft.trim().length === 0) {
       setRunResultText('Wrong!');
       setLastRunCorrect(false);
       return;
     }
+
     if (answerTarget === 'output') {
       const actual = outputDraft.trim();
       setOutputText(actual);
@@ -428,10 +501,9 @@ function CodeFixerPage() {
       setLastRunCorrect(isCorrect);
       return;
     }
+
     const validator = currentQuestion?.validator || undefined;
-    const isCorrect = validateCodeFixerInput(validator, {
-      ...inputDrafts,
-    });
+    const isCorrect = validateCodeFixerInput(validator, { ...inputDrafts });
     setRunResultText(isCorrect ? 'Correct!' : 'Wrong!');
     setLastRunCorrect(isCorrect);
   };
@@ -545,6 +617,7 @@ function CodeFixerPage() {
                         type="button"
                         onClick={() => {
                           if (quitConfirming) {
+                            setBestTimeEligible(false);
                             setPhase('result');
                             return;
                           }
@@ -574,22 +647,23 @@ function CodeFixerPage() {
               </section>
             </>
           ) : phase === 'result' ? (
-            <>
-              <HomeButton topClass="top-0" />
-              <h1 className="mb-3 mt-10 text-7xl font-bold text-shadow-lg">Game Finished!</h1>
-              <p className="text-5xl leading-tight">
-                You answered <span className="text-[#ffae5a]">{correctCount}</span> out of {completedCount} questions correctly!
+            <div className="mx-auto flex w-full flex-col items-center">
+              <h1 className="mb-3 mt-20 text-5xl font-bold text-shadow-lg">Game Finished!</h1>
+              <p className="mx-auto text-center text-4xl leading-tight">
+                You answered <span className="text-[#ffae5a]">{correctCount}</span> out of {completedCount}
+                <br>
+                </br>questions correctly!
               </p>
-              <div className="mt-6 text-[100px] leading-none tracking-[0.25em]">
+              <div className="mx-auto mt-1 inline-flex items-center justify-center gap-3 text-[100px] leading-none">
                 <span className={revealedStars >= 1 ? '' : 'text-black/40'} style={revealedStars >= 1 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
                 <span className={revealedStars >= 2 ? '' : 'text-black/40'} style={revealedStars >= 2 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
                 <span className={revealedStars >= 3 ? '' : 'text-black/40'} style={revealedStars >= 3 ? { color: '#f0c64a' } : undefined}>{'\u2605'}</span>
               </div>
-              <div className="mx-auto mt-4 flex w-[420px] flex-col gap-2">
+              <div className="mx-auto mt-5 flex w-[255px] flex-col gap-2">
                 <button
                   type="button"
                   onClick={() => setPhase('difficulty')}
-                  className="h-16 rounded-sm bg-[#8fd949] text-5xl text-white transition hover:bg-[#9eeb54]"
+                  className="h-16 rounded-sm bg-[#8fd949] text-4xl text-white transition hover:bg-[#9eeb54]"
                 >
                   Play again
                 </button>
@@ -597,7 +671,7 @@ function CodeFixerPage() {
                   <LessonBackButton onClick={() => router.push('/play')} />
                 </div>
               </div>
-            </>
+            </div>
           ) : (
             <>
               <h1 className="mb-1 mt-[2.7rem] text-[58px] font-bold text-shadow-lg">Code Fixer</h1>
@@ -623,12 +697,17 @@ function CodeFixerPage() {
                         type="button"
                         onClick={() => setPhase('difficulty')}
                         className=" w-full rounded-sm leading-none text-white text-shadow-lg shadow-lg transition"
-                        style={{ backgroundColor: '#69ac8a', height: '80px', width: '160px', fontSize: '54px'}}
+                        style={{
+                          backgroundColor: 'rgb(86,116,145)',
+                          height: '80px',
+                          width: '160px',
+                          fontSize: '54px',
+                        }}
                         onMouseEnter={(event) => {
-                          event.currentTarget.style.backgroundColor = '#6eb290';
+                          event.currentTarget.style.backgroundColor = 'rgb(68,96,123)';
                         }}
                         onMouseLeave={(event) => {
-                          event.currentTarget.style.backgroundColor = '#69ac8a';
+                          event.currentTarget.style.backgroundColor = 'rgb(86,116,145)';
                         }}
                       >
                         Play
@@ -674,7 +753,7 @@ function CodeFixerPage() {
                   type="button"
                   onClick={() => startRound('debug')}
                   aria-label="Start debug mode"
-                  className="absolute inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[rgb(86,116,145)] text-[24px] leading-none text-white shadow-lg transition hover:bg-[rgb(68,96,123)]"
+                  className="absolute inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[rgb(86,116,145)] text-[24px] leading-none text-white shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
                   style={{ left: '167px', top: '3px' }}
                 >
                   O

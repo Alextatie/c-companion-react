@@ -22,17 +22,17 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const cookieStore = await cookies();
-  const darkModeCookie = cookieStore.get('dark-mode')?.value;
   const bgAnim = cookieStore.get('bg-anim')?.value;
+  const hintsCookie = cookieStore.get('hints')?.value;
   const htmlAnim = bgAnim === 'off' ? 'off' : undefined;
-  const htmlDarkMode = darkModeCookie === 'on' ? 'on' : darkModeCookie === 'off' ? 'off' : undefined;
+  const htmlHints = hintsCookie === 'off' ? 'off' : undefined;
 
   return (
-    <html lang="en" data-bg-anim={htmlAnim} data-dark-mode={htmlDarkMode}>
+    <html lang="en" data-bg-anim={htmlAnim} data-hints={htmlHints}>
       <body
         className={`${jetBrainsMono.variable} ${jetBrainsMono.className} antialiased`}
-        data-dark-mode={htmlDarkMode}
         data-bg-anim={htmlAnim}
+        data-hints={htmlHints}
         suppressHydrationWarning
       >
         <ul className="background">

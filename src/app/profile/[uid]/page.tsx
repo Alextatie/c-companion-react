@@ -1,0 +1,239 @@
+'use client';
+
+import Link from 'next/link';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '@/app/firebase/config';
+import laurelImage from '../../../data/Laurel.png';
+import trophyImage from '../../../data/Trophy.png';
+import { LESSON_DEFINITIONS, type LessonDifficulty } from '@/lib/lesson-progress';
+
+type ProfileStats = {
+  displayName: string;
+  codeFixerStars: number;
+  timeAttackStars: number;
+  totalStars: number;
+  codeFixerBestTimeMs: number;
+  timeAttackBestTimeMs: number;
+} & Record<string, unknown>;
+
+function formatTime(ms: number) {
+  if (!Number.isFinite(ms) || ms <= 0) {
+    return '-';
+  }
+  return `${(ms / 1000).toFixed(2)}s`;
+}
+
+function countCompletedByDifficulty(stats: ProfileStats | null, difficulty: LessonDifficulty): number {
+  if (!stats) {
+    return 0;
+  }
+  return LESSON_DEFINITIONS.filter((lesson) => lesson.difficulty === difficulty).reduce((count, lesson) => {
+    return stats[lesson.field] === true ? count + 1 : count;
+  }, 0);
+}
+
+function countCompletedTotal(stats: ProfileStats | null): number {
+  if (!stats) {
+    return 0;
+  }
+  return LESSON_DEFINITIONS.reduce((count, lesson) => {
+    return stats[lesson.field] === true ? count + 1 : count;
+  }, 0);
+}
+
+function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
+  const [user, loadingAuth] = useAuthState(auth);
+  const [targetUid, setTargetUid] = useState('');
+  const [stats, setStats] = useState<ProfileStats | null>(null);
+  const [loadingStats, setLoadingStats] = useState(true);
+  const [errorText, setErrorText] = useState('');
+
+  useEffect(() => {
+    params
+      .then((p) => setTargetUid(p.uid))
+      .catch(() => setErrorText('Invalid profile id'));
+  }, [params]);
+
+  useEffect(() => {
+    if (!targetUid || !user) {
+      return;
+    }
+
+    let cancelled = false;
+    setLoadingStats(true);
+    setErrorText('');
+
+    getDoc(doc(db, 'stats', targetUid))
+      .then((snap) => {
+        if (cancelled) {
+          return;
+        }
+        if (!snap.exists()) {
+          setStats(null);
+          return;
+        }
+        const data = snap.data() as Partial<ProfileStats>;
+        setStats({
+          ...(data as Record<string, unknown>),
+          displayName: data.displayName || 'Unknown',
+          codeFixerStars: Number(data.codeFixerStars || 0),
+          timeAttackStars: Number(data.timeAttackStars || 0),
+          totalStars: Number(data.totalStars || 0),
+          codeFixerBestTimeMs: Number(data.codeFixerBestTimeMs || 0),
+          timeAttackBestTimeMs: Number(data.timeAttackBestTimeMs || 0),
+        });
+      })
+      .catch((error: unknown) => {
+        if (cancelled) {
+          return;
+        }
+        const message = error instanceof Error ? error.message : 'Failed to load profile';
+        setErrorText(message);
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoadingStats(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [targetUid, user]);
+
+  if (!loadingAuth && !user) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center px-4 text-center text-white">
+        <div>Sign in to view profiles.</div>
+        <div className="mt-8">
+          <Link
+            href="/Home"
+            className="flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
+          >
+            <span>{'<-'}</span>
+            <span className="ml-1">Back</span>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const titleText = stats?.displayName || (loadingAuth || loadingStats ? 'Profile' : 'Profile');
+  const beginnerCount = stats ? countCompletedByDifficulty(stats, 'beginner') : '0';
+  const intermediateCount = stats ? countCompletedByDifficulty(stats, 'intermediate') : '0';
+  const advancedCount = stats ? countCompletedByDifficulty(stats, 'advanced') : '0';
+  const totalCompletedLessons = countCompletedTotal(stats);
+  const allLessonsCompleted = totalCompletedLessons === 18;
+  const codeFixerStars = stats ? stats.codeFixerStars : '0';
+  const timeAttackStars = stats ? stats.timeAttackStars : '0';
+  const codeFixerBestTime = stats ? formatTime(stats.codeFixerBestTimeMs) : '-';
+  const timeAttackBestTime = stats ? formatTime(stats.timeAttackBestTimeMs) : '-';
+  const isOwnProfile = Boolean(user && targetUid && user.uid === targetUid);
+  const trophyOpacityClass = allLessonsCompleted ? 'opacity-100' : 'opacity-15';
+  const trophyGoldFilter = allLessonsCompleted
+    ? {
+        filter:
+          'brightness(0) saturate(100%) invert(75%) sepia(65%) saturate(1360%) hue-rotate(338deg) brightness(102%) contrast(101%)',
+      }
+    : undefined;
+
+  return (
+    <div className="flex min-h-screen flex-col items-center px-4 pt-30 text-center text-white">
+      <div className="mx-auto mb-4 w-full max-w-[560px] text-center">
+        <div className="relative mx-auto w-fit">
+          <h1 className="text-5xl font-bold text-shadow-lg">{titleText}</h1>
+          {isOwnProfile ? (
+            <Link
+              href="/Edit"
+              className="absolute left-full ml-2 -translate-y-[30px] rounded bg-[rgb(86,116,145)] px-1.5 py-0.5 text-xs text-white text-shadow-lg shadow-lg transition hover:bg-[rgb(68,96,123)]"
+            >
+              Edit
+            </Link>
+          ) : null}
+        </div>
+      </div>
+      <div className="flex w-full max-w-[980px] flex-col gap-4">
+        <div className="relative mx-auto w-[560px] rounded bg-black/20 p-4 px-[20px] text-left shadow-lg backdrop-blur-[1px]">
+          <div className="space-y-2 text-xl">
+            <div>
+              <span className="font-bold bg-[linear-gradient(135deg,rgb(210,249,171),rgb(150,223,138))] bg-clip-text text-transparent">Beginner:</span>{' '}
+              [{beginnerCount}/6]
+            </div>
+            <div>
+              <span className="font-bold bg-[linear-gradient(135deg,rgb(251,236,168),rgb(235,210,108))] bg-clip-text text-transparent">Intermediate:</span>{' '}
+              [{intermediateCount}/6]
+            </div>
+            <div>
+              <span className="font-bold bg-[linear-gradient(135deg,rgb(252,205,160),rgb(238,143,114))] bg-clip-text text-transparent">Advanced:</span>{' '}
+              [{advancedCount}/6]
+            </div>
+          </div>
+          <div className="pointer-events-none absolute right-[69px] top-1/2 h-[94px] w-[94px] -translate-y-1/2">
+            <Image
+              src={laurelImage}
+              alt=""
+              aria-hidden="true"
+              className={`absolute -left-[62px] -top-[72px] h-[238px] w-[80px] scale-x-[1.2] scale-y-[1.3] object-contain ${trophyOpacityClass}`}
+              style={trophyGoldFilter}
+            />
+            <Image
+              src={trophyImage}
+              alt="Trophy"
+              className={`absolute left-0 top-0 h-[94px] w-[94px] object-contain ${trophyOpacityClass}`}
+              style={trophyGoldFilter}
+            />
+            <Image
+              src={laurelImage}
+              alt=""
+              aria-hidden="true"
+              className={`absolute -right-[62px] -top-[72px] h-[238px] w-[80px] scale-x-[-1.2] scale-y-[1.3] object-contain ${trophyOpacityClass}`}
+              style={trophyGoldFilter}
+            />
+          </div>
+        </div>
+
+        <div className="mx-auto w-[580px] text-left">
+          {errorText ? (
+            <div className="text-[#ff6565]">{errorText}</div>
+          ) : (
+            <div className="flex justify-center gap-4">
+              <div className="w-[272px] rounded bg-black/20 p-4 px-[20px] shadow-lg backdrop-blur-[1px]">
+                <div className="mb-2 text-xl font-bold bg-[linear-gradient(135deg,rgb(130,255,182),rgb(40,223,195))] bg-clip-text text-transparent">
+                  Code Fixer
+                </div>
+                <div className="space-y-1 text-xl">
+                  <div>stars: [{codeFixerStars}]</div>
+                  <div>Best time: [{codeFixerBestTime}]</div>
+                </div>
+              </div>
+              <div className="w-[272px] rounded bg-black/20 p-4 px-[20px] shadow-lg backdrop-blur-[1px]">
+                <div className="mb-2 text-xl font-bold bg-[linear-gradient(135deg,rgb(130,255,182),rgb(40,223,195))] bg-clip-text text-transparent">
+                  Time Attack
+                </div>
+                <div className="space-y-1 text-xl">
+                  <div>stars: [{timeAttackStars}]</div>
+                  <div>Best time: [{timeAttackBestTime}]</div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <Link
+          href="/Home"
+          className="flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
+        >
+          <span>{'<-'}</span>
+          <span className="ml-1">Back</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default ProfileByUidPage;

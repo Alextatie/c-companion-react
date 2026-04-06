@@ -743,7 +743,7 @@ function LessonPage() {
       <div className="absolute left-[397px] top-[10.35rem]"><RunButton onClick={runPage14Sum} /></div>
       <div className="absolute right-[120px] top-[4.5rem] w-[326px]"><LessonChip text="output" /><OutputPanel lines={pageOutput[13]} minHeightClass="min-h-[176px]" /></div>
       <div className="absolute right-[118px] top-[14.6rem] min-h-[52px] w-[330px] text-[18px] leading-tight">{pageMessage[13]}</div>
-      <div className="absolute right-[122px] bottom-[3.2rem] w-[335px] rounded-sm border border-white/35 bg-white/80 px-4 py-2 text-[18px] leading-tight text-[#2d2d2d]">{page14Hint}</div>
+      <div className="absolute right-[122px] bottom-[3.2rem] w-[335px] rounded-sm border border-white/35 bg-white/80 px-4 py-2 text-[18px] leading-tight text-[#2d2d2d] shadow-[0_2px_6px_rgba(0,0,0,0.55)]">{page14Hint}</div>
     </div>
   );
 }

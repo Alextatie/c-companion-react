@@ -1,16 +1,18 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import ScaledLessonFrame from '@/components/scaled-lesson-frame';
+import { auth } from '@/app/firebase/config';
+import { formatLeaderboardValue, loadLeaderboard, type LeaderboardMode, type LeaderboardRow } from '@/lib/leaderboards';
 
 type LeaderboardEntry = {
+  uid: string;
   rank: number;
   player: string;
-  value: number;
+  value: string;
 };
-
-type LeaderboardMode = 'total-stars' | 'fixer-stars' | 'rush-stars' | 'fixer-time' | 'rush-time';
 
 function LeaderboardTable({
   valueHeader,
@@ -28,14 +30,15 @@ function LeaderboardTable({
       </div>
       <div>
         {entries.map((entry) => (
-          <div
+          <Link
             key={`${entry.rank}-${entry.player}`}
-            className="grid grid-cols-[110px_1fr_180px] border-t border-[#d9d9d9] bg-white px-2 py-[2px] text-[28px] leading-[1.25] text-[#426d67]"
+            href={`/profile/${entry.uid}`}
+            className="grid grid-cols-[110px_1fr_180px] border-t border-[#d9d9d9] bg-white px-2 py-[2px] text-[28px] leading-[1.25] text-[#426d67] transition hover:bg-[#eef5f5]"
           >
             <div>{entry.rank}</div>
             <div>{entry.player}</div>
             <div>{entry.value}</div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="h-[120px] bg-transparent" />
@@ -44,60 +47,19 @@ function LeaderboardTable({
 }
 
 function LeaderboardsPage() {
+  const [user, authLoading] = useAuthState(auth);
   const [mode, setMode] = useState<LeaderboardMode>('total-stars');
+  const [entriesByMode, setEntriesByMode] = useState<Partial<Record<LeaderboardMode, LeaderboardRow[]>>>({});
+  const [loading, setLoading] = useState(false);
+  const [errorText, setErrorText] = useState('');
 
-  const data = useMemo<Record<LeaderboardMode, { header: string; rows: LeaderboardEntry[] }>>(
+  const headers = useMemo<Record<LeaderboardMode, string>>(
     () => ({
-      'total-stars': {
-        header: 'Total Stars',
-        rows: [
-          { rank: 1, player: 'Alex', value: 22 },
-          { rank: 2, player: 'roberta207', value: 11 },
-          { rank: 3, player: 'MagicalSleepingChimpan', value: 9 },
-          { rank: 4, player: 'j0e_b1den', value: 2 },
-          { rank: 5, player: 'alex556', value: 1 },
-        ],
-      },
-      'fixer-stars': {
-        header: 'Fixer Stars',
-        rows: [
-          { rank: 1, player: 'Alex', value: 12 },
-          { rank: 2, player: 'roberta207', value: 9 },
-          { rank: 3, player: 'MagicalSleepingChimpan', value: 6 },
-          { rank: 4, player: 'j0e_b1den', value: 2 },
-          { rank: 5, player: 'alex556', value: 1 },
-        ],
-      },
-      'rush-stars': {
-        header: 'Rush Stars',
-        rows: [
-          { rank: 1, player: 'Alex', value: 10 },
-          { rank: 2, player: 'MagicalSleepingChimpan', value: 5 },
-          { rank: 3, player: 'roberta207', value: 2 },
-          { rank: 4, player: 'j0e_b1den', value: 0 },
-          { rank: 5, player: 'alex556', value: 0 },
-        ],
-      },
-      'fixer-time': {
-        header: 'Best Time',
-        rows: [
-          { rank: 1, player: 'roberta207', value: 76 },
-          { rank: 2, player: 'Alex', value: 83 },
-          { rank: 3, player: 'MagicalSleepingChimpan', value: 88 },
-          { rank: 4, player: 'alex556', value: 95 },
-          { rank: 5, player: 'j0e_b1den', value: 102 },
-        ],
-      },
-      'rush-time': {
-        header: 'Best Time',
-        rows: [
-          { rank: 1, player: 'Alex', value: 49 },
-          { rank: 2, player: 'MagicalSleepingChimpan', value: 53 },
-          { rank: 3, player: 'roberta207', value: 57 },
-          { rank: 4, player: 'alex556', value: 63 },
-          { rank: 5, player: 'j0e_b1den', value: 69 },
-        ],
-      },
+      'total-stars': 'Total Stars',
+      'fixer-stars': 'Fixer Stars',
+      'attack-stars': 'Attack Stars',
+      'fixer-time': 'Best Time',
+      'attack-time': 'Best Time',
     }),
     []
   );
@@ -105,12 +67,55 @@ function LeaderboardsPage() {
   const tabs: Array<{ key: LeaderboardMode; label: string }> = [
     { key: 'total-stars', label: 'Total☆' },
     { key: 'fixer-stars', label: 'Fixer☆' },
-    { key: 'rush-stars', label: 'Rush☆' },
+    { key: 'attack-stars', label: 'Attack☆' },
     { key: 'fixer-time', label: 'Fixer◷' },
-    { key: 'rush-time', label: 'Rush◷' },
+    { key: 'attack-time', label: 'Attack◷' },
   ];
 
-  const current = data[mode];
+  useEffect(() => {
+    if (authLoading || !user) {
+      return;
+    }
+    if (entriesByMode[mode]) {
+      return;
+    }
+
+    let cancelled = false;
+    setLoading(true);
+    setErrorText('');
+
+    loadLeaderboard(mode, 20)
+      .then((rows) => {
+        if (cancelled) {
+          return;
+        }
+        setEntriesByMode((prev) => ({ ...prev, [mode]: rows }));
+      })
+      .catch((error: unknown) => {
+        if (cancelled) {
+          return;
+        }
+        const message = error instanceof Error ? error.message : 'Failed to load leaderboard';
+        setErrorText(message);
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authLoading, user, mode, entriesByMode]);
+
+  const currentRows = entriesByMode[mode] || [];
+  const currentEntries: LeaderboardEntry[] = currentRows.map((row) => ({
+    uid: row.uid,
+    rank: row.rank,
+    player: row.player,
+    value: formatLeaderboardValue(mode, row.value),
+  }));
 
   return (
     <div className="h-screen overflow-hidden px-[50px] py-[50px] text-white">
@@ -136,7 +141,17 @@ function LeaderboardsPage() {
               ))}
             </div>
 
-            <LeaderboardTable valueHeader={current.header} entries={current.rows} />
+            {!authLoading && !user ? (
+              <div className="px-4 py-6 text-center text-[24px] text-white">Sign in to view leaderboards.</div>
+            ) : loading ? (
+              <div className="flex items-center justify-center px-4 py-6">
+                <div className="h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-white border-t-transparent" />
+              </div>
+            ) : errorText ? (
+              <div className="px-4 py-6 text-center text-[18px] text-[#ff6565]">{errorText}</div>
+            ) : (
+              <LeaderboardTable valueHeader={headers[mode]} entries={currentEntries} />
+            )}
           </div>
 
           <div className="mx-auto mt-1 flex w-[980px] items-center justify-center gap-6 text-[30px] leading-none">

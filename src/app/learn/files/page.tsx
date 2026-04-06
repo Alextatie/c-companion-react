@@ -176,7 +176,7 @@ function LessonPage() {
         <div className="absolute right-[14px] top-[2.8rem] h-[345px] w-[545px]">
           <img
             src="/lesson-images/files/1.png"
-            alt="Files folder screenshot"
+            alt="Files folder"
             className="h-full w-full object-contain"
             draggable={false}
           />
@@ -221,7 +221,7 @@ function LessonPage() {
         <div className="absolute right-[160px] top-[6.8rem] h-[190px] w-[335px]">
           <img
             src="/lesson-images/files/2.png"
-            alt="Notepad file screenshot"
+            alt="Notepad file"
             className="h-full w-full object-contain"
             draggable={false}
           />
@@ -269,7 +269,7 @@ function LessonPage() {
         <div className="absolute right-[160px] top-[6.8rem] h-[190px] w-[335px]">
           <img
             src="/lesson-images/files/3.png"
-            alt="Appended notepad screenshot"
+            alt="Appended notepad file"
             className="h-full w-full object-contain"
             draggable={false}
           />
