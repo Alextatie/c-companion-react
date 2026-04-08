@@ -3,8 +3,10 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { auth } from '@/app/firebase/config';
-import { lessonSlugFromPathname, markLessonCompleted } from '@/lib/lesson-progress';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '@/app/firebase/config';
+import { lessonFieldFromSlug, lessonSlugFromPathname, markLessonCompleted } from '@/lib/lesson-progress';
 
 const lessonChipVisualClassName =
   'flex w-fit items-center justify-center rounded-sm bg-white/30 px-2 py-[2px] text-[16px] leading-none text-[#e3efe6] text-center';
@@ -253,6 +255,7 @@ export function RunButton({ onClick, className = '' }: { onClick: () => void; cl
 
   return (
     <button
+      data-lesson-run="true"
       type="button"
       onClick={handleClick}
       className={`rounded-sm bg-[#8fd949] px-3 py-0.5 text-xl leading-none text-white transition-colors hover:bg-[#9ddf50] active:bg-[#adf758] ${className}`}
@@ -275,6 +278,7 @@ export function ChoiceButton({
 }) {
   return (
     <button
+      data-lesson-choice="true"
       type="button"
       onClick={onClick}
       disabled={disabled}
@@ -295,7 +299,7 @@ export function ChoiceButtonGroup({
   buttonClassName?: string;
 }) {
   return (
-    <div className={`w-[85px] shrink-0 space-y-1 pt-4 ${className}`}>
+    <div data-lesson-choice-group="true" className={`w-[85px] shrink-0 space-y-1 pt-4 ${className}`}>
       {options.map((option, index) => (
         <ChoiceButton key={index} onClick={option.onClick} className={buttonClassName}>
           {option.label}
@@ -327,8 +331,129 @@ export function LessonNextButton({
 }) {
   const pathname = usePathname();
   const [isFinishing, setIsFinishing] = useState(false);
+  const [isInputQuestionSolved, setIsInputQuestionSolved] = useState(true);
+  const [isLessonAlreadyCompleted, setIsLessonAlreadyCompleted] = useState(false);
+
+  useEffect(() => {
+    const isVisible = (el: Element) => {
+      const htmlEl = el as HTMLElement;
+      const style = window.getComputedStyle(htmlEl);
+      return style.display !== 'none' && style.visibility !== 'hidden' && htmlEl.offsetParent !== null;
+    };
+
+    const evaluateSolveState = () => {
+      const inputElements = Array.from(
+        document.querySelectorAll('input:not([type="hidden"]), textarea')
+      ).filter((el) => isVisible(el) && !(el as HTMLInputElement | HTMLTextAreaElement).disabled);
+
+      const choiceElements = Array.from(
+        document.querySelectorAll('button[data-lesson-choice="true"]')
+      ).filter((el) => !(el as HTMLButtonElement).disabled);
+
+      if (inputElements.length === 0 && choiceElements.length === 0) {
+        setIsInputQuestionSolved(true);
+        return;
+      }
+
+      const visiblePageText = document.body.innerText || '';
+      const correctCount = (visiblePageText.match(/\bCorrect!?\b/gi) || []).length;
+      const hasVisibleWrongResult = /\bWrong!?\b/i.test(visiblePageText);
+
+      if (hasVisibleWrongResult) {
+        setIsInputQuestionSolved(false);
+        return;
+      }
+
+      const allRunButtons = Array.from(document.querySelectorAll('button[data-lesson-run="true"]'));
+      const allChoiceGroups = Array.from(document.querySelectorAll('[data-lesson-choice-group="true"]'));
+
+      let requiredCorrectCount = 1;
+      let allInputsFilled = true;
+
+      if (inputElements.length > 0) {
+        allInputsFilled = inputElements.every((el) => {
+          const value = (el as HTMLInputElement | HTMLTextAreaElement).value || '';
+          return value.trim().length > 0;
+        });
+        requiredCorrectCount = Math.max(requiredCorrectCount, allRunButtons.length || 1);
+      }
+
+      if (allChoiceGroups.length > 0) {
+        requiredCorrectCount = Math.max(requiredCorrectCount, allChoiceGroups.length);
+      }
+
+      const solvedByResults = correctCount >= requiredCorrectCount;
+      setIsInputQuestionSolved(allInputsFilled && solvedByResults);
+    };
+
+    evaluateSolveState();
+
+    const observer = new MutationObserver(evaluateSolveState);
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: ['class', 'style', 'value'],
+    });
+
+    document.addEventListener('input', evaluateSolveState, true);
+    document.addEventListener('change', evaluateSolveState, true);
+    document.addEventListener('keyup', evaluateSolveState, true);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('input', evaluateSolveState, true);
+      document.removeEventListener('change', evaluateSolveState, true);
+      document.removeEventListener('keyup', evaluateSolveState, true);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    const lessonSlug = lessonSlugFromPathname(pathname);
+    const lessonField = lessonSlug ? lessonFieldFromSlug(lessonSlug) : null;
+
+    if (!lessonField) {
+      setIsLessonAlreadyCompleted(false);
+      return;
+    }
+
+    let cancelled = false;
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user || user.isAnonymous) {
+        setIsLessonAlreadyCompleted(false);
+        return;
+      }
+
+      getDoc(doc(db, 'stats', user.uid))
+        .then((snap) => {
+          if (cancelled || !snap.exists()) {
+            setIsLessonAlreadyCompleted(false);
+            return;
+          }
+          const data = snap.data() as Record<string, unknown>;
+          setIsLessonAlreadyCompleted(data[lessonField] === true);
+        })
+        .catch(() => {
+          if (!cancelled) {
+            setIsLessonAlreadyCompleted(false);
+          }
+        });
+    });
+
+    return () => {
+      cancelled = true;
+      unsubscribe();
+    };
+  }, [pathname]);
+
+  const isDisabled = isFinishing || (!isLessonAlreadyCompleted && !isInputQuestionSolved);
 
   const handleClick = async () => {
+    if (isDisabled) {
+      return;
+    }
+
     if (!isLastPage) {
       onClick();
       return;
@@ -349,6 +474,7 @@ export function LessonNextButton({
     setIsFinishing(true);
     try {
       await markLessonCompleted(user.uid, lessonSlug);
+      setIsLessonAlreadyCompleted(true);
     } catch (error) {
       console.error('Failed to mark lesson completed:', lessonSlug, error);
     } finally {
@@ -361,8 +487,10 @@ export function LessonNextButton({
     <button
       type="button"
       onClick={handleClick}
-      disabled={isFinishing}
-      className={`flex cursor-pointer items-center rounded bg-white py-2 text-lg text-[#3d7f80] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)] ${
+      disabled={isDisabled}
+      className={`flex items-center rounded bg-white py-2 text-lg text-[#3d7f80] text-shadow-lg shadow-lg transition ${
+        isDisabled ? 'cursor-default opacity-30' : 'cursor-pointer hover:bg-[rgb(214,232,220)]'
+      } ${
         isLastPage ? 'px-2.5' : 'px-3'
       }`}
     >

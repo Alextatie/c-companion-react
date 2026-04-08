@@ -38,6 +38,16 @@ export const LESSON_DEFAULT_FIELDS: Record<string, boolean> = LESSON_DEFINITIONS
   {} as Record<string, boolean>
 );
 
+export const BEGINNER_LESSON_FIELDS: string[] = LESSON_DEFINITIONS.filter(
+  (lesson) => lesson.difficulty === 'beginner'
+).map((lesson) => lesson.field);
+export const INTERMEDIATE_LESSON_FIELDS: string[] = LESSON_DEFINITIONS.filter(
+  (lesson) => lesson.difficulty === 'intermediate'
+).map((lesson) => lesson.field);
+export const ADVANCED_LESSON_FIELDS: string[] = LESSON_DEFINITIONS.filter(
+  (lesson) => lesson.difficulty === 'advanced'
+).map((lesson) => lesson.field);
+
 const LESSON_BY_SLUG = new Map(LESSON_DEFINITIONS.map((lesson) => [lesson.slug, lesson]));
 
 export function lessonSlugFromPathname(pathname: string): string | null {
@@ -46,6 +56,10 @@ export function lessonSlugFromPathname(pathname: string): string | null {
     return null;
   }
   return parts[1] || null;
+}
+
+export function lessonFieldFromSlug(lessonSlug: string): string | null {
+  return LESSON_BY_SLUG.get(lessonSlug)?.field ?? null;
 }
 
 export async function ensureLessonDefaults(uid: string) {

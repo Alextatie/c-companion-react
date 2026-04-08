@@ -336,3 +336,133 @@ This session focused on game-data cleanup, extracting non-UI game rules out of p
   - `56`
   - `64`
   - `68`
+
+## Session Update (2026-04-07)
+This update captures the latest implementation state around leaderboards/database wiring, username flow, profile/medals, and UI consistency work.
+
+### Core Routing / Page Split
+- App uses split home flow:
+  - `/` = pre-login landing
+  - `/Home` = logged-in main menu
+- Back/home navigation across lessons/play/profile was migrated to target `/Home` where appropriate.
+
+### Leaderboards + Database (Firestore)
+- Leaderboards are now wired to Firestore (not static placeholder-only).
+- Main logic file:
+  - `src/lib/leaderboards.ts`
+- Source collection:
+  - `stats/{uid}`
+- Supported leaderboard modes:
+  - total stars
+  - code fixer stars
+  - time attack stars
+  - code fixer best time
+  - time attack best time
+- Best-time writes are only sent when a run is 3-star eligible:
+  - `completionTimeMs: bestTimeEligible && stars === 3 ? elapsedMs : null`
+  - used in both game pages.
+- Current write model is client-side updates into Firestore stats (no server-authoritative run/session validation at this stage).
+- Leaderboards page currently requires signed-in user to view.
+
+### Username / Auth State
+- Username handling now centers on `stats.displayName`.
+- Username helper functions are in:
+  - `src/lib/username.ts`
+- Uniqueness check path uses:
+  - `usernames/{normalizedUsername}`
+  - transaction writes back to `stats/{uid}` displayName.
+- Email/password signup requires username validation.
+- Google signup path supports selecting/saving username and fallback behavior from email local-part when needed.
+- Login/signup/home greeting were updated to prefer profile username from Firestore rather than raw email display.
+
+### Profile Page State
+- Profile routes:
+  - `src/app/profile/page.tsx` (guest state)
+  - `src/app/profile/[uid]/page.tsx` (user profile)
+- Guest profile has dedicated message + login/signup actions.
+- Signed-in profile shows:
+  - lesson completion counts by difficulty (beginner/intermediate/advanced)
+  - game stats split (Code Fixer / Time Attack): stars + best time
+  - decorative trophy + laurels
+- Edit button only appears when viewing own profile.
+- Lesson completion counts are read from `lesson_*` fields on `stats/{uid}` and mapped via `src/lib/lesson-progress.ts`.
+
+### Lesson Completion + Medals
+- `src/lib/lesson-progress.ts` defines all 18 lesson fields and slug mapping.
+- Completing a lesson final page marks the corresponding `lesson_*` field true.
+- Learn menu uses medal icon status per lesson:
+  - incomplete: dark/low opacity
+  - complete: default medal color/full opacity
+- Medal asset:
+  - `src/data/Medal.png`
+
+### UI / Styling Consistency (Recent)
+- Button shadow style standardized to:
+  - `0 2px 6px rgba(0,0,0,0.55)`
+- Applied globally for:
+  - native `<button>`
+  - button-like links (`a.text-shadow-lg`)
+- Also explicitly applied to:
+  - lesson difficulty middle panel
+  - round home buttons (shared primitive + play pages)
+  - hint panel popup + hint trigger button.
+
+### Game UI Notes
+- Play menus and leaderboard tables were restyled to match project visual system (blue controls, dark translucent panel surfaces, consistent spacing/alignment work).
+- Code Fixer / Time Attack continue using shared lesson primitives where possible.
+- Game result updates now feed leaderboard stats via `updateLeaderboardStats(...)`.
+
+### Current Resume Guidance
+1. If continuing gameplay/backend hardening, decide whether to keep client-trusted writes or re-introduce server-authoritative validation path.
+2. Re-verify Firestore rules/indexes still match the current `stats` queries in `leaderboards.ts`.
+3. Regression-check profile + learn medals after any future stats schema changes.
+
+## Session Update (2026-04-08)
+This session focused on gameplay unlock UX rollback/simplification, Options debug actions, and guest-specific messaging.
+
+### Files Changed
+- `src/app/play/page.tsx`
+- `src/app/play/code_fixer/page.tsx`
+- `src/app/play/time_attack/page.tsx`
+- `src/app/learn/page.tsx`
+- `src/app/options/page.tsx`
+- `src/lib/play-unlocks.ts` (deleted)
+
+### Play Navigation / Unlock Flow
+- Removed pre-navigation unlock resolving/cache logic from `/play`.
+- Restored immediate navigation from Play menu to game pages.
+- Removed the temporary play-unlock cache helper:
+  - `src/lib/play-unlocks.ts` deleted.
+- Both game pages now resolve unlock state normally after load (no preload gate).
+
+### Guest Game Unlock Rules (Current)
+- For guests:
+  - `Play` button is always unlocked.
+  - Only `Easy` difficulty is unlocked.
+  - `Medium` and `Hard` remain locked.
+- For signed-in users:
+  - Existing lesson-completion-based unlock logic remains active.
+
+### Guest Tooltip Text (Current)
+- On both games, when guest hovers locked `Medium` or `Hard`, tooltip now says:
+  - `Login to unlock`
+- Signed-in users still get difficulty-specific lesson-completion tooltip text.
+
+### Learn Menu Guest Message
+- Learn menu now shows a small white helper text for guests:
+  - `Login to keep progress`
+- Appears under the lesson list for guest/not-signed-in users only.
+
+### Options Debug Panel (Temporary)
+- Added a second panel under the main options panel:
+  - label: `Debug Panel`
+- Added 3 confirm-style actions (same interaction pattern as reset actions):
+  - `Complete Beginner`
+  - `Complete Intermediate`
+  - `Complete Advanced`
+- Each action, for logged-in non-guest users, writes all corresponding `lesson_*` fields to `true` in `stats/{uid}` and updates `updatedAt`.
+
+### Notes
+- Typecheck was run successfully with:
+  - `npx tsc --noEmit`
+- `npm run lint` is currently not reliable in this environment due local script/powershell invocation issues.

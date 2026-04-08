@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
 import ScaledLessonFrame from '@/components/scaled-lesson-frame';
 import codeFixerLevelsData from '@/data/code-fixer-levels.json';
 import { CodeEditor, HomeButton, LessonBackButton, LessonChip, OutputPanel } from '@/components/lesson/ui';
@@ -21,8 +22,9 @@ import {
   type CodeFixerRule,
   validateCodeFixerInput,
 } from '@/lib/games/code-fixer-logic';
-import { auth } from '@/app/firebase/config';
+import { auth, db } from '@/app/firebase/config';
 import { submitGameStats } from '@/lib/leaderboards';
+import { ADVANCED_LESSON_FIELDS, BEGINNER_LESSON_FIELDS, INTERMEDIATE_LESSON_FIELDS } from '@/lib/lesson-progress';
 
 type Difficulty = 'easy' | 'medium' | 'hard' | 'debug';
 type Phase = 'menu' | 'difficulty' | 'round' | 'result';
@@ -119,6 +121,9 @@ function renderOutputLine(line: string, key: string): ReactNode {
 function CodeFixerPage() {
   const router = useRouter();
   const [user] = useAuthState(auth);
+  const [canStartFromLessons, setCanStartFromLessons] = useState(false);
+  const [mediumUnlocked, setMediumUnlocked] = useState(false);
+  const [hardUnlocked, setHardUnlocked] = useState(false);
   const [phase, setPhase] = useState<Phase>('menu');
   const [roundQuestions, setRoundQuestions] = useState<ParsedQuestion[]>([]);
   const [roundIndex, setRoundIndex] = useState(0);
@@ -147,6 +152,42 @@ function CodeFixerPage() {
   const [roundStartedAtMs, setRoundStartedAtMs] = useState<number | null>(null);
   const [roundFinishedAtMs, setRoundFinishedAtMs] = useState<number | null>(null);
 
+  useEffect(() => {
+    if (!user || user.isAnonymous) {
+      setCanStartFromLessons(true);
+      setMediumUnlocked(false);
+      setHardUnlocked(false);
+      return;
+    }
+
+    let cancelled = false;
+    getDoc(doc(db, 'stats', user.uid))
+      .then((snap) => {
+        if (cancelled || !snap.exists()) {
+          setCanStartFromLessons(false);
+          return;
+        }
+        const data = snap.data() as Record<string, unknown>;
+        const completedBeginner = BEGINNER_LESSON_FIELDS.every((field) => data[field] === true);
+        const completedIntermediate = INTERMEDIATE_LESSON_FIELDS.every((field) => data[field] === true);
+        const completedAdvanced = ADVANCED_LESSON_FIELDS.every((field) => data[field] === true);
+        setCanStartFromLessons(completedBeginner);
+        setMediumUnlocked(completedIntermediate);
+        setHardUnlocked(completedAdvanced);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setCanStartFromLessons(false);
+          setMediumUnlocked(false);
+          setHardUnlocked(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
+
   const questionsByNumber = useMemo(() => {
     const source = codeFixerLevelsData as { levels: ParsedQuestion[] };
     const map = new Map<number, ParsedQuestion>();
@@ -155,6 +196,7 @@ function CodeFixerPage() {
     });
     return map;
   }, []);
+  const isGuestUser = !user || user.isAnonymous;
 
   const currentQuestion = roundQuestions[roundIndex];
   const debugMode = phase === 'round' && currentDifficulty === 'debug';
@@ -510,7 +552,7 @@ function CodeFixerPage() {
 
   return (
     <div
-      className={`h-screen overflow-hidden pb-[40px] pt-[24px] text-white ${
+      className={`relative h-screen overflow-hidden pb-[40px] pt-[24px] text-white ${
         isGamePhase || isResultPhase ? 'px-[50px]' : 'px-[12px]'
       }`}
     >
@@ -693,25 +735,46 @@ function CodeFixerPage() {
 
                   <div className="mx-auto mt-3">
                     {phase === 'menu' ? (
-                      <button
-                        type="button"
-                        onClick={() => setPhase('difficulty')}
-                        className=" w-full rounded-sm leading-none text-white text-shadow-lg shadow-lg transition"
-                        style={{
-                          backgroundColor: 'rgb(86,116,145)',
-                          height: '80px',
-                          width: '160px',
-                          fontSize: '54px',
-                        }}
-                        onMouseEnter={(event) => {
-                          event.currentTarget.style.backgroundColor = 'rgb(68,96,123)';
-                        }}
-                        onMouseLeave={(event) => {
-                          event.currentTarget.style.backgroundColor = 'rgb(86,116,145)';
-                        }}
-                      >
-                        Play
-                      </button>
+                      <div className="group relative inline-flex">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (!canStartFromLessons) {
+                              return;
+                            }
+                            setPhase('difficulty');
+                          }}
+                          disabled={!canStartFromLessons}
+                          className={`w-full rounded-sm leading-none text-white text-shadow-lg shadow-lg transition ${
+                            canStartFromLessons ? '' : 'cursor-default opacity-25'
+                          }`}
+                          style={{
+                            backgroundColor: 'rgb(86,116,145)',
+                            height: '80px',
+                            width: '160px',
+                            fontSize: '54px',
+                          }}
+                          onMouseEnter={(event) => {
+                            if (!canStartFromLessons) {
+                              return;
+                            }
+                            event.currentTarget.style.backgroundColor = 'rgb(68,96,123)';
+                          }}
+                          onMouseLeave={(event) => {
+                            if (!canStartFromLessons) {
+                              return;
+                            }
+                            event.currentTarget.style.backgroundColor = 'rgb(86,116,145)';
+                          }}
+                        >
+                          Play
+                        </button>
+                        {!canStartFromLessons ? (
+                          <div className="pointer-events-none absolute left-full top-1/2 ml-3 w-[180px] -translate-y-1/2 px-2 py-1 text-center text-sm leading-tight text-white invisible group-hover:visible">
+                            <span className="opacity-100 text-white">Complete all </span><span className="opacity-100 text-[#8fd949]">beginner</span><span className="opacity-100 text-white"> lessons to unlock</span>
+                          </div>
+                        ) : null}
+                      </div>
                     ) : (
                       <div className="mx-auto flex w-[300px] items-center justify-between">
                         <button
@@ -721,20 +784,48 @@ function CodeFixerPage() {
                           className="rounded-full bg-[#8fd949] transition hover:bg-[#9eeb54]"
                           style={{ height: '80px', width: '80px' }}
                         />
-                        <button
-                          type="button"
-                          onClick={() => startRound('medium')}
-                          aria-label="Medium"
-                          className="rounded-full bg-[#d3b93a] transition hover:bg-[#e1c74a]"
-                          style={{ height: '80px', width: '80px' }}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => startRound('hard')}
-                          aria-label="Hard"
-                          className="rounded-full bg-[#d85b5b] transition hover:bg-[#e56d6d]"
-                          style={{ height: '80px', width: '80px' }}
-                        />
+                        <div className="group relative inline-flex">
+                          <button
+                            type="button"
+                            onClick={() => startRound('medium')}
+                            aria-label="Medium"
+                            disabled={!mediumUnlocked}
+                            className={`rounded-full transition ${mediumUnlocked ? 'bg-[#d3b93a] hover:bg-[#e1c74a]' : 'cursor-default bg-[#d3b93a] opacity-25'}`}
+                            style={{ height: '80px', width: '80px' }}
+                          />
+                          {!mediumUnlocked ? (
+                            <div className="pointer-events-none absolute left-full top-1/2 ml-3 w-[190px] -translate-y-1/2 px-2 py-1 text-center text-sm leading-tight text-white rounded-md bg-black/10 invisible group-hover:visible">
+                              {isGuestUser ? (
+                                <span className="opacity-100 text-white">Login to unlock</span>
+                              ) : (
+                                <>
+                                  <span className="opacity-100 text-white">Complete all </span><span className="opacity-100 text-[#d3b93a]">intermediate</span><span className="opacity-100 text-white"> lessons to unlock</span>
+                                </>
+                              )}
+                            </div>
+                          ) : null}
+                        </div>
+                        <div className="group relative inline-flex">
+                          <button
+                            type="button"
+                            onClick={() => startRound('hard')}
+                            aria-label="Hard"
+                            disabled={!hardUnlocked}
+                            className={`rounded-full transition ${hardUnlocked ? 'bg-[#d85b5b] hover:bg-[#e56d6d]' : 'cursor-default bg-[#d85b5b] opacity-25'}`}
+                            style={{ height: '80px', width: '80px' }}
+                          />
+                          {!hardUnlocked ? (
+                            <div className="pointer-events-none absolute left-full top-1/2 ml-3 w-[180px] -translate-y-1/2 px-2 py-1 text-center text-sm leading-tight text-white rounded-md bg-black/10 invisible group-hover:visible">
+                              {isGuestUser ? (
+                                <span className="opacity-100 text-white">Login to unlock</span>
+                              ) : (
+                                <>
+                                  <span className="opacity-100 text-white">Complete all </span><span className="opacity-100 text-[#d85b5b]">advanced</span><span className="opacity-100 text-white"> lessons to unlock</span>
+                                </>
+                              )}
+                            </div>
+                          ) : null}
+                        </div>
                       </div>
                     )}
                   </div>

@@ -114,6 +114,7 @@ function LearnPage() {
 
   const difficultyIndex = difficultyOrder.indexOf(difficulty);
   const lessonNumberOffset = difficulty === 'beginner' ? 0 : difficulty === 'intermediate' ? 6 : 12;
+  const isGuestUser = !user || user.isAnonymous;
 
   const showPreviousDifficulty = () => {
     if (difficultyIndex === 0) {
@@ -192,6 +193,10 @@ function LearnPage() {
             );
           })}
         </div>
+
+        {isGuestUser ? (
+          <div className="-mt-2 -mb-2 text-center text-sm text-white">Login to keep progress</div>
+        ) : null}
       </div>
 
       {/* Back Button */}
