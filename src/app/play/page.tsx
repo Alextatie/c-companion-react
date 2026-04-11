@@ -28,8 +28,10 @@ function PlayPage() {
             Time Attack
           </Link>
 
+          <div className="my-2 h-px w-full bg-white/60 shadow-[0_1px_2px_rgba(0,0,0,0.45)]" />
+
           <Link
-            href="play/leaderboards"
+            href="/play/leaderboards"
             className="flex h-[52px] items-center justify-center rounded bg-[rgb(86,116,145)] text-center text-3xl leading-none text-shadow-lg shadow-lg text-white transition hover:bg-[rgb(68,96,123)]"
             style={{ fontSize: '30px' }}
           >

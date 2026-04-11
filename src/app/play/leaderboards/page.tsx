@@ -14,6 +14,8 @@ type LeaderboardEntry = {
   value: string;
 };
 
+const LEADERBOARD_PAGE_SIZE = 10;
+
 function LeaderboardTable({
   valueHeader,
   entries,
@@ -21,27 +23,39 @@ function LeaderboardTable({
   valueHeader: string;
   entries: LeaderboardEntry[];
 }) {
+  const emptyRows = Array.from({ length: Math.max(0, LEADERBOARD_PAGE_SIZE - entries.length) });
+
   return (
-    <div className="overflow-hidden rounded-sm bg-transparent">
-      <div className="grid grid-cols-[110px_1fr_180px] bg-[rgb(86,116,145)] px-2 py-1 text-[22px] leading-none text-white">
-        <div>Rank</div>
-        <div>Player Name</div>
-        <div>{valueHeader}</div>
+    <div className="overflow-hidden rounded-b-[6px] bg-transparent backdrop-blur-[4px]">
+      <div className="grid grid-cols-[156.8px_1fr_156.8px] items-center bg-[rgb(86,116,145)] px-[6px] py-[3px] text-center text-[17.6px] leading-none text-white">
+        <div className="text-center">Rank</div>
+        <div className="text-center">Player Name</div>
+        <div className="text-center">{valueHeader}</div>
       </div>
       <div>
         {entries.map((entry) => (
           <Link
             key={`${entry.rank}-${entry.player}`}
             href={`/profile/${entry.uid}`}
-            className="grid grid-cols-[110px_1fr_180px] border-t border-[#d9d9d9] bg-white px-2 py-[2px] text-[28px] leading-[1.25] text-[#426d67] transition hover:bg-[#eef5f5]"
+            className="grid grid-cols-[156.8px_1fr_156.8px] items-center border-t-[0.8px] border-white/10 bg-black/[0.23] px-[6px] py-[1.6px] text-center text-[22.4px] leading-[1.25] text-white transition hover:bg-black/[0.288]"
           >
-            <div>{entry.rank}</div>
-            <div>{entry.player}</div>
-            <div>{entry.value}</div>
+            <div className="text-center">{entry.rank}</div>
+            <div className="text-center">{entry.player}</div>
+            <div className="text-center">{entry.value}</div>
           </Link>
         ))}
+        {emptyRows.map((_, index) => (
+          <div
+            key={`empty-leaderboard-row-${index}`}
+            className="grid grid-cols-[156.8px_1fr_156.8px] items-center border-t-[0.8px] border-white/10 bg-black/[0.154] px-[6px] py-[1.6px] text-center text-[22.4px] leading-[1.25] text-transparent"
+            aria-hidden="true"
+          >
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+          </div>
+        ))}
       </div>
-      <div className="h-[120px] bg-transparent" />
     </div>
   );
 }
@@ -49,6 +63,7 @@ function LeaderboardTable({
 function LeaderboardsPage() {
   const [user, authLoading] = useAuthState(auth);
   const [mode, setMode] = useState<LeaderboardMode>('total-stars');
+  const [pageIndex, setPageIndex] = useState(0);
   const [entriesByMode, setEntriesByMode] = useState<Partial<Record<LeaderboardMode, LeaderboardRow[]>>>({});
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState('');
@@ -73,10 +88,12 @@ function LeaderboardsPage() {
   ];
 
   useEffect(() => {
+    setPageIndex(0);
+  }, [mode]);
+
+  useEffect(() => {
     if (authLoading || !user) {
-      return;
-    }
-    if (entriesByMode[mode]) {
+      setLoading(false);
       return;
     }
 
@@ -84,7 +101,7 @@ function LeaderboardsPage() {
     setLoading(true);
     setErrorText('');
 
-    loadLeaderboard(mode, 20)
+    loadLeaderboard(mode, 25)
       .then((rows) => {
         if (cancelled) {
           return;
@@ -107,7 +124,7 @@ function LeaderboardsPage() {
     return () => {
       cancelled = true;
     };
-  }, [authLoading, user, mode, entriesByMode]);
+  }, [authLoading, user, mode]);
 
   const currentRows = entriesByMode[mode] || [];
   const currentEntries: LeaderboardEntry[] = currentRows.map((row) => ({
@@ -116,21 +133,33 @@ function LeaderboardsPage() {
     player: row.player,
     value: formatLeaderboardValue(mode, row.value),
   }));
+  const totalPages = Math.max(1, Math.ceil(currentEntries.length / LEADERBOARD_PAGE_SIZE));
+  const activePageIndex = Math.min(pageIndex, totalPages - 1);
+  const pagedEntries = currentEntries.slice(
+    activePageIndex * LEADERBOARD_PAGE_SIZE,
+    activePageIndex * LEADERBOARD_PAGE_SIZE + LEADERBOARD_PAGE_SIZE
+  );
+  const canGoPrev = !loading && activePageIndex > 0;
+  const canGoNext = !loading && activePageIndex < totalPages - 1;
 
   return (
-    <div className="h-screen overflow-hidden px-[50px] py-[50px] text-white">
-      <ScaledLessonFrame baseWidth={1040}>
-        <div className="mx-auto w-[1040px] text-center">
-          <h1 className="mb-5 text-5xl font-bold text-shadow-lg">Leaderboards</h1>
+    <div className="h-screen overflow-hidden px-[40px] py-[40px] text-white">
+      <ScaledLessonFrame baseWidth={832}>
+        <div className="mx-auto flex w-[832px] flex-col items-center text-center">
+          <h1 className="mb-4 w-full text-center text-[38.4px] font-bold leading-none text-shadow-lg">Leaderboards</h1>
 
-          <div className="mx-auto mt-3 w-[980px] rounded-none bg-black/20 p-0">
+          <div className="mx-auto mt-[10px] w-[784px] rounded-none bg-transparent p-0">
             <div className="grid grid-cols-5 gap-0">
-              {tabs.map((tab) => (
+              {tabs.map((tab, index) => (
                 <button
                   key={tab.key}
                   type="button"
                   onClick={() => setMode(tab.key)}
-                  className={`h-[56px] w-full rounded-none border border-[rgb(68,96,123)] text-[40px] leading-none transition ${
+                  className={`flex h-[44.8px] w-full items-center justify-center rounded-none border-[0.8px] border-[rgb(68,96,123)] text-center text-[32px] leading-none transition ${
+                    index === 0 ? 'rounded-tl-[6px]' : ''
+                  } ${
+                    index === tabs.length - 1 ? 'rounded-tr-[6px]' : ''
+                  } ${
                     mode === tab.key
                       ? 'bg-[rgb(86,116,145)] text-white'
                       : 'bg-[rgb(63,85,107)] text-[#8395a7] hover:bg-[rgb(68,96,123)]'
@@ -142,35 +171,54 @@ function LeaderboardsPage() {
             </div>
 
             {!authLoading && !user ? (
-              <div className="px-4 py-6 text-center text-[24px] text-white">Sign in to view leaderboards.</div>
-            ) : loading ? (
-              <div className="flex items-center justify-center px-4 py-6">
-                <div className="h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-white border-t-transparent" />
-              </div>
-            ) : errorText ? (
-              <div className="px-4 py-6 text-center text-[18px] text-[#ff6565]">{errorText}</div>
+              <div className="px-[13px] py-[19px] text-center text-[19.2px] text-white">Sign in to view leaderboards.</div>
+            ) : errorText && !loading ? (
+              <div className="px-[13px] py-[19px] text-center text-[14.4px] text-[#ff6565]">{errorText}</div>
             ) : (
-              <LeaderboardTable valueHeader={headers[mode]} entries={currentEntries} />
+              <div className="relative">
+                <LeaderboardTable valueHeader={headers[mode]} entries={pagedEntries} />
+                {loading ? (
+                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/[0.12]">
+                    <div className="h-[51.2px] w-[51.2px] animate-spin rounded-full border-[3.2px] border-t-[3.2px] border-white border-t-transparent" />
+                  </div>
+                ) : null}
+              </div>
             )}
           </div>
 
-          <div className="mx-auto mt-1 flex w-[980px] items-center justify-center gap-6 text-[30px] leading-none">
-            <button type="button" disabled className="rounded-none bg-[#567491]/35 px-4 py-1 text-[#6f8d8d]">
+          <div className="mx-auto mt-[7px] flex w-[784px] items-center justify-center gap-[19px] text-center text-[24px] leading-none">
+            <button
+              type="button"
+              disabled={!canGoPrev}
+              onClick={() => setPageIndex((prev) => Math.max(prev - 1, 0))}
+              className={`flex w-[71px] items-center justify-center rounded-[3px] bg-[rgb(86,116,145)] px-[13px] py-[3px] text-center text-white transition ${
+                canGoPrev ? 'hover:bg-[rgb(68,96,123)]' : 'opacity-30'
+              }`}
+            >
               Prev
             </button>
-            <span className="text-[#dceff1]">1/1</span>
-            <button type="button" disabled className="rounded-none bg-[#567491]/35 px-4 py-1 text-[#6f8d8d]">
+            <span className="text-[#dceff1]">
+              {activePageIndex + 1}/{totalPages}
+            </span>
+            <button
+              type="button"
+              disabled={!canGoNext}
+              onClick={() => setPageIndex((prev) => Math.min(prev + 1, totalPages - 1))}
+              className={`flex w-[71px] items-center justify-center rounded-[3px] bg-[rgb(86,116,145)] px-[13px] py-[3px] text-center text-white transition ${
+                canGoNext ? 'hover:bg-[rgb(68,96,123)]' : 'opacity-30'
+              }`}
+            >
               Next
             </button>
           </div>
 
-          <div className="mx-auto mt-4 w-[980px] text-center">
+          <div className="mx-auto mt-[13px] w-[784px] text-center">
             <Link
               href="/play"
-              className="inline-flex items-center rounded-none bg-white px-3 py-2 text-lg text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
+              className="inline-flex items-center justify-center rounded-[3px] bg-white px-[10px] py-[6px] text-center text-[14.4px] text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
             >
               <span>{'<-'}</span>
-              <span className="ml-1">Back</span>
+              <span className="ml-[3px]">Back</span>
             </Link>
           </div>
         </div>

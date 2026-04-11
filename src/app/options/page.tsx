@@ -42,6 +42,10 @@ const applyHints = (enabled: boolean) => {
   window.dispatchEvent(new Event('hints-setting-change'));
 };
 
+const DEBUG_UI_ENABLED =
+  process.env.NEXT_PUBLIC_DEBUG_UI === 'true'
+  || (process.env.NEXT_PUBLIC_DEBUG_UI == null && process.env.NODE_ENV !== 'production');
+
 function OptionsPage() {
   const [animationEnabled, setAnimationEnabled] = useState(true);
   const [hintsEnabled, setHintsEnabled] = useState(true);
@@ -248,6 +252,7 @@ function OptionsPage() {
               </button>
             </div>
           </div>
+
           <div className="flex items-center justify-between gap-3">
             <span className="text-2xl text-shadow-lg">Reset Game Scores:</span>
             <div className="flex items-center gap-2">
@@ -273,78 +278,80 @@ function OptionsPage() {
         </div>
       </div>
 
-      <div className="mt-4 w-full max-w-[440px] mx-auto rounded-xl bg-[#00244266] p-4 shadow-lg backdrop-blur-[1px]">
-        <div className="space-y-4">
-                    <div className="flex items-center justify-between gap-3">
-            <span className="text-2xl text-shadow-lg">Complete Beginner:</span>
-            <div className="flex items-center gap-2">
-              {showCompleteBeginnerConfirm ? (
+      {DEBUG_UI_ENABLED ? (
+        <div className="mt-4 w-full max-w-[440px] mx-auto rounded-xl bg-[#00244266] p-4 shadow-lg backdrop-blur-[1px]">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-2xl text-shadow-lg">Complete Beginner:</span>
+              <div className="flex items-center gap-2">
+                {showCompleteBeginnerConfirm ? (
+                  <button
+                    type="button"
+                    onClick={handleConfirmCompleteBeginner}
+                    data-confirm-button="true"
+                    className="h-8 rounded border-2 border-[#bb6666] bg-transparent px-2 text-sm text-white shadow-lg transition hover:border-[#ca7a7a] hover:bg-transparent focus:bg-transparent active:bg-transparent hover:text-white"
+                  >
+                    Confirm
+                  </button>
+                ) : null}
                 <button
                   type="button"
-                  onClick={handleConfirmCompleteBeginner}
-                  data-confirm-button="true"
-                  className="h-8 rounded border-2 border-[#bb6666] bg-transparent px-2 text-sm text-white shadow-lg transition hover:border-[#ca7a7a] hover:bg-transparent focus:bg-transparent active:bg-transparent hover:text-white"
+                  onClick={() => setShowCompleteBeginnerConfirm(true)}
+                  className="h-8 w-8 cursor-pointer rounded border-2 border-[#bb6666] bg-transparent shadow-lg transition hover:border-[#ca7a7a] hover:bg-[rgba(202,122,122,0.08)]"
                 >
-                  Confirm
+                  <span className="sr-only">Complete Beginner</span>
                 </button>
-              ) : null}
-              <button
-                type="button"
-                onClick={() => setShowCompleteBeginnerConfirm(true)}
-                className="h-8 w-8 cursor-pointer rounded border-2 border-[#bb6666] bg-transparent shadow-lg transition hover:border-[#ca7a7a] hover:bg-[rgba(202,122,122,0.08)]"
-              >
-                <span className="sr-only">Complete Beginner</span>
-              </button>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-2xl text-shadow-lg">Complete Inter:</span>
-            <div className="flex items-center gap-2">
-              {showCompleteIntermediateConfirm ? (
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-2xl text-shadow-lg">Complete Inter:</span>
+              <div className="flex items-center gap-2">
+                {showCompleteIntermediateConfirm ? (
+                  <button
+                    type="button"
+                    onClick={handleConfirmCompleteIntermediate}
+                    data-confirm-button="true"
+                    className="h-8 rounded border-2 border-[#bb6666] bg-transparent px-2 text-sm text-white shadow-lg transition hover:border-[#ca7a7a] hover:bg-transparent focus:bg-transparent active:bg-transparent hover:text-white"
+                  >
+                    Confirm
+                  </button>
+                ) : null}
                 <button
                   type="button"
-                  onClick={handleConfirmCompleteIntermediate}
-                  data-confirm-button="true"
-                  className="h-8 rounded border-2 border-[#bb6666] bg-transparent px-2 text-sm text-white shadow-lg transition hover:border-[#ca7a7a] hover:bg-transparent focus:bg-transparent active:bg-transparent hover:text-white"
+                  onClick={() => setShowCompleteIntermediateConfirm(true)}
+                  className="h-8 w-8 cursor-pointer rounded border-2 border-[#bb6666] bg-transparent shadow-lg transition hover:border-[#ca7a7a] hover:bg-[rgba(202,122,122,0.08)]"
                 >
-                  Confirm
+                  <span className="sr-only">Complete Inter</span>
                 </button>
-              ) : null}
-              <button
-                type="button"
-                onClick={() => setShowCompleteIntermediateConfirm(true)}
-                className="h-8 w-8 cursor-pointer rounded border-2 border-[#bb6666] bg-transparent shadow-lg transition hover:border-[#ca7a7a] hover:bg-[rgba(202,122,122,0.08)]"
-              >
-                <span className="sr-only">Complete Inter</span>
-              </button>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-2xl text-shadow-lg">Complete Advanced:</span>
-            <div className="flex items-center gap-2">
-              {showCompleteAdvancedConfirm ? (
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-2xl text-shadow-lg">Complete Advanced:</span>
+              <div className="flex items-center gap-2">
+                {showCompleteAdvancedConfirm ? (
+                  <button
+                    type="button"
+                    onClick={handleConfirmCompleteAdvanced}
+                    data-confirm-button="true"
+                    className="h-8 rounded border-2 border-[#bb6666] bg-transparent px-2 text-sm text-white shadow-lg transition hover:border-[#ca7a7a] hover:bg-transparent focus:bg-transparent active:bg-transparent hover:text-white"
+                  >
+                    Confirm
+                  </button>
+                ) : null}
                 <button
                   type="button"
-                  onClick={handleConfirmCompleteAdvanced}
-                  data-confirm-button="true"
-                  className="h-8 rounded border-2 border-[#bb6666] bg-transparent px-2 text-sm text-white shadow-lg transition hover:border-[#ca7a7a] hover:bg-transparent focus:bg-transparent active:bg-transparent hover:text-white"
+                  onClick={() => setShowCompleteAdvancedConfirm(true)}
+                  className="h-8 w-8 cursor-pointer rounded border-2 border-[#bb6666] bg-transparent shadow-lg transition hover:border-[#ca7a7a] hover:bg-[rgba(202,122,122,0.08)]"
                 >
-                  Confirm
+                  <span className="sr-only">Complete Advanced</span>
                 </button>
-              ) : null}
-              <button
-                type="button"
-                onClick={() => setShowCompleteAdvancedConfirm(true)}
-                className="h-8 w-8 cursor-pointer rounded border-2 border-[#bb6666] bg-transparent shadow-lg transition hover:border-[#ca7a7a] hover:bg-[rgba(202,122,122,0.08)]"
-              >
-                <span className="sr-only">Complete Advanced</span>
-              </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : null}
 
       <div className="mt-12">
         <Link

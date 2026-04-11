@@ -26,7 +26,7 @@ const HomeMenuPage = () => {
   useEffect(() => {
     if (!loading && !user) {
       setRedirecting(true);
-      router.replace('/');
+      router.replace('/login');
       return;
     }
 
@@ -66,7 +66,7 @@ const HomeMenuPage = () => {
   const handleLogout = async () => {
     try {
       await withLoading('home-menu-logout', async () => signOut(auth));
-      window.location.replace('/');
+      router.replace('/login');
     } catch (err) {
       console.error('Error signing out: ', err);
     }

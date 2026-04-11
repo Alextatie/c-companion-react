@@ -126,34 +126,12 @@ export async function loadLeaderboard(mode: LeaderboardMode, count = 20): Promis
   }
 
   const snap = await getDocs(q);
-  const rawRows = snap.docs.map((d) => {
-    const data = d.data() as Partial<StatsDoc>;
-    const value =
-      mode === 'total-stars'
-        ? Number(data.totalStars || 0)
-        : mode === 'fixer-stars'
-          ? Number(data.codeFixerStars || 0)
-          : mode === 'attack-stars'
-            ? Number(data.timeAttackStars || 0)
-            : mode === 'fixer-time'
-              ? Number(data.codeFixerBestTimeMs || 0)
-              : Number(data.timeAttackBestTimeMs || 0);
+  const stats = snap.docs.map((d) => ({
+    uid: d.id,
+    ...(d.data() as StatsDoc),
+  }));
 
-    return {
-      uid: d.id,
-      player: data.displayName || 'Unknown',
-      value,
-    };
-  });
-
-  return rawRows
-    .filter((row) => row.player.toLowerCase() !== 'guest')
-    .map((row, index) => ({
-      uid: row.uid,
-      rank: index + 1,
-      player: row.player,
-      value: row.value,
-    }));
+  return buildLeaderboardRows(stats, mode, count);
 }
 
 export function formatLeaderboardValue(mode: LeaderboardMode, rawValue: number): string {
@@ -165,4 +143,46 @@ export function formatLeaderboardValue(mode: LeaderboardMode, rawValue: number):
     return `${seconds}s`;
   }
   return String(rawValue);
+}
+
+function buildLeaderboardRows(
+  stats: Array<Partial<StatsDoc> & { uid: string }>,
+  mode: LeaderboardMode,
+  count: number
+): LeaderboardRow[] {
+  const rawRows = stats.map((row) => {
+    const value =
+      mode === 'total-stars'
+        ? Number(row.totalStars || 0)
+        : mode === 'fixer-stars'
+          ? Number(row.codeFixerStars || 0)
+          : mode === 'attack-stars'
+            ? Number(row.timeAttackStars || 0)
+            : mode === 'fixer-time'
+              ? Number(row.codeFixerBestTimeMs || 0)
+              : Number(row.timeAttackBestTimeMs || 0);
+
+    return {
+      uid: row.uid,
+      player: row.displayName || 'Unknown',
+      value,
+    };
+  });
+
+  const sortedRows = rawRows
+    .filter((row) => row.player.toLowerCase() !== 'guest')
+    .filter((row) => row.value > 0)
+    .sort((a, b) => {
+      if (mode === 'fixer-time' || mode === 'attack-time') {
+        return a.value - b.value;
+      }
+      return b.value - a.value;
+    });
+
+  return sortedRows.slice(0, count).map((row, index) => ({
+    uid: row.uid,
+    rank: index + 1,
+    player: row.player,
+    value: row.value,
+  }));
 }

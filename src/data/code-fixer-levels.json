@@ -43,7 +43,7 @@
     {
       "number": 4,
       "prompt": "Add the missing operator:",
-      "code": "int main() {\n  int a = 5, b = 3;\n  a [[input]]= b;\n  printf(\"%d\", a);\n  return 0;\n}",
+      "code": "int main() {\n  int a = 8, b = 3;\n  a [[input]]= b;\n  printf(\"%d\", a);\n  return 0;\n}",
       "expectedOutput": "2",
       "validator": {
         "type": "exact_any",
@@ -275,8 +275,8 @@
     {
       "number": 22,
       "prompt": "Add the missing operator:",
-      "code": "int main() {\n  int a = 5, b = 3;\n  a [[input]]= b;\n  printf(\"%d\", a);\n  return 0;\n}",
-      "expectedOutput": "2",
+      "code": "int main() {\n  int a = 8, b = 3;\n  a [[input]]= b;\n  printf(\"%d\", a);\n  return 0;\n}",
+      "expectedOutput": "5",
       "validator": {
         "type": "exact_any",
         "field": "input_a",
@@ -287,7 +287,7 @@
     },
     {
       "number": 23,
-      "prompt": "Add the missing operator:",
+      "prompt": "Add the missing relational operator (greater,lesser):",
       "code": "int main() {\n  int a = 7 % 5, b = 5 % 7;\n  printf(\"%d\", a [[input]] b);\n  return 0;\n}",
       "expectedOutput": "0",
       "validator": {
@@ -300,7 +300,7 @@
     },
     {
       "number": 24,
-      "prompt": "Add the missing operator:",
+      "prompt": "Add the missing relational operator (greater,lesser):",
       "code": "int main() {\n  int a = 7 % 5, b = 5 % 7;\n  printf(\"%d\", a [[input]] b);\n  return 0;\n}",
       "expectedOutput": "1",
       "validator": {
@@ -313,7 +313,7 @@
     },
     {
       "number": 25,
-      "prompt": "Add the missing operator:",
+      "prompt": "Add the missing logical operator (or, and, etc):",
       "code": "int main() {\n  bool a = true, b = false;\n  printf(\"%d\", a [[input]] b);\n  return 0;\n}",
       "expectedOutput": "1",
       "validator": {
@@ -326,7 +326,7 @@
     },
     {
       "number": 26,
-      "prompt": "Add the missing operator:",
+      "prompt": "Add the missing logical operator (or, and, etc):",
       "code": "int main() {\n  bool a = true, b = false;\n  printf(\"%d\", a [[input]] b);\n  return 0;\n}",
       "expectedOutput": "0",
       "validator": {

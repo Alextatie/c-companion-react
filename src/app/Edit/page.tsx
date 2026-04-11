@@ -16,7 +16,7 @@ export default function UsernamePage() {
   const handleSave = async (e: FormEvent) => {
     e.preventDefault();
     if (!user || user.isAnonymous) {
-      router.replace('/signup');
+      router.replace('/login?mode=signup');
       return;
     }
 

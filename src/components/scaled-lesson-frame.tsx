@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useCallback, useLayoutEffect, useRef, useState } from 'react';
 
 type ScaledLessonFrameProps = {
   baseWidth: number;
@@ -18,44 +18,49 @@ function ScaledLessonFrame({
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
-  const [contentHeight, setContentHeight] = useState(0);
 
-  useEffect(() => {
-    const updateScale = () => {
-      if (!wrapperRef.current || !contentRef.current) {
-        return;
-      }
-
-      const availableWidth = wrapperRef.current.clientWidth;
-      const availableHeight = wrapperRef.current.clientHeight;
-      const measuredHeight = contentRef.current.offsetHeight;
-      const widthScale = availableWidth / baseWidth;
-      const heightScale = measuredHeight > 0 ? availableHeight / measuredHeight : 1;
-      const nextScale = Math.min(1, Math.max(0.4, Math.min(widthScale, heightScale)));
-      setScale(nextScale);
-    };
-
-    updateScale();
-    window.addEventListener('resize', updateScale);
-    return () => window.removeEventListener('resize', updateScale);
-  }, [baseWidth, contentHeight]);
-
-  useEffect(() => {
-    if (!contentRef.current) {
+  const updateScale = useCallback(() => {
+    if (!wrapperRef.current || !contentRef.current) {
       return;
     }
 
-    const observer = new ResizeObserver(() => {
-      if (contentRef.current) {
-        setContentHeight(contentRef.current.offsetHeight);
-      }
-    });
+    const availableWidth = wrapperRef.current.clientWidth;
+    const availableHeight = wrapperRef.current.clientHeight;
+    const measuredHeight = contentRef.current.offsetHeight;
+    const widthScale = availableWidth / baseWidth;
+    const heightScale = measuredHeight > 0 ? availableHeight / measuredHeight : 1;
+    const nextScale = Math.min(1, Math.max(0.4, Math.min(widthScale, heightScale)));
+    setScale(nextScale);
+  }, [baseWidth]);
 
+  useLayoutEffect(() => {
+    updateScale();
+    const animationFrame = window.requestAnimationFrame(updateScale);
+    window.addEventListener('resize', updateScale);
+    window.addEventListener('orientationchange', updateScale);
+    window.addEventListener('pageshow', updateScale);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', updateScale);
+      window.removeEventListener('orientationchange', updateScale);
+      window.removeEventListener('pageshow', updateScale);
+    };
+  }, [updateScale]);
+
+  useLayoutEffect(() => {
+    if (!wrapperRef.current || !contentRef.current) {
+      return;
+    }
+
+    const observer = new ResizeObserver(updateScale);
+
+    observer.observe(wrapperRef.current);
     observer.observe(contentRef.current);
-    setContentHeight(contentRef.current.offsetHeight);
+    updateScale();
 
     return () => observer.disconnect();
-  }, []);
+  }, [updateScale]);
 
   return (
     <div ref={wrapperRef} className="relative h-full w-full">

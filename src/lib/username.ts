@@ -31,6 +31,17 @@ export function validateUsername(raw: string): string | null {
   return null;
 }
 
+export async function isUsernameTaken(username: string, firestore: Firestore = db): Promise<boolean> {
+  const normalized = normalizeUsername(username);
+  if (!normalized) {
+    return false;
+  }
+
+  const usernameRef = doc(firestore, 'usernames', normalized);
+  const snap = await getDoc(usernameRef);
+  return snap.exists();
+}
+
 export async function setStatsDisplayName(params: {
   uid: string;
   displayName: string;

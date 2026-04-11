@@ -28,6 +28,9 @@ import { ADVANCED_LESSON_FIELDS, BEGINNER_LESSON_FIELDS, INTERMEDIATE_LESSON_FIE
 
 type Difficulty = 'easy' | 'medium' | 'hard' | 'debug';
 type Phase = 'menu' | 'difficulty' | 'round' | 'result';
+const DEBUG_UI_ENABLED =
+  process.env.NEXT_PUBLIC_DEBUG_UI === 'true'
+  || (process.env.NEXT_PUBLIC_DEBUG_UI == null && process.env.NODE_ENV !== 'production');
 
 type ParsedQuestion = {
   number: number;
@@ -42,9 +45,9 @@ const OUTPUT_FIX_LEVELS = new Set<number>([29, 30, 31, 34, 37, 38, 39, 40, 41, 5
 const INPUT_FIELD_TOKEN_REGEX = /\[\[(input(?:_[a-d])?)\]\]/g;
 
 function renderPromptText(prompt: string): ReactNode {
-  const parts = prompt.split(/(output|comment|error|operator|function)/g);
+  const parts = prompt.split(/(output|comment|error|operator|function|logical|relational)/g);
   return parts.map((part, index) =>
-    part === 'output' || part === 'comment' || part === 'error' || part === 'operator' || part === 'function' ? (
+    part === 'output' || part === 'comment' || part === 'error' || part === 'operator' || part === 'function' || part === 'logical' || part === 'relational' ? (
       <span key={`prompt-${index}`} className="text-[#ff6565]">
         {part}
       </span>
@@ -199,7 +202,7 @@ function CodeFixerPage() {
   const isGuestUser = !user || user.isAnonymous;
 
   const currentQuestion = roundQuestions[roundIndex];
-  const debugMode = phase === 'round' && currentDifficulty === 'debug';
+  const debugMode = DEBUG_UI_ENABLED && phase === 'round' && currentDifficulty === 'debug';
   const timeoutLocked = !debugMode && timedOut;
   const attemptLocked = ranLevel;
   const answerTarget = currentQuestion && OUTPUT_FIX_LEVELS.has(currentQuestion.number) ? 'output' : 'input';
@@ -840,15 +843,17 @@ function CodeFixerPage() {
                   <span>{'<-'}</span>
                   <span className="ml-1">Back</span>
                 </Link>
-                <button
-                  type="button"
-                  onClick={() => startRound('debug')}
-                  aria-label="Start debug mode"
-                  className="absolute inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[rgb(86,116,145)] text-[24px] leading-none text-white shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
-                  style={{ left: '167px', top: '3px' }}
-                >
-                  O
-                </button>
+                {DEBUG_UI_ENABLED ? (
+                  <button
+                    type="button"
+                    onClick={() => startRound('debug')}
+                    aria-label="Start debug mode"
+                    className="absolute inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[rgb(86,116,145)] text-[24px] leading-none text-white shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
+                    style={{ left: '167px', top: '3px' }}
+                  >
+                    O
+                  </button>
+                ) : null}
               </div>
             </>
           )}

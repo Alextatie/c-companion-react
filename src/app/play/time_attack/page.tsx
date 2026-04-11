@@ -26,6 +26,9 @@ import { ADVANCED_LESSON_FIELDS, BEGINNER_LESSON_FIELDS, INTERMEDIATE_LESSON_FIE
 
 type Difficulty = 'easy' | 'medium' | 'hard' | 'debug';
 type Phase = 'menu' | 'difficulty' | 'round' | 'result';
+const DEBUG_UI_ENABLED =
+  process.env.NEXT_PUBLIC_DEBUG_UI === 'true'
+  || (process.env.NEXT_PUBLIC_DEBUG_UI == null && process.env.NODE_ENV !== 'production');
 
 type ParsedQuestion = {
   number: number;
@@ -152,7 +155,7 @@ function TimeAttackPage() {
   const isGuestUser = !user || user.isAnonymous;
 
   const currentQuestion = roundQuestions[roundIndex];
-  const debugMode = phase === 'round' && currentDifficulty === 'debug';
+  const debugMode = DEBUG_UI_ENABLED && phase === 'round' && currentDifficulty === 'debug';
   const timeoutLocked = !debugMode && timedOut;
   const attemptLocked = selectedOption !== null;
 
@@ -662,15 +665,17 @@ function TimeAttackPage() {
                   <span>{'<-'}</span>
                   <span className="ml-1">Back</span>
                 </Link>
-                <button
-                  type="button"
-                  onClick={() => startRound('debug')}
-                  aria-label="Start debug mode"
-                  className="absolute inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[rgb(86,116,145)] text-[24px] leading-none text-white shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
-                  style={{ left: '167px', top: '3px' }}
-                >
-                  O
-                </button>
+                {DEBUG_UI_ENABLED ? (
+                  <button
+                    type="button"
+                    onClick={() => startRound('debug')}
+                    aria-label="Start debug mode"
+                    className="absolute inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-[rgb(86,116,145)] text-[24px] leading-none text-white shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
+                    style={{ left: '167px', top: '3px' }}
+                  >
+                    O
+                  </button>
+                ) : null}
               </div>
             </>
           )}

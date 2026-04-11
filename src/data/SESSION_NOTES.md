@@ -1,6 +1,6 @@
 # Session Notes (Codex)
 
-Last updated: 2026-04-02
+Last updated: 2026-04-10
 
 ## Purpose
 Working log and handoff notes to continue this project from another computer.
@@ -466,3 +466,71 @@ This session focused on gameplay unlock UX rollback/simplification, Options debu
 - Typecheck was run successfully with:
   - `npx tsc --noEmit`
 - `npm run lint` is currently not reliable in this environment due local script/powershell invocation issues.
+
+## Session Update (2026-04-10)
+This session focused on consolidating auth into `/login`, turning `/` into a welcome/preview page, and adding non-interactive showcase animations.
+
+### Auth / Routing State
+- `/` is now a welcome-only landing page.
+- `/login` owns the login and signup stages.
+- Separate old login/signup pages were removed from the flow.
+- `/Home` logout and unauthenticated fallback should route to `/login`, not `/`.
+- The root welcome page has one main CTA button labeled `Play->` that routes to `/login`.
+
+### Login / Signup Behavior
+- Email/password signup includes a username input.
+- Signup should create/update both Firestore username/profile-related data and stats data.
+- Google first-signup behavior should derive the display name from the email local part before `@` when needed.
+- Existing Google users with an existing display name should not have that display name overwritten.
+- Guest login remains available on the login page.
+
+### Root Welcome Page
+- Main implementation is in:
+  - `src/app/page.tsx`
+- Current root page contains:
+  - a welcome panel with CTA
+  - a separate preview panel that can swap between `Lessons` and `Games`
+- The current preview panel is intentionally non-interactive:
+  - wrapper uses pointer-blocking behavior so it behaves like a screenshot/demo, not a playable component.
+- Current page positioning uses hard-coded absolute offsets and user-tuned transforms.
+- Be careful not to overwrite the user's manual layout/position tweaks unless explicitly requested.
+
+### Lesson Preview
+- Lesson preview copies the first Output lesson screen into the welcome preview panel.
+- It uses real lesson primitives/components where possible, but is presented as a static/non-interactive demo.
+- The fake cursor animation:
+  - starts under the output panel near the lower input-panel height
+  - waits about 2 seconds
+  - moves to the upper Run button
+  - clicks it
+  - shows `Hello World!` in the output
+  - leaves the cursor and output visible at the final frame instead of fading/resetting.
+
+### Games Preview
+- Games preview copies Code Fixer round 8 into the welcome preview panel.
+- Title is `Games` only; `Round 8` text was removed.
+- It is a static/non-interactive demo of the game UI.
+- The fake cursor animation:
+  - starts near the timer/number area
+  - waits about 2 seconds
+  - moves to the inline answer input
+  - clicks it
+  - types `%d`
+  - moves to Run
+  - clicks Run
+  - shows `Correct!`
+- Timer animation starts at `01:55` and counts down once per second to `01:47`.
+- The mouse finishes earlier; the remaining animation time is timer-only.
+
+### Preview Assets
+- Cursor source asset:
+  - `src/data/cursor.png`
+- Filled cursor asset generated for the preview:
+  - `src/data/cursor-filled.png`
+- Root page imports the filled cursor asset for the fake cursor animations.
+
+### Current Constraints / Resume Guidance
+- Preserve `/` as the welcome page and `/login` as the auth page unless the user requests another routing change.
+- Preserve the current non-interactive preview behavior.
+- Root page preview alignment/scale is still being tuned visually; expect future requests to adjust offsets, scale, and cursor target positions.
+- If changing auth, verify both Authentication and Firestore collections are updated for the relevant login/signup path.

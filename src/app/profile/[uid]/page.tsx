@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { doc, getDoc } from 'firebase/firestore';
@@ -45,11 +46,20 @@ function countCompletedTotal(stats: ProfileStats | null): number {
 }
 
 function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
+  const router = useRouter();
   const [user, loadingAuth] = useAuthState(auth);
   const [targetUid, setTargetUid] = useState('');
   const [stats, setStats] = useState<ProfileStats | null>(null);
   const [loadingStats, setLoadingStats] = useState(true);
   const [errorText, setErrorText] = useState('');
+
+  const handleBack = () => {
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      router.back();
+      return;
+    }
+    router.push('/Home');
+  };
 
   useEffect(() => {
     params
@@ -109,13 +119,14 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
       <div className="flex min-h-screen flex-col items-center justify-center px-4 text-center text-white">
         <div>Sign in to view profiles.</div>
         <div className="mt-8">
-          <Link
-            href="/Home"
+          <button
+            type="button"
+            onClick={handleBack}
             className="flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
           >
             <span>{'<-'}</span>
             <span className="ml-1">Back</span>
-          </Link>
+          </button>
         </div>
       </div>
     );
@@ -224,13 +235,14 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
       </div>
 
       <div className="mt-10">
-        <Link
-          href="/Home"
+        <button
+          type="button"
+          onClick={handleBack}
           className="flex items-center rounded bg-white px-3 py-2 text-lg text-[#5d9d87] text-shadow-lg shadow-lg transition hover:bg-[rgb(214,232,220)]"
         >
           <span>{'<-'}</span>
           <span className="ml-1">Back</span>
-        </Link>
+        </button>
       </div>
     </div>
   );
