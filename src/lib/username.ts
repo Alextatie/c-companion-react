@@ -104,7 +104,7 @@ export async function claimUsername(params: {
     if (usernameSnap.exists()) {
       const data = usernameSnap.data() as { uid?: string };
       if (data.uid !== uid) {
-        throw new Error('Username already taken.');
+        throw new Error('Username already taken');
       }
     }
 
@@ -137,5 +137,84 @@ export async function claimUsername(params: {
         updatedAt: serverTimestamp(),
       });
     }
+  });
+}
+
+export async function changeUsername(params: {
+  uid: string;
+  username: string;
+  firestore?: Firestore;
+}): Promise<boolean> {
+  const { uid, username, firestore = db } = params;
+  const trimmed = username.trim();
+  const normalized = normalizeUsername(trimmed);
+  const validationError = validateUsername(trimmed);
+  if (validationError) {
+    throw new Error(validationError);
+  }
+
+  const statsRef = doc(firestore, 'stats', uid);
+  const newUsernameRef = doc(firestore, 'usernames', normalized);
+
+  return runTransaction(firestore, async (tx) => {
+    const statsSnap = await tx.get(statsRef);
+    const newUsernameSnap = await tx.get(newUsernameRef);
+    const currentDisplayName = statsSnap.exists()
+      ? ((statsSnap.data() as { displayName?: string }).displayName || '').trim()
+      : '';
+    const currentNormalized = normalizeUsername(currentDisplayName);
+    const oldUsernameRef =
+      currentNormalized && currentNormalized !== normalized ? doc(firestore, 'usernames', currentNormalized) : null;
+    const oldUsernameSnap = oldUsernameRef ? await tx.get(oldUsernameRef) : null;
+
+    if (!trimmed || normalized === currentNormalized) {
+      return false;
+    }
+
+    if (newUsernameSnap.exists()) {
+      const data = newUsernameSnap.data() as { uid?: string };
+      if (data.uid !== uid) {
+        throw new Error('Username already taken');
+      }
+    }
+
+    tx.set(
+      newUsernameRef,
+      {
+        uid,
+        username: trimmed,
+        usernameLower: normalized,
+        updatedAt: serverTimestamp(),
+        createdAt: serverTimestamp(),
+      },
+      { merge: true }
+    );
+
+    if (oldUsernameRef && oldUsernameSnap?.exists()) {
+      const oldUsernameData = oldUsernameSnap.data() as { uid?: string };
+      if (oldUsernameData.uid === uid) {
+        tx.delete(oldUsernameRef);
+      }
+    }
+
+    if (statsSnap.exists()) {
+      tx.update(statsRef, {
+        displayName: trimmed,
+        updatedAt: serverTimestamp(),
+      });
+    } else {
+      tx.set(statsRef, {
+        displayName: trimmed,
+        codeFixerStars: 0,
+        timeAttackStars: 0,
+        totalStars: 0,
+        codeFixerBestTimeMs: 0,
+        timeAttackBestTimeMs: 0,
+        ...LESSON_DEFAULT_FIELDS,
+        updatedAt: serverTimestamp(),
+      });
+    }
+
+    return true;
   });
 }

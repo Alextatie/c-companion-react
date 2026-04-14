@@ -72,7 +72,7 @@ function LeaderboardsPage() {
     () => ({
       'total-stars': 'Total Stars',
       'fixer-stars': 'Fixer Stars',
-      'attack-stars': 'Attack Stars',
+      'attack-stars': 'Quiz Rush Stars',
       'fixer-time': 'Best Time',
       'attack-time': 'Best Time',
     }),
@@ -82,9 +82,9 @@ function LeaderboardsPage() {
   const tabs: Array<{ key: LeaderboardMode; label: string }> = [
     { key: 'total-stars', label: 'Total☆' },
     { key: 'fixer-stars', label: 'Fixer☆' },
-    { key: 'attack-stars', label: 'Attack☆' },
+    { key: 'attack-stars', label: 'Quiz☆' },
     { key: 'fixer-time', label: 'Fixer◷' },
-    { key: 'attack-time', label: 'Attack◷' },
+    { key: 'attack-time', label: 'Quiz◷' },
   ];
 
   useEffect(() => {

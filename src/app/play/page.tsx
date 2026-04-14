@@ -1,8 +1,30 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
+import Image, { type StaticImageData } from 'next/image';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/app/firebase/config';
+import codeFixerIcon from '@/data/codefixer.png';
+import quizRushIcon from '@/data/quizrush.png';
+import trophyIcon from '@/data/Trophy.png';
+
+type PlayButtonContentProps = {
+  icon: StaticImageData;
+  label: string;
+  className?: string;
+};
+
+const PlayButtonContent = ({ icon, label, className = 'gap-2' }: PlayButtonContentProps) => (
+  <span className={`flex items-center justify-center ${className}`}>
+    <Image
+      src={icon}
+      alt=""
+      aria-hidden="true"
+      className="h-7 w-7 object-contain brightness-0 invert"
+    />
+    <span>{label}</span>
+  </span>
+);
 
 function PlayPage() {
   const [user] = useAuthState(auth);
@@ -15,17 +37,17 @@ function PlayPage() {
           <Link
             href="/play/code_fixer"
             className="flex h-[52px] items-center justify-center rounded bg-[rgb(86,117,145)] text-center text-4xl leading-none text-shadow-lg shadow-lg text-white transition hover:bg-[rgb(68,96,123)] disabled:cursor-default"
-            style={{ fontSize: '36px' }}
+            style={{ fontSize: '31px' }}
           >
-            Code Fixer
+            <PlayButtonContent icon={codeFixerIcon} label="Code Fixer" />
           </Link>
 
           <Link
             href="/play/time_attack"
             className="flex h-[52px] items-center justify-center rounded bg-[rgb(86,116,145)] text-center leading-none text-shadow-lg shadow-lg text-white transition hover:bg-[rgb(68,96,123)] disabled:cursor-default"
-            style={{ fontSize: '33px' }}
+            style={{ fontSize: '31px' }}
           >
-            Time Attack
+            <PlayButtonContent icon={quizRushIcon} label="Quiz Rush" />
           </Link>
 
           <div className="my-2 h-px w-full bg-white/60 shadow-[0_1px_2px_rgba(0,0,0,0.45)]" />
@@ -33,9 +55,9 @@ function PlayPage() {
           <Link
             href="/play/leaderboards"
             className="flex h-[52px] items-center justify-center rounded bg-[rgb(86,116,145)] text-center text-3xl leading-none text-shadow-lg shadow-lg text-white transition hover:bg-[rgb(68,96,123)]"
-            style={{ fontSize: '30px' }}
+            style={{ fontSize: '25px' }}
           >
-            Leaderboards
+            <PlayButtonContent icon={trophyIcon} label="Leaderboards" />
           </Link>
         </div>
       </div>

@@ -12,6 +12,7 @@ import { CodeEditor, LessonChip, OutputPanel, RunButton } from '@/components/les
 import { renderHighlightedCodeLineWithOptions } from '@/components/lesson/code-highlighting';
 import { formatCodeFixerTimer, getCodeFixerInputWidthPx, type CodeFixerRule } from '@/lib/games/code-fixer-logic';
 import cursorPng from '@/data/cursor-filled.png';
+import robotPng from '@/data/robot.png';
 
 const LESSON_RUN_START_EVENT = 'lesson-run-start';
 const LESSON_RUN_COMPLETE_EVENT = 'lesson-run-complete';
@@ -412,37 +413,134 @@ const LandingPage = () => {
   }
 
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="relative h-screen w-screen overflow-hidden">
+      <div
+        className="pointer-events-none fixed inset-0 z-0"
+        style={{
+          background: 'var(--gradient-b)',
+        }}
+      />
+      <div className="relative z-10 h-full w-full">
       <ScaledLessonFrame baseWidth={1720}>
         <div className="relative h-screen">
-          <section className="absolute right-[800px] top-[100px] flex w-[830px] justify-end">
-            <div className="w-[830px] rounded bg-transparent p-8 text-center text-white backdrop-blur-[1px]">
-              <h1 className="text-5xl font-bold leading-tight text-shadow-lg">Welcome to C-companion!</h1>
-              <p className="mt-2 text-xl text-shadow-lg">
-                Learn C with interactive lessons,<br />practice fun challenges,track your progress,<br />and compete on
-                the leaderboards!
-              </p>
-              <div className="mt-5 flex justify-center">
+          <div
+            className="scale-[1.2] pointer-events-none absolute left-[65px] top-[155px] h-[105px] w-[215px] rounded-lg border border-white/25 bg-black/5 p-4 font-mono text-[14px] leading-tight text-white/25 shadow-lg blur-[1px]"
+            style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+          >
+            <div>
+              <div>#include &lt;stdio.h&gt;</div>
+              <div>int main() {'{'}</div>
+              <div>{'  '}printf("C");</div>
+              <div>{'}'}</div>
+            </div>
+          </div>
+          <div
+            className="scale-[1.3] pointer-events-none absolute left-[1400px] top-[145px] h-[115px] w-[220px] rounded-lg border border-white/25 bg-black/5 p-5 font-mono text-[15px] leading-tight text-white/25 shadow-lg blur-[1px]"
+            style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+          >
+            <div>
+              <div>while (learning) {'{'}</div>
+              <div>{'  '}practice++;</div>
+              <div>{'  '}score += 1;</div>
+              <div>{'}'}</div>
+            </div>
+          </div>
+          <div
+            className="pointer-events-none absolute right-[620px] top-[85px] h-[75px] w-[200px] rounded-lg border border-white/20 bg-black/5 p-4 font-mono text-[14px] leading-tight text-white/20 shadow-lg blur-[1.25px]"
+            style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+          >
+            <div>
+              <div>char goal[] = "C";</div>
+              <div>printf("%s", goal);</div>
+            </div>
+          </div>
+          <div
+            className="scale-[1.4] pointer-events-none absolute left-[740px] top-[680px] h-[85px] w-[285px] rounded-lg border border-white/15 bg-black/5 p-4 font-mono text-[14px] leading-tight text-white/15 shadow-lg blur-[1.5px]"
+            style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+          >
+            <div>
+              <div>for (int i = 0; i &lt; 5; i++) {'{'}</div>
+              <div>{'  '}printf("%d", i);</div>
+              <div>{'}'}</div>
+            </div>
+          </div>
+          <div
+            className="pointer-events-none absolute left-[110px] top-[760px] h-[90px] w-[180px] rounded-lg border border-white/25 bg-black/5 p-4 font-mono text-[14px] leading-tight text-white/25 shadow-lg blur-[1px]"
+            style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+          >
+            <div>
+              <div>int score = 0;</div>
+              <div>score += stars;</div>
+              <div>return score;</div>
+            </div>
+          </div>
+          <div
+            className="pointer-events-none absolute right-[65px] top-[760px] h-[90px] w-[225px] rounded-lg border border-white/25 bg-black/5 p-4 font-mono text-[14px] leading-tight text-white/25 shadow-lg blur-[1px]"
+            style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+          >
+            <div>
+              <div>char rank[] = "A";</div>
+              <div>printf("%s", rank);</div>
+              <div>return 0;</div>
+            </div>
+          </div>
+          <div
+            className="scale-[1.5] pointer-events-none absolute left-[580px] top-[420px] h-[70x] w-[155px] rounded-lg border border-white/15 bg-black/5 p-4 font-mono text-[13px] leading-tight text-white/20 shadow-lg blur-[1.2px]"
+            style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+          >
+            <div>
+              <div>if (ready) {'{'}</div>
+              <div>{'  '}start();</div>
+              <div>{'}'}</div>
+            </div>
+          </div>
+          <section className="absolute left-[145px] top-[230px] z-10 w-[760px] text-left text-white">
+            <h1 className="text-[82px] font-bold leading-[1.12] tracking-normal text-shadow-lg">
+              Welcome to
+              <br />
+              C-companion!
+            </h1>
+            <p className="mt-7 text-[24px] leading-[1.25] text-shadow-lg">
+               Learn C with interactive lessons,<br/>
+               practice challenges, track your progress,<br/>
+               and compete on the leaderboards!
+            </p>
+            <div className="mt-7 flex items-center gap-14">
                 <button
                   type="button"
                   onClick={() => router.push('/login')}
-                  className="inline-flex w-auto rounded-full bg-[linear-gradient(135deg,rgb(106,233,110),rgb(67,177,150))] px-4 py-2 text-xl text-white text-shadow-lg shadow-lg transition hover:brightness-[1.15]"
+                className="inline-flex h-[86px] w-[255px] items-center justify-center rounded-4xl bg-[linear-gradient(135deg,rgb(45,145,120),rgb(72,218,138))] text-[48px] text-white shadow-lg transition hover:brightness-[1.25]"
                 >
-                  Play-&gt;
+                  Play&nbsp;-&gt;
                 </button>
-              </div>
+              <Image
+                src={robotPng}
+                alt=""
+                aria-hidden="true"
+                className="h-[150px] w-auto object-contain drop-shadow-[0_8px_14px_rgba(0,0,0,0.4)]"
+              />
             </div>
           </section>
-          <section className="absolute bottom-[10px] left-[950px] flex w-[830px] justify-start opacity-85">
-            <div className="h-[467px] w-[830px] overflow-hidden rounded bg-transparent">
-              <div className={`pointer-events-none h-full select-none transition-opacity duration-500 ${showcaseVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <section className="absolute left-[895px] top-[235px] z-10 flex w-[830px] justify-start">
+            <div className="relative h-[467px] w-[690px] overflow-hidden rounded-3xl border border-white/25 shadow-lg">
+              <div
+                className="pointer-events-none absolute inset-0 rounded-lg bg-black/10"
+                style={{
+                  backdropFilter: 'blur(4px)',
+                  WebkitBackdropFilter: 'blur(4px)',
+                }}
+              />
+              <div
+                className="pointer-events-none relative h-full select-none transition-opacity duration-500"
+                style={{ opacity: showcaseVisible ? 0.85 : 0 }}
+              >
                 {currentShowcase.kind === 'lesson' ? (
                   <div className="h-full overflow-hidden">
                     <div className="origin-top-left scale-[0.6]">
                       <div className="w-[1030px] max-w-none px-[50px] py-[50px] text-center text-white">
                         <div className="relative w-[1030px] max-w-none">
                           <h2 className="mb-8 text-center text-5xl font-bold text-shadow-lg">Lessons</h2>
-                          <section className="lesson-panel w-full rounded-2xl p-8 shadow-lg backdrop-blur-[1px]">
+                          <section className="lesson-panel w-full rounded-2xl p-8 shadow-lg">
                             <div className="space-y-3 text-left">
                               <p className="text-xl leading-relaxed">
                                 <>
@@ -519,7 +617,7 @@ const LandingPage = () => {
                     <div className="origin-top-left translate-x-[-60px] -translate-y-[10px] scale-[0.78]">
                       <div className="w-[1030px] max-w-none px-[50px] py-[50px] text-center text-white">
                         <h2 className="mb-5 text-4xl font-bold text-center text-shadow-lg">Challenges</h2>
-                        <section className="lesson-panel relative mx-auto w-[800px] rounded-2xl p-5 shadow-lg backdrop-blur-[1px]">
+                        <section className="lesson-panel relative mx-auto w-[800px] rounded-2xl p-5 shadow-lg">
                           <p className="mb-4 w-full text-left text-[17px] leading-tight">
                             {renderCodeFixerPromptText(CODE_FIXER_ROUND_8_PROMPT)}
                           </p>
@@ -609,6 +707,7 @@ const LandingPage = () => {
           </section>
         </div>
       </ScaledLessonFrame>
+      </div>
     </div>
   );
 };

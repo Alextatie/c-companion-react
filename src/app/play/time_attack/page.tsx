@@ -330,7 +330,7 @@ function TimeAttackPage() {
       completionTimeMs: bestTimeEligible && stars === 3 ? elapsedMs : null,
     })
       .catch((error) => {
-        console.error('Failed to submit Time Attack stats', error);
+        console.error('Failed to submit Quiz Rush stats', error);
       })
       .finally(() => {
         setSubmittedSessionId(roundSessionId);
@@ -541,7 +541,7 @@ function TimeAttackPage() {
             </div>
           ) : (
             <>
-              <h1 className="mb-1 mt-[2.7rem] text-[58px] font-bold text-shadow-lg">Time Attack</h1>
+              <h1 className="mb-1 mt-[2.7rem] text-[58px] font-bold text-shadow-lg">Quiz Rush</h1>
 
               <section
                 className="lesson-panel mx-auto rounded-2xl shadow-lg backdrop-blur-[1px]"

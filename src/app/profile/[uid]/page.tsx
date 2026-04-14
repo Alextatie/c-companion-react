@@ -10,6 +10,7 @@ import { auth, db } from '@/app/firebase/config';
 import laurelImage from '../../../data/Laurel.png';
 import trophyImage from '../../../data/Trophy.png';
 import { LESSON_DEFINITIONS, type LessonDifficulty } from '@/lib/lesson-progress';
+import { changeUsername } from '@/lib/username';
 
 type ProfileStats = {
   displayName: string;
@@ -36,15 +37,6 @@ function countCompletedByDifficulty(stats: ProfileStats | null, difficulty: Less
   }, 0);
 }
 
-function countCompletedTotal(stats: ProfileStats | null): number {
-  if (!stats) {
-    return 0;
-  }
-  return LESSON_DEFINITIONS.reduce((count, lesson) => {
-    return stats[lesson.field] === true ? count + 1 : count;
-  }, 0);
-}
-
 function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
   const router = useRouter();
   const [user, loadingAuth] = useAuthState(auth);
@@ -52,6 +44,10 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
   const [stats, setStats] = useState<ProfileStats | null>(null);
   const [loadingStats, setLoadingStats] = useState(true);
   const [errorText, setErrorText] = useState('');
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [editUsername, setEditUsername] = useState('');
+  const [editError, setEditError] = useState('');
+  const [isSavingUsername, setIsSavingUsername] = useState(false);
 
   const handleBack = () => {
     if (typeof window !== 'undefined' && window.history.length > 1) {
@@ -59,6 +55,51 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
       return;
     }
     router.push('/Home');
+  };
+
+  const openEditPanel = () => {
+    setEditUsername(stats?.displayName || '');
+    setEditError('');
+    setIsEditOpen(true);
+  };
+
+  const closeEditPanel = () => {
+    if (isSavingUsername) {
+      return;
+    }
+    setIsEditOpen(false);
+    setEditError('');
+  };
+
+  const handleSaveUsername = async () => {
+    if (!user || !isOwnProfile) {
+      return;
+    }
+
+    const trimmedUsername = editUsername.trim();
+    const currentUsername = (stats?.displayName || '').trim();
+    if (!trimmedUsername || trimmedUsername.toLowerCase() === currentUsername.toLowerCase()) {
+      setIsEditOpen(false);
+      setEditError('');
+      return;
+    }
+
+    setIsSavingUsername(true);
+    setEditError('');
+
+    try {
+      const changed = await changeUsername({ uid: user.uid, username: trimmedUsername });
+      if (!changed) {
+        setIsEditOpen(false);
+        return;
+      }
+      setStats((prev) => (prev ? { ...prev, displayName: trimmedUsername } : prev));
+      setIsEditOpen(false);
+    } catch (error: any) {
+      setEditError(error?.message === 'Username already taken' ? 'Username already taken' : error?.message || 'Failed to save username');
+    } finally {
+      setIsSavingUsername(false);
+    }
   };
 
   useEffect(() => {
@@ -133,23 +174,21 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
   }
 
   const titleText = stats?.displayName || (loadingAuth || loadingStats ? 'Profile' : 'Profile');
-  const beginnerCount = stats ? countCompletedByDifficulty(stats, 'beginner') : '0';
-  const intermediateCount = stats ? countCompletedByDifficulty(stats, 'intermediate') : '0';
-  const advancedCount = stats ? countCompletedByDifficulty(stats, 'advanced') : '0';
-  const totalCompletedLessons = countCompletedTotal(stats);
-  const allLessonsCompleted = totalCompletedLessons === 18;
+  const beginnerCount = stats ? countCompletedByDifficulty(stats, 'beginner') : 0;
+  const intermediateCount = stats ? countCompletedByDifficulty(stats, 'intermediate') : 0;
+  const advancedCount = stats ? countCompletedByDifficulty(stats, 'advanced') : 0;
+  const beginnerCompleted = beginnerCount === 6;
+  const intermediateCompleted = intermediateCount === 6;
+  const advancedCompleted = advancedCount === 6;
   const codeFixerStars = stats ? stats.codeFixerStars : '0';
   const timeAttackStars = stats ? stats.timeAttackStars : '0';
   const codeFixerBestTime = stats ? formatTime(stats.codeFixerBestTimeMs) : '-';
   const timeAttackBestTime = stats ? formatTime(stats.timeAttackBestTimeMs) : '-';
   const isOwnProfile = Boolean(user && targetUid && user.uid === targetUid);
-  const trophyOpacityClass = allLessonsCompleted ? 'opacity-100' : 'opacity-15';
-  const trophyGoldFilter = allLessonsCompleted
-    ? {
-        filter:
-          'brightness(0) saturate(100%) invert(75%) sepia(65%) saturate(1360%) hue-rotate(338deg) brightness(102%) contrast(101%)',
-      }
-    : undefined;
+  const awardGoldFilter = {
+    filter:
+      'brightness(0) saturate(100%) invert(75%) sepia(65%) saturate(1360%) hue-rotate(338deg) brightness(102%) contrast(101%)',
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center px-4 pt-30 text-center text-white">
@@ -157,12 +196,13 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
         <div className="relative mx-auto w-fit">
           <h1 className="text-5xl font-bold text-shadow-lg">{titleText}</h1>
           {isOwnProfile ? (
-            <Link
-              href="/Edit"
+            <button
+              type="button"
+              onClick={openEditPanel}
               className="absolute left-full ml-2 -translate-y-[30px] rounded bg-[rgb(86,116,145)] px-1.5 py-0.5 text-xs text-white text-shadow-lg shadow-lg transition hover:bg-[rgb(68,96,123)]"
             >
               Edit
-            </Link>
+            </button>
           ) : null}
         </div>
       </div>
@@ -187,21 +227,27 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
               src={laurelImage}
               alt=""
               aria-hidden="true"
-              className={`absolute -left-[62px] -top-[72px] h-[238px] w-[80px] scale-x-[1.2] scale-y-[1.3] object-contain ${trophyOpacityClass}`}
-              style={trophyGoldFilter}
+              className={`absolute -left-[62px] -top-[72px] h-[238px] w-[80px] scale-x-[1.2] scale-y-[1.3] object-contain ${
+                beginnerCompleted ? 'opacity-100' : 'opacity-15'
+              }`}
+              style={beginnerCompleted ? awardGoldFilter : undefined}
             />
             <Image
               src={trophyImage}
               alt="Trophy"
-              className={`absolute left-0 top-0 h-[94px] w-[94px] object-contain ${trophyOpacityClass}`}
-              style={trophyGoldFilter}
+              className={`absolute left-0 top-0 h-[94px] w-[94px] object-contain ${
+                advancedCompleted ? 'opacity-100' : 'opacity-15'
+              }`}
+              style={advancedCompleted ? awardGoldFilter : undefined}
             />
             <Image
               src={laurelImage}
               alt=""
               aria-hidden="true"
-              className={`absolute -right-[62px] -top-[72px] h-[238px] w-[80px] scale-x-[-1.2] scale-y-[1.3] object-contain ${trophyOpacityClass}`}
-              style={trophyGoldFilter}
+              className={`absolute -right-[62px] -top-[72px] h-[238px] w-[80px] scale-x-[-1.2] scale-y-[1.3] object-contain ${
+                intermediateCompleted ? 'opacity-100' : 'opacity-15'
+              }`}
+              style={intermediateCompleted ? awardGoldFilter : undefined}
             />
           </div>
         </div>
@@ -222,7 +268,7 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
               </div>
               <div className="w-[272px] rounded bg-black/20 p-4 px-[20px] shadow-lg backdrop-blur-[1px]">
                 <div className="mb-2 text-xl font-bold bg-[linear-gradient(135deg,rgb(130,255,182),rgb(40,223,195))] bg-clip-text text-transparent">
-                  Time Attack
+                  Quiz Rush
                 </div>
                 <div className="space-y-1 text-xl">
                   <div>stars: [{timeAttackStars}]</div>
@@ -244,6 +290,51 @@ function ProfileByUidPage({ params }: { params: Promise<{ uid: string }> }) {
           <span className="ml-1">Back</span>
         </button>
       </div>
+
+      {isEditOpen ? (
+        <div className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-[220px] backdrop-blur-[3px]">
+          <div className="relative w-[305px] rounded-lg bg-black/30 p-4 text-center text-white shadow-lg">
+            <button
+              type="button"
+              onClick={closeEditPanel}
+              disabled={isSavingUsername}
+              className="absolute left-full top-0 ml-2 flex h-6 w-6 items-center justify-center rounded bg-[#d85b5b] text-sm leading-none text-white text-shadow-lg shadow-lg transition hover:bg-[#e56d6d]"
+              aria-label="Close edit profile"
+            >
+              X
+            </button>
+            <div className="mb-4 text-2xl font-bold text-shadow-lg">Change Username:</div>
+            <div className="flex flex-col gap-4">
+              <input
+                type="text"
+                placeholder="Username"
+                className="rounded bg-white p-2 text-black shadow-lg"
+                value={editUsername}
+                onChange={(event) => setEditUsername(event.target.value)}
+                maxLength={20}
+                disabled={isSavingUsername}
+                required
+              />
+              <button
+                type="button"
+                onClick={handleSaveUsername}
+                disabled={isSavingUsername}
+                className={`relative rounded bg-[rgb(107,195,95)] py-2 text-xl text-white text-shadow-lg shadow-lg transition hover:bg-[rgb(129,218,133)] ${
+                  isSavingUsername ? 'cursor-default' : ''
+                }`}
+              >
+                <span className={isSavingUsername ? 'opacity-0' : 'opacity-100'}>Save</span>
+                {isSavingUsername ? (
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  </span>
+                ) : null}
+              </button>
+            </div>
+            {editError ? <p className="mt-4 text-sm text-red-400">{editError}</p> : null}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

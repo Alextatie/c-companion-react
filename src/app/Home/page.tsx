@@ -3,11 +3,35 @@
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Link from 'next/link';
+import Image, { type StaticImageData } from 'next/image';
 import { useRouter } from 'next/navigation';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import { useGlobalLoading } from '../providers/loading-provider';
+import aboutIcon from '@/data/about.png';
+import learnIcon from '@/data/learn.png';
+import optionsIcon from '@/data/options.png';
+import profileIcon from '@/data/profile.png';
+import playIcon from '@/data/play.png';
 import { defaultUsernameFromEmail, getProfileUsername } from '@/lib/username';
+
+type HomeMenuButtonContentProps = {
+  icon: StaticImageData;
+  iconClassName: string;
+  label: string;
+};
+
+const HomeMenuButtonContent = ({ icon, iconClassName, label }: HomeMenuButtonContentProps) => (
+  <span className="flex items-center justify-center gap-2">
+    <Image
+      src={icon}
+      alt=""
+      aria-hidden="true"
+      className={`object-contain brightness-0 invert ${iconClassName}`}
+    />
+    <span>{label}</span>
+  </span>
+);
 
 const HomeMenuPage = () => {
   const router = useRouter();
@@ -91,38 +115,38 @@ const HomeMenuPage = () => {
         <div className="flex flex-col gap-2">
           <Link
             href="/learn"
-            className="rounded bg-[rgb(86,116,145)] py-2 text-center text-4xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
+            className="rounded bg-[rgb(86,116,145)] py-2 text-center text-3xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
           >
-            Learn
+            <HomeMenuButtonContent icon={learnIcon} iconClassName="h-8 w-8" label="Learn" />
           </Link>
 
           <Link
             href="/play"
-            className="rounded bg-[rgb(86,116,145)] py-2 text-center text-4xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
+            className="rounded bg-[rgb(86,116,145)] py-2 text-center text-3xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
           >
-            Play
+            <HomeMenuButtonContent icon={playIcon} iconClassName="h-8 w-8" label="Play" />
           </Link>
 
           <Link
             href={user.isAnonymous ? '/profile' : `/profile/${user.uid}`}
-            className="rounded bg-[rgb(86,116,145)] py-2 text-center text-4xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
+            className="rounded bg-[rgb(86,116,145)] py-2 text-center text-3xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
           >
-            Profile
+            <HomeMenuButtonContent icon={profileIcon} iconClassName="h-8 w-8" label="Profile" />
           </Link>
 
           <div className="flex gap-2">
             <Link
               href="/options"
-              className="w-full rounded bg-[rgb(86,116,145)] py-2 text-center text-2xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
+              className="w-full rounded bg-[rgb(86,116,145)] py-2 text-center text-xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
             >
-              Options
+              <HomeMenuButtonContent icon={optionsIcon} iconClassName="h-5 w-5" label="Options" />
             </Link>
 
             <Link
               href="/about"
-              className="w-full rounded bg-[rgb(86,116,145)] py-2 text-center text-2xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
+              className="w-full rounded bg-[rgb(86,116,145)] py-2 text-center text-xl text-white text-shadow-lg shadow-[0_2px_6px_rgba(0,0,0,0.55)] transition hover:bg-[rgb(68,96,123)]"
             >
-              About
+              <HomeMenuButtonContent icon={aboutIcon} iconClassName="h-5 w-5" label="About" />
             </Link>
           </div>
 
