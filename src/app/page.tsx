@@ -406,21 +406,19 @@ const LandingPage = () => {
 
   if (loading || user || isRedirecting) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <div className="h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-white border-t-transparent" />
-      </div>
+      <>
+        <style>{`:root { --bg-gradient: var(--gradient-b); --bg-shapes-filter: opacity(0); }`}</style>
+        <div className="flex h-screen items-center justify-center">
+          <div className="h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-white border-t-transparent" />
+        </div>
+      </>
     );
   }
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        style={{
-          background: 'var(--gradient-b)',
-        }}
-      />
-      <div className="relative z-10 h-full w-full">
+      <style>{`:root { --bg-gradient: var(--gradient-b); --bg-shapes-filter: opacity(0); }`}</style>
+      <div className="relative z-10 h-full w-full box-border px-[120px] py-0">
       <ScaledLessonFrame baseWidth={1720}>
         <div className="relative h-screen">
           <div
